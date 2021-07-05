@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  This is the final version to be used in Montreal 2018
+//-->
+<names>
+  <name gender="Male">Alex</name>
+  <name gender="Male">Stave</name>
+  <name gender="Male">Robert</name>
+  <name gender="Male">Winston</name>
+  <name gender="Male">Colin</name>
+  <name gender="Male">Mike</name>
+  <name gender="Male">Bill</name>
+  <name gender="Male">Adam</name>
+  <name gender="Male">Jonathan</name>
+  <name gender="Male">Peter</name>
+  <name gender="Female">Lily</name>
+  <name gender="Female">Natalia</name>
+  <name gender="Female">Jennifer</name>
+  <name gender="Female">Olive</name>
+  <name gender="Female">Mary</name>
+  <name gender="Female">Charlotte</name>
+  <name gender="Female">Alice</name>
+  <name gender="Female">Veronica</name>
+  <name gender="Female">Zara</name>
+  <name gender="Female">Lucy</name>
+  <name>someone</name>
+  <name>a person</name>
+</names>

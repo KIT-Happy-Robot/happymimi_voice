@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find gcp_speech_recognition)/launch/srvserver.launch" />
+  <include file="$(find gcp_texttospeech)/launch/srvserver.launch" />
+  <node pkg="gpsr" name="gpsr_action_planning" type="planning_srvserver.py" output="screen" />
+</launch>

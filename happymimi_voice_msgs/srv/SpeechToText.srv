@@ -1,0 +1,5 @@
+bool short_str
+string[] context_phrases
+float32 boost_value
+---
+string result_str

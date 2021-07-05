@@ -1,0 +1,8 @@
+numpy
+pickle
+nltk
+google-cloud-speech
+rospkg
+python-levenshtein
+pyaudio 
+gensim
