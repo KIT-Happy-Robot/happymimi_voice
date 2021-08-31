@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="gcp_texttospeech" name="tts_srvserver" type="tts_srvserver.py" output="screen" />
+  <node pkg="ggi" name="listen_command" type="listen_command.py" output="screen" />
+  <node pkg="ggi" name="ggi_learning" type="ggi_learning.py" output="screen" />
+  <node pkg="ggi" name="yes_no" type="yes_no.py" output="screen" />
+  <node pkg="ggi" name="test_phase" type="test_phase.py" output="screen" />
+</launch>

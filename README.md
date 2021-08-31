@@ -10,6 +10,7 @@ This package is a collection of the voice processing functions.
 - Predict the gender from name.
 - Environment teaching function. (GGI)
 - Command recognition by voice.
+  etc
 
 ### Technology used
 - Speech-To-Text and Text-To-Speech
@@ -73,10 +74,5 @@ export ftp_proxy=ftp://wwwproxy.kanazawa-it.ac.jp
 pip install wheel
 ```
 
-
-
-
-
-
-
 ## Usag
+Write in each package
