@@ -75,4 +75,4 @@ pip install wheel
 ```
 
 ## Usag
-Write in each package
+Write in each package by japanese

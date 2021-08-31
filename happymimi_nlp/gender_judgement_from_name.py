@@ -32,7 +32,7 @@ class GenderJudgementFromNameByNBC:
         print("test2 : "+str(nltk.classify.accuracy(self.classifier,self.test_set2)))
 
     def expectGender(self,name):
-        return self.classifier.classify(self.gender_features(name))
+        return self.classifier.classify(self.gender_features(name.lower()))
 
 
     def save(self,file_path="./genderNBCmodel.dill"):
