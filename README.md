@@ -31,6 +31,8 @@ python-levenshtein
 pyaudio==0.2.11
 gensim==4.0.1
 dill==0.3.4
+scikit-learn==0.24.2
+ngram==3.3.2
 ```
 
 ## How to build enviroment
@@ -58,7 +60,8 @@ python3 -m venv envs/venv
 #enter venv
 source envs/venv/bin/activate
 #some libraries and data install
-sh environment_building/enviroment.sh
+cd enviroment_building
+sh enviroment.sh
 ```
 
 ### Anticipated errors

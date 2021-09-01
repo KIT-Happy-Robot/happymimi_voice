@@ -8,3 +8,5 @@ python-levenshtein
 pyaudio==0.2.11
 gensim==4.0.1
 dill==0.3.4
+scikit-learn==0.24.2
+ngram==3.3.2
