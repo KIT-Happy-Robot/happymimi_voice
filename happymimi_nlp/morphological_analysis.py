@@ -1,6 +1,11 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+##############################################################
+#ed 2021/9/17
+#author fukuda nao
+#comment: 形態素解析を使うものはここにまとめる. 英語に疎いため、有識者には更にいいコードを求む
+##############################################################
 import os.path
 import Levenshtein as lev
 from nltk.tag.stanford import StanfordPOSTagger
@@ -19,7 +24,7 @@ class MorphologicalAnalysis():
     #汎用性を持たせるために形態素解析した結果を辞書型に(act_planではつかわない)
     def morphologicalAnalysis(self,sentence):
         dict_word={}
-        pos_ls=self.pos_tag(nltk.word_tokenize(sentence))
+        pos_ls=self.pos_tag.tag(nltk.word_tokenize(sentence))
         for i,tag,word in enumerate(pos_ls):
             dict_word.setdefault(tag, []).append((word,i))
         print(dict_word)
@@ -27,7 +32,7 @@ class MorphologicalAnalysis():
         return dict_word
 
 
-
+    #actplanで使う（GPSR）
     def getActionplan(self,sentence):
         action_ls=[]
         target_ls=[]
@@ -44,11 +49,14 @@ class MorphologicalAnalysis():
         que_set={"say","tell","answer","Say","Tell","Answer"}
         tag_ls=["VB","IN","TO","NN"]
         exclusion_IN={"about","by","of"} #byは場所示すことあるんだよなぁ
+        exclusion_tag={"DT"}
         pos_ls=self.pos_tag.tag(nltk.word_tokenize(sentence))  #品詞分解
-        print(pos_ls)
+        #print(pos_ls)
         for word,tag in pos_ls:
+            if(tag in exclusion_tag):
+                pass
             #word=stemmer.stem(word)#単語を原型に直す
-            if(word in que_set and tag_ls[0] in tag):   #tell say answerへの対処
+            elif(word in que_set and tag_ls[0] in tag):   #tell say answerへの対処
                 que_flag=True
                 NN_cnt=0
                 action_ls=joinList(action_ls,action_sub)
