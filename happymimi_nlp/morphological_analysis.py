@@ -1,4 +1,4 @@
-# !/usr/bin/env python
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
 ##############################################################
@@ -13,7 +13,7 @@ import nltk
 import numpy as np
 
 
-file_path=os.path.expanduser('~/catkin_ws/src/happymimi_voice/dataset')
+file_path=os.path.expanduser('~/catkin_ws/src/happymimi_voice/config/dataset')
 
 class MorphologicalAnalysis():
     def __init__(self):

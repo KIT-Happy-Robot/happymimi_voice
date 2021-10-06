@@ -7,8 +7,8 @@ from __future__ import division
 import re
 import sys
 import rospy
-from voice_common_pkg.srv import SpeechToText
-from voice_common_pkg.srv import SpeechToTextResponse
+from happymimi_voice_msgs.srv import SpeechToText
+from happymimi_voice_msgs.srv import SpeechToTextResponse
 #import actionlib
 from google.cloud import speech_v1p1beta1 as speech
 #from google.cloud.speech import enums 消えたらしい

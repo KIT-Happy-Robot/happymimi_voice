@@ -4,7 +4,7 @@
 
 import roslib
 import rospy
-from voice_common_pkg.srv import TTS, TTSResponse
+from happymimi_voice_msgs.srv import TTS, TTSResponse
 
 from google.cloud import texttospeech
 

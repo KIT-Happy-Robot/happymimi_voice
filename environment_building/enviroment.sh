@@ -1,7 +1,7 @@
 #! /bin/bash
 sudo -E apt install portaudio19-dev
 pip install -r requirements.txt
-DIR=$HOME"/catkin_ws/src/happymimi_voice/dataset"
+DIR=$HOME"/catkin_ws/src/happymimi_voice/config/dataset"
 FILE=$DIR"/stanford-tagger-4.2.0.zip" 
 echo $DIR
 if [ ! -e $FILE ]; then
@@ -11,7 +11,7 @@ if [ ! -e $FILE ]; then
   if [ ! -d $DIR ]; then
     echo -e "\e[31m ~/catkin_ws/src/happymimi_voice/dataset is not find, please clone happymimi_voice \e[m"
   else
-    mv stanford-postagger-full-2020-11-17 ~/catkin_ws/src/happymimi_voice/dataset/stanford-postagger
+    mv stanford-postagger-full-2020-11-17 ~/catkin_ws/src/happymimi_voice/config/dataset/stanford-postagger
   fi
 fi
 python nltk_download.py

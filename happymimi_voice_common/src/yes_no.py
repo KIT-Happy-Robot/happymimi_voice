@@ -1,14 +1,13 @@
-#!/usr/bin/env python
-# -*- cording: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 
-#発話
-from gcp_texttospeech.srv import TTS
-#音声認識
-from voice_common_pkg.srv import SpeechToText
+from happymimi_voice_msgs.srv import TTS
+
+from happymimi_voice_msgs.srv import SpeechToText
 
 import rospy
-from voice_common_pkg.srv import YesNo
-from voice_common_pkg.srv import YesNoResponse
+from happymimi_voice_msgs.srv import YesNo
+from happymimi_voice_msgs.srv import YesNoResponse
 
 answer_list=['yes','no']
 

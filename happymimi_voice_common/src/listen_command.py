@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from gcp_texttospeech.srv import TTS
+from happymimi_voice_msgs.srv import TTS
 #from std_srvs.srv import Empty
-from voice_common_pkg.srv import SpeechToText
+from happymimi_voice_msgs.srv import SpeechToText
 
 import Levenshtein as lev
 import rospy
-from voice_common_pkg.srv import ListenCommand
-from voice_common_pkg.srv import ListenCommandResponse
+from happymimi_voice_msgs.srv import ListenCommand
+from happymimi_voice_msgs.srv import ListenCommandResponse
 #filename and path
 import os.path
 
-file_path=os.path.expanduser('~/catkin_ws/src/voice_common_pkg/config')
+file_path=os.path.expanduser('~/catkin_ws/src/happymimi_voice/config/')
 
 
 
