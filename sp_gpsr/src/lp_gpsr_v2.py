@@ -1,6 +1,12 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#-------------------------------------
+#platform: sp_gpsr/lp_gpsr.py  author:大西
+#editer:福田
+#事前に定型文を作成する
+#-------------------------------------
+
 import os
 import re
 import copy
@@ -31,7 +37,7 @@ class DataLoader(object):
     # xmlからオブジェクトとか部屋の名前を取得する
     # イニシャライザの中で呼び出される
     def _GetNamesData_(self):
-        path = os.path.abspath("/home/" + os.environ.get("USER") + "/catkin_ws/src/gpsr/resource/GPSRCmdGen-2018-Montreal/CommonFiles")
+        path = os.path.abspath("/home/" + os.environ.get("USER") + "/catkin_ws/src/gpsr/resource/GPSRCmdGen/CommonFiles")
         self.Obj_root = ET.parse(os.path.join(path, "Objects.xml")).getroot()
         Nam_root = ET.parse(os.path.join(path, "Names.xml")).getroot()
         self.Loc_root = ET.parse(os.path.join(path, "Locations.xml")).getroot()

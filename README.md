@@ -19,6 +19,10 @@ This package is a collection of the voice processing functions.
 - Levenshtein Distance
 
 ## Requirement
+### システム要件
+- 空き容量15GB以上（足りない場合は環境構築時のshファイルを参考に各々適切な学習済みデータをダウンロードすること）
+- メモリ8GB
+
 ### The libraries used and the versions that have been tested
 ```
 numpy==1.21.0
@@ -33,6 +37,8 @@ gensim==4.0.1
 dill==0.3.4
 scikit-learn==0.24.2
 ngram==3.3.2
+pymagnitude==0.1.143
+
 ```
 
 ## How to build enviroment
@@ -62,7 +68,11 @@ source envs/venv/bin/activate
 #some libraries and data install
 cd enviroment_building
 sh enviroment.sh
+
 ```
+本パッケージではword2vecを高速で扱うためにpymagnitudeを利用しているが、各自の端末に適したpyTorchが必要になる。
+以下のリンクからinstallコマンドを生成してインストールを実行してください。
+https://pytorch.org/get-started/locally/
 
 ### Anticipated errors
 ```
@@ -76,6 +86,14 @@ export ftp_proxy=ftp://wwwproxy.kanazawa-it.ac.jp
 #no module wheel
 pip install wheel
 ```
+#### sh実行時416 Requested Range Not Satisfiable
+sh内のwgetコマンドが原因→理由は不明
+直接ダウンロードしてくる必要がある
+http://magnitude.plasticity.ai/glove/heavy/glove.twitter.27B.200d.magnitude
 
 ## Usag
 Write in each package by japanese
+
+## EDITER
+- 福田 直央(2019年度参加)
+
