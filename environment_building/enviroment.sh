@@ -15,7 +15,7 @@ if [ ! -e $FILE ]; then
     mv stanford-postagger-full-2020-11-17 ~/catkin_ws/src/happymimi_voice/config/dataset/stanford-postagger
   fi
 fi
-if [ ! -e $MG_FILE]; then
+if [ ! -d $MG_FILE]; then
     echo "install crawl-300d-2M.magnitude"
     wget -c http://magnitude.plasticity.ai/fasttext/heavy/crawl-300d-2M.magnitude
     if [ ! -d $DIR ]; then
