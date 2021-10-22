@@ -49,9 +49,16 @@ https://kithappyrobot.esa.io/posts/166
 
 I recommend using a virtual environment(venv)
 
+### install pyhton3.8
+python3.8で作成されているものがあるため、以降のバージョンでしか動かない場合がある。
+```
+sudo apt install python3.8
+sudo apt install python3.8-dev
+```
+
 ### install pyhton-venv
 ```
-sudo apt install python3-venv
+sudo apt install python3.8-venv
 ```
 
 ### Set the environment variable to the file path of the service account key
@@ -63,7 +70,7 @@ export GOOGLE_APPLICATION_CREDENTIALS="/home/<USER>/Downloads/AtHome-f70ff86ec2f
 Get inside this package.
 ```
 #make venv
-python3 -m venv envs/venv
+python3.8 -m venv envs/venv
 #enter venv
 source envs/venv/bin/activate
 #some libraries and data install
