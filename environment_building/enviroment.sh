@@ -1,7 +1,7 @@
 #! /bin/bash
 sudo -E apt install portaudio19-dev
 pip install -r requirements.txt
-DIR=$HOME"/catkin_ws/src/happymimi_voice/config/dataset"
+DIR="../config/dataset"
 FILE=$DIR"/stanford-postagger" 
 MG_FILE=$DIR"/crawl-300d-2M.magnitude"
 echo $DIR
