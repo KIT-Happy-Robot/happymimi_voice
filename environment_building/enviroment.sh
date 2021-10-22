@@ -11,7 +11,7 @@ if [ ! -e $FILE ]; then
   unzip stanford-tagger-4.2.0.zip
   mv stanford-postagger-full-2020-11-17 ../config/dataset/stanford-postagger
 fi
-if [ ! -e $MG_FILE]; then
+if [ ! -e $MG_FILE ]; then
     echo "install crawl-300d-2M.magnitude"
     wget -c http://magnitude.plasticity.ai/fasttext/heavy/crawl-300d-2M.magnitude
     mv crawl-300d-2M.magnitude ../config/dataset/
