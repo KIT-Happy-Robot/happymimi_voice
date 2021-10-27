@@ -10,8 +10,8 @@ from happymimi_voice_msgs.srv import ListenCommand
 from happymimi_voice_msgs.srv import ListenCommandResponse
 #filename and path
 import os.path
-
-file_path=os.path.expanduser('~/catkin_ws/src/happymimi_voice/config/')
+import roslib.packages
+file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/config"
 
 
 
