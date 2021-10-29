@@ -20,7 +20,7 @@ def speak(sentence):
     return
 
 def speech_recog():
-    return stt_pub(short_str=False).result
+    return stt_pub(short_str=False).result_str
 
 def control(_dammy):
     plan = ActionPlanResponse()
