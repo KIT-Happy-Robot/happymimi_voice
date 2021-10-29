@@ -5,20 +5,20 @@ import os
 import re
 import copy
 import datetime
-
+import roslib.packages
 import xml.etree.ElementTree as ET
 import Levenshtein as lev
 import fuzzy
 #import nltk
 import subprocess
 
-
+file_path=roslib.packages.get_pkg_dir("sp_gpsr")+"/resource"
 class GPSR_data(object):
     def __init__(self):
         self._GetNamesData_()
 
         # [start]Category1.txtに保存されたデータを配列に入れる
-        f = open("/home/" + os.environ.get("USER") + "/catkin_ws/src/gpsr/resource/Category1.txt")
+        f = open(file_path+"/Category1.txt")
         datas = f.read()
         f.close()
         self.data_sent_list_nb = datas.split('\n')
@@ -31,7 +31,7 @@ class GPSR_data(object):
     # xmlからオブジェクトとか部屋の名前を取得する
     # イニシャライザの中で呼び出される
     def _GetNamesData_(self):
-        path = os.path.abspath("/home/" + os.environ.get("USER") + "/catkin_ws/src/gpsr/resource/GPSRCmdGen-2018-Montreal/CommonFiles")
+        path = os.path.abspath(file_path+"/GPSRCmdGen-2018-Montreal/CommonFiles")
         self.Obj_root = ET.parse(os.path.join(path, "Objects.xml")).getroot()
         Nam_root = ET.parse(os.path.join(path, "Names.xml")).getroot()
         self.Loc_root = ET.parse(os.path.join(path, "Locations.xml")).getroot()

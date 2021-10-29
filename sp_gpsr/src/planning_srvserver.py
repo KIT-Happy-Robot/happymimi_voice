@@ -3,23 +3,24 @@
 
 import roslib
 import rospy
-from gcp_speech_recognition.srv import SpeechRecog
-from gcp_texttospeech.srv import TTS
-from gpsr.srv import ActionPlan
-from gpsr.srv import ActionPlanResponse
-
+from happymimi_voice_msgs.srv import TTS
+#音声認識
+from happymimi_voice_msgs.srv import SpeechToText
+from happymimi_voice_msgs.srv import ActionPlan
+from happymimi_voice_msgs.srv import ActionPlanResponse
 import lp_gpsr
 
 tts_pub = rospy.ServiceProxy('/tts', TTS)
-stt_pub = rospy.ServiceProxy('/speech_recog', SpeechRecog)
+stt_pub = rospy.ServiceProxy('/stt_server',SpeechToText)
 lp = lp_gpsr.GPSR_data()
+
 
 def speak(sentence):
     tts_pub(sentence)
     return
 
 def speech_recog():
-    return stt_pub()
+    return stt_pub(short_str=False)
 
 def control(_dammy):
     plan = ActionPlanResponse()
