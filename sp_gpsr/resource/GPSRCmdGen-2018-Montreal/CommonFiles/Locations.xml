@@ -5,18 +5,17 @@
   and distributed by the Organizing Committee during Setup days
 //-->
 <rooms>
-  <room name="dining room">
-    <location name="table"    isBeacon="true" isPlacement="true" />
-    <location name="cupboard" isBeacon="true" isPlacement="true" />
-    <!-- <location name="entrance" isBeacon="true" isPlacement="true" />
-    <location name="drawer"   isBeacon="true" isPlacement="true" />
-    <location name="couch"    isBeacon="true" isPlacement="true" />
-    <location name="bin"      isBeacon="true" isPlacement="true" /> -->
-  </room>
+
   <room name="living room">
-    <location name="shelf"  isBeacon="true" isPlacement="true" />
-    <!-- <location name="sofa"   isBeacon="true" isPlacement="true" />
-    <location name="chair"  isBeacon="true" isPlacement="true" />
-    <location name="exit"   isBeacon="true" isPlacement="true" /> -->
+    <location name="entrance" isBeacon="true" />
+    <location name="table" isBeacon="true" isPlacement="true"/>
+    <location name="chair" isBeacon="true" isPlacement="true"/>
+    <location name="shelf" isBeacon="true" isPlacement="true"/>
+  </room>
+  <room name="dining room">
+    <location name="cupboard" isBeacon="true" isPlacement="true" />
+    <location name="desk" isBeacon="true" isPlacement="true" />
+    <location name="operater" isBeacon="true" />
   </room>
 </rooms>
+
