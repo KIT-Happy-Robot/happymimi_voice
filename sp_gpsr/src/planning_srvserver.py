@@ -20,14 +20,14 @@ def speak(sentence):
     return
 
 def speech_recog():
-    return stt_pub(short_str=False).result_str
+    return stt_pub(short_str=False)
 
 def control(_dammy):
     plan = ActionPlanResponse()
     tmp_array = []
     recog_result = speech_recog()
     print(recog_result)
-    lp_result = lp.FixSentence(recog_result.result)
+    lp_result = lp.FixSentence(recog_result.result_str)
 
     if lp_result == 'ERROR':
         rospy.loginfo('WARNING: rocognition result is too bad')
