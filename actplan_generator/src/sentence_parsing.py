@@ -297,6 +297,9 @@ class SentenceParsing():
                 return action,category
 
         if action=="go" and location:
+            if location==self.robot_place:
+                return "skip","skip"
+            self.robot_place=location
             self.approach_flag=False
             return action,location
         elif action=="go" and room:
@@ -354,6 +357,8 @@ class SentenceParsing():
 
                     continue
                 a,t=self.targetGet(v,targets,True)
+                if a=="skip":
+                    continue
                 action_sub.append(a)
                 target_sub.append(t)
 
@@ -390,6 +395,8 @@ class SentenceParsing():
                                 target_sub.pop(-1)
                             continue
                         a,t=self.targetGet(p,targets,True)
+                        if a=="skip":
+                            continue
                         action_sub.append(a)
                         target_sub.append(t)
                 a,t=self.targetGet(action_dict[action][-1],targets)
@@ -398,6 +405,8 @@ class SentenceParsing():
 
             elif action in command_ls:
                 a,t=self.targetGet(action,targets)
+                if a=="skip":
+                    continue
                 action_sub.append(a)
                 target_sub.append(t)
             else:
