@@ -206,11 +206,8 @@ class SentenceParsing():
         it_index=indexGet("it")
         #there_index=indexGet("there")
         himher_index=indexGet("him") if indexGet("him") else indexGet("her")
-        
-        ob_loc=[v["location"] for k,v in self.tag_data["category"].items() if object in v["object"]]
-        location=ob_loc[0] if ob_loc else location
-        if category:
-            location=self.tag_data["category"][category]["location"]
+
+
 
         if it_index:
             if before_object:
@@ -252,7 +249,6 @@ class SentenceParsing():
                     location=word
                 elif tag=="{room}":
                     room=word
-
         for k,v in add_location.items():
             for d in v:
                 if d in target_ls:
@@ -261,6 +257,11 @@ class SentenceParsing():
             if k in target_ls:
                 location=k
                 break
+        if action!="place":
+            ob_loc=[v["location"] for k,v in self.tag_data["category"].items() if object in v["object"]]
+            location=ob_loc[0] if ob_loc else location
+        if category:
+            location=self.tag_data["category"][category]["location"]
 
 
 
