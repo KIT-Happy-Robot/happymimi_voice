@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	This is an example file for testing the generators.
+	The real information used in Montreal 2018 will be published
+	and distributed by the Organizing Committee during Setup days
+//-->
+<categories>
+	<category name="food"       defaultLocation="desk" room="dining room">
+		<object name="cup noodles"  type="known" difficulty="easy" />
+		<!-- <object name="yellow soup"    type="known" difficulty="easy" />
+		<object name="blue noodle"    type="known" difficulty="easy" /> -->
+	</category>
+
+	<category name="snack"         defaultLocation="cupboard" room="dining room">
+		<object name="green stick"     type="known" difficulty="easy" />
+		<!-- <object name="potato chips"   type="known" difficulty="easy" />
+		<object name="onion chips"    type="known" difficulty="easy" /> -->
+	</category>
+
+	<!-- <category name="drink"         defaultLocation="couch" room="living room">
+		<object name="lemon tea"     type="known" difficulty="easy" canPour="true" />
+		<object name="milk tea"      type="known" difficulty="easy" canPour="true" />
+		<object name="green tea"     type="known" difficulty="easy" canPour="true" />
+	</category> -->
+
+	<category name="fruits"     defaultLocation="shelf" room="living room">
+		<object name="chip star"    type="know" difficulty="easy" />
+		<!-- <object name="orange"   type="alike" difficulty="moderate" />
+		<object name="kiwi"     type="alike" difficulty="moderate" /> -->
+	</category>
+
+</categories>

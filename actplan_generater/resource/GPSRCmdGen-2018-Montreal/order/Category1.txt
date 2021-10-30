@@ -1,0 +1,470 @@
+Tell your team's name to {name} at the {beacon}
+Tell your team's country to {name} at the {beacon}
+Tell your team's affiliation to {name} at the {beacon}
+Tell what day is tomorrow to {name} at the {beacon}
+Tell what day is today to {name} at the {beacon}
+Tell the time to {name} at the {beacon}
+Tell the day of the week to {name} at the {beacon}
+Tell the day of the month to {name} at the {beacon}
+Tell something about yourself to {name} at the {beacon}
+Tell me the name of the person in the {room}
+Tell me the name of the person in the {beacon}room
+Tell me the name of the person at the {beacon}
+Tell me how many {object} there are on the {beacon}
+Tell me how many {object} there are on the {placement}
+Tell a joke to {name} at the {beacon}
+Take the {object} from the {placement} and put it on the {placement}
+Take the {object} from the {placement} and place it on the {placement}
+Take the {object} from the {placement} and give it to me
+Take the {object} from the {placement} and give it to {name} at the {beacon}
+Take the {object} from the {placement} and deliver it to me
+Take the {object} from the {placement} and deliver it to {name} at the {beacon}
+Take the {object} from the {placement} and bring it to me
+Take the {object} from the {placement} and bring it to {name} at the {beacon}
+Take the {object} and put it on the {placement}
+Take the {object} and place it on the {placement}
+Say your team's name to {name} at the {beacon}
+Say your team's country to {name} at the {beacon}
+Say your team's affiliation to {name} at the {beacon}
+Say what day is tomorrow to {name} at the {beacon}
+Say what day is today to {name} at the {beacon}
+Say the time to {name} at the {beacon}
+Say the day of the week to {name} at the {beacon}
+Say the day of the month to {name} at the {beacon}
+Say something about yourself to {name} at the {beacon}
+Say a joke to {name} at the {beacon}
+Put the {object} on the {placement}
+Place the {object} on the {placement}
+Pick up the {object} from the {placement} and put it on the {placement}
+Pick up the {object} from the {placement} and place it on the {placement}
+Pick up the {object} from the {placement} and give it to me
+Pick up the {object} from the {placement} and give it to {name} at the {beacon}
+Pick up the {object} from the {placement} and deliver it to me
+Pick up the {object} from the {placement} and deliver it to {name} at the {beacon}
+Pick up the {object} from the {placement} and bring it to me
+Pick up the {object} from the {placement} and bring it to {name} at the {beacon}
+Pick up the {object} and put it on the {placement}
+Pick up the {object} and place it on the {placement}
+Navigate to the {room}, look for {name}, and tell your team's country
+Navigate to the {room}, look for {name}, and tell your team's affiliation
+Navigate to the {room}, look for {name}, and tell what day is tomorrow
+Navigate to the {room}, look for {name}, and tell what day is today
+Navigate to the {room}, look for {name}, and tell the time
+Navigate to the {room}, look for {name}, and tell the day of the week
+Navigate to the {room}, look for {name}, and tell the day of the month
+Navigate to the {room}, look for {name}, and tell something about yourself
+Navigate to the {room}, look for {name}, and tell a joke
+Navigate to the {room}, look for {name}, and say your team's name
+Navigate to the {room}, look for {name}, and say your team's country
+Navigate to the {room}, look for {name}, and say what day is tomorrow
+Navigate to the {room}, look for {name}, and say what day is today
+Navigate to the {room}, look for {name}, and say the time
+Navigate to the {room}, look for {name}, and say the day of the week
+Navigate to the {room}, look for {name}, and say the day of the month
+Navigate to the {room}, look for {name}, and say something about yourself
+Navigate to the {room}, look for {name}, and say a joke
+Navigate to the {room}, look for {name}, and answer a question
+Navigate to the {room}, locate {name}, and tell your team's name
+Navigate to the {room}, locate {name}, and tell your team's country
+Navigate to the {room}, locate {name}, and tell your team's affiliation
+Navigate to the {room}, locate {name}, and tell what day is tomorrow
+Navigate to the {room}, locate {name}, and tell what day is today
+Navigate to the {room}, locate {name}, and tell the time
+Navigate to the {room}, locate {name}, and tell the day of the week
+Navigate to the {room}, locate {name}, and tell the day of the month
+Navigate to the {room}, locate {name}, and tell something about yourself
+Navigate to the {room}, locate {name}, and tell a joke
+Navigate to the {room}, locate {name}, and say your team's name
+Navigate to the {room}, locate {name}, and say your team's country
+Navigate to the {room}, locate {name}, and say your team's affiliation
+Navigate to the {room}, locate {name}, and say what day is tomorrow
+Navigate to the {room}, locate {name}, and say what day is today
+Navigate to the {room}, locate {name}, and say the time
+Navigate to the {room}, locate {name}, and say the day of the week
+Navigate to the {room}, locate {name}, and say the day of the month
+Navigate to the {room}, locate {name}, and say something about yourself
+Navigate to the {room}, locate {name}, and say a joke
+Navigate to the {room}, locate {name}, and answer a question
+Navigate to the {room}, find {name}, and tell your team's name
+Navigate to the {room}, find {name}, and tell your team's country
+Navigate to the {room}, find {name}, and tell your team's affiliation
+Navigate to the {room}, find {name}, and tell what day is tomorrow
+Navigate to the {room}, find {name}, and tell what day is today
+Navigate to the {room}, find {name}, and tell the time
+Navigate to the {room}, find {name}, and tell the day of the week
+Navigate to the {room}, find {name}, and tell the day of the month
+Navigate to the {room}, find {name}, and tell something about yourself
+Navigate to the {room}, find {name}, and tell a joke
+Navigate to the {room}, find {name}, and say your team's name
+Navigate to the {room}, find {name}, and say your team's country
+Navigate to the {room}, find {name}, and say your team's affiliation
+Navigate to the {room}, find {name}, and say what day is tomorrow
+Navigate to the {room}, find {name}, and say what day is today
+Navigate to the {room}, find {name}, and say the time
+Navigate to the {room}, find {name}, and say the day of the week
+Navigate to the {room}, find {name}, and say the day of the month
+Navigate to the {room}, find {name}, and say something about yourself
+Navigate to the {room}, find {name}, and say a joke
+Navigate to the {room}, find {name}, and answer a question
+Navigate to the {placement}, look for the {object}, and put it on the {placement}
+Navigate to the {placement}, look for the {object}, and place it on the {placement}
+Navigate to the {placement}, look for the {object}, and give it to me
+Navigate to the {placement}, look for the {object}, and give it to {name} at the {beacon}
+Navigate to the {placement}, look for the {object}, and deliver it to me
+Navigate to the {placement}, look for the {object}, and deliver it to {name} at the {beacon}
+Navigate to the {placement}, look for the {object}, and bring it to me
+Navigate to the {placement}, look for the {object}, and bring it to {name} at the {beacon}
+Navigate to the {placement}, locate the {object}, and put it on the {placement}
+Navigate to the {placement}, locate the {object}, and place it on the {placement}
+Navigate to the {placement}, locate the {object}, and give it to me
+Navigate to the {placement}, locate the {object}, and give it to {name} at the {beacon}
+Navigate to the {placement}, locate the {object}, and deliver it to me
+Navigate to the {placement}, locate the {object}, and deliver it to {name} at the {beacon}
+Navigate to the {placement}, locate the {object}, and bring it to me
+Navigate to the {placement}, locate the {object}, and bring it to {name} at the {beacon}
+Navigate to the {placement}, find the {object}, and put it on the {placement}
+Navigate to the {placement}, find the {object}, and place it on the {placement}
+Navigate to the {placement}, find the {object}, and give it to me
+Navigate to the {placement}, find the {object}, and give it to {name} at the {beacon}
+Navigate to the {placement}, find the {object}, and deliver it to me
+Navigate to the {placement}, find the {object}, and deliver it to {name} at the {beacon}
+Navigate to the {placement}, find the {object}, and bring it to me
+Navigate to the {placement}, find the {object}, and bring it to {name} at the {beacon}
+Navigate to the {beacon}room, look for {name}, and tell your team's country
+Navigate to the {beacon}room, look for {name}, and tell your team's affiliation
+Navigate to the {beacon}room, look for {name}, and tell what day is today
+Navigate to the {beacon}room, look for {name}, and tell the day of the month
+Navigate to the {beacon}room, look for {name}, and tell something about yourself
+Navigate to the {beacon}room, look for {name}, and tell a joke
+Navigate to the {beacon}room, look for {name}, and say your team's name
+Navigate to the {beacon}room, look for {name}, and say your team's country
+Navigate to the {beacon}room, look for {name}, and say what day is tomorrow
+Navigate to the {beacon}room, look for {name}, and say what day is today
+Navigate to the {beacon}room, look for {name}, and say the time
+Navigate to the {beacon}room, look for {name}, and say the day of the week
+Navigate to the {beacon}room, look for {name}, and say the day of the month
+Navigate to the {beacon}room, look for {name}, and say something about yourself
+Navigate to the {beacon}room, look for {name}, and say a joke
+Navigate to the {beacon}room, look for {name}, and answer a question
+Navigate to the {beacon}room, locate {name}, and tell your team's name
+Navigate to the {beacon}room, locate {name}, and tell your team's country
+Navigate to the {beacon}room, locate {name}, and tell your team's affiliation
+Navigate to the {beacon}room, locate {name}, and tell what day is tomorrow
+Navigate to the {beacon}room, locate {name}, and tell what day is today
+Navigate to the {beacon}room, locate {name}, and tell the time
+Navigate to the {beacon}room, locate {name}, and tell the day of the month
+Navigate to the {beacon}room, locate {name}, and tell a joke
+Navigate to the {beacon}room, locate {name}, and say your team's name
+Navigate to the {beacon}room, locate {name}, and say what day is tomorrow
+Navigate to the {beacon}room, locate {name}, and say what day is today
+Navigate to the {beacon}room, locate {name}, and say the time
+Navigate to the {beacon}room, locate {name}, and say the day of the week
+Navigate to the {beacon}room, locate {name}, and say something about yourself
+Navigate to the {beacon}room, locate {name}, and say a joke
+Navigate to the {beacon}room, locate {name}, and answer a question
+Navigate to the {beacon}room, find {name}, and tell your team's name
+Navigate to the {beacon}room, find {name}, and tell your team's country
+Navigate to the {beacon}room, find {name}, and tell what day is tomorrow
+Navigate to the {beacon}room, find {name}, and tell what day is today
+Navigate to the {beacon}room, find {name}, and tell the time
+Navigate to the {beacon}room, find {name}, and tell the day of the week
+Navigate to the {beacon}room, find {name}, and tell something about yourself
+Navigate to the {beacon}room, find {name}, and say your team's name
+Navigate to the {beacon}room, find {name}, and say your team's country
+Navigate to the {beacon}room, find {name}, and say your team's affiliation
+Navigate to the {beacon}room, find {name}, and say the time
+Navigate to the {beacon}room, find {name}, and say the day of the week
+Navigate to the {beacon}room, find {name}, and say the day of the month
+Navigate to the {beacon}room, find {name}, and say something about yourself
+Navigate to the {beacon}room, find {name}, and say a joke
+Navigate to the {beacon}room, find {name}, and answer a question
+Look for the {object} in the {room}
+Look for the {object} in the {beacon}room
+Look for the {category} in the {room}
+Look for the {category} in the {beacon}room
+Look for {name} in the {room} and tell your team's name
+Look for {name} in the {room} and tell your team's country
+Look for {name} in the {room} and tell your team's affiliation
+Look for {name} in the {room} and tell what day is tomorrow
+Look for {name} in the {room} and tell what day is today
+Look for {name} in the {room} and tell the time
+Look for {name} in the {room} and tell the day of the week
+Look for {name} in the {room} and tell the day of the month
+Look for {name} in the {room} and tell something about yourself
+Look for {name} in the {room} and tell a joke
+Look for {name} in the {room} and say your team's name
+Look for {name} in the {room} and say your team's country
+Look for {name} in the {room} and say your team's affiliation
+Look for {name} in the {room} and say what day is tomorrow
+Look for {name} in the {room} and say what day is today
+Look for {name} in the {room} and say the time
+Look for {name} in the {room} and say the day of the week
+Look for {name} in the {room} and say the day of the month
+Look for {name} in the {room} and say something about yourself
+Look for {name} in the {room} and say a joke
+Look for {name} in the {room} and answer a question
+Look for {name} in the {beacon}room and tell your team's name
+Look for {name} in the {beacon}room and tell your team's affiliation
+Look for {name} in the {beacon}room and tell what day is tomorrow
+Look for {name} in the {beacon}room and tell what day is today
+Look for {name} in the {beacon}room and tell the time
+Look for {name} in the {beacon}room and tell the day of the month
+Look for {name} in the {beacon}room and tell something about yourself
+Look for {name} in the {beacon}room and tell a joke
+Look for {name} in the {beacon}room and say your team's name
+Look for {name} in the {beacon}room and say your team's country
+Look for {name} in the {beacon}room and say what day is tomorrow
+Look for {name} in the {beacon}room and say the time
+Look for {name} in the {beacon}room and say the day of the week
+Look for {name} in the {beacon}room and say the day of the month
+Look for {name} in the {beacon}room and say something about yourself
+Look for {name} in the {beacon}room and say a joke
+Look for {name} in the {beacon}room and answer a question
+Locate the {object} in the {room}
+Locate the {object} in the {beacon}room
+Locate the {category} in the {room}
+Locate the {category} in the {beacon}room
+Locate {name} in the {room} and tell your team's name
+Locate {name} in the {room} and tell your team's country
+Locate {name} in the {room} and tell your team's affiliation
+Locate {name} in the {room} and tell what day is tomorrow
+Locate {name} in the {room} and tell what day is today
+Locate {name} in the {room} and tell the time
+Locate {name} in the {room} and tell the day of the week
+Locate {name} in the {room} and tell the day of the month
+Locate {name} in the {room} and tell something about yourself
+Locate {name} in the {room} and tell a joke
+Locate {name} in the {room} and say your team's name
+Locate {name} in the {room} and say your team's country
+Locate {name} in the {room} and say your team's affiliation
+Locate {name} in the {room} and say what day is tomorrow
+Locate {name} in the {room} and say what day is today
+Locate {name} in the {room} and say the time
+Locate {name} in the {room} and say the day of the week
+Locate {name} in the {room} and say the day of the month
+Locate {name} in the {room} and say something about yourself
+Locate {name} in the {room} and say a joke
+Locate {name} in the {room} and answer a question
+Locate {name} in the {beacon}room and tell your team's name
+Locate {name} in the {beacon}room and tell your team's affiliation
+Locate {name} in the {beacon}room and tell what day is tomorrow
+Locate {name} in the {beacon}room and tell what day is today
+Locate {name} in the {beacon}room and tell the time
+Locate {name} in the {beacon}room and tell the day of the week
+Locate {name} in the {beacon}room and tell the day of the month
+Locate {name} in the {beacon}room and tell something about yourself
+Locate {name} in the {beacon}room and tell a joke
+Locate {name} in the {beacon}room and say your team's name
+Locate {name} in the {beacon}room and say your team's country
+Locate {name} in the {beacon}room and say your team's affiliation
+Locate {name} in the {beacon}room and say what day is tomorrow
+Locate {name} in the {beacon}room and say what day is today
+Locate {name} in the {beacon}room and say the time
+Locate {name} in the {beacon}room and say the day of the week
+Locate {name} in the {beacon}room and say the day of the month
+Locate {name} in the {beacon}room and say something about yourself
+Locate {name} in the {beacon}room and say a joke
+Locate {name} in the {beacon}room and answer a question
+Grasp the {object} from the {placement} and put it on the {placement}
+Grasp the {object} from the {placement} and place it on the {placement}
+Grasp the {object} from the {placement} and give it to me
+Grasp the {object} from the {placement} and give it to {name} at the {beacon}
+Grasp the {object} from the {placement} and deliver it to me
+Grasp the {object} from the {placement} and deliver it to {name} at the {beacon}
+Grasp the {object} from the {placement} and bring it to me
+Grasp the {object} from the {placement} and bring it to {name} at the {beacon}
+Grasp the {object} and put it on the {placement}
+Grasp the {object} and place it on the {placement}
+Go to the {room}, look for {name}, and tell your team's name
+Go to the {room}, look for {name}, and tell your team's country
+Go to the {room}, look for {name}, and tell your team's affiliation
+Go to the {room}, look for {name}, and tell what day is tomorrow
+Go to the {room}, look for {name}, and tell what day is today
+Go to the {room}, look for {name}, and tell the time
+Go to the {room}, look for {name}, and tell the day of the week
+Go to the {room}, look for {name}, and tell the day of the month
+Go to the {room}, look for {name}, and tell something about yourself
+Go to the {room}, look for {name}, and tell a joke
+Go to the {room}, look for {name}, and say your team's name
+Go to the {room}, look for {name}, and say your team's country
+Go to the {room}, look for {name}, and say your team's affiliation
+Go to the {room}, look for {name}, and say what day is tomorrow
+Go to the {room}, look for {name}, and say what day is today
+Go to the {room}, look for {name}, and say the time
+Go to the {room}, look for {name}, and say the day of the week
+Go to the {room}, look for {name}, and say the day of the month
+Go to the {room}, look for {name}, and say something about yourself
+Go to the {room}, look for {name}, and say a joke
+Go to the {room}, look for {name}, and answer a question
+Go to the {room}, locate {name}, and tell your team's name
+Go to the {room}, locate {name}, and tell your team's country
+Go to the {room}, locate {name}, and tell your team's affiliation
+Go to the {room}, locate {name}, and tell what day is tomorrow
+Go to the {room}, locate {name}, and tell what day is today
+Go to the {room}, locate {name}, and tell the time
+Go to the {room}, locate {name}, and tell the day of the week
+Go to the {room}, locate {name}, and tell the day of the month
+Go to the {room}, locate {name}, and tell something about yourself
+Go to the {room}, locate {name}, and tell a joke
+Go to the {room}, locate {name}, and say your team's name
+Go to the {room}, locate {name}, and say your team's country
+Go to the {room}, locate {name}, and say your team's affiliation
+Go to the {room}, locate {name}, and say what day is tomorrow
+Go to the {room}, locate {name}, and say what day is today
+Go to the {room}, locate {name}, and say the time
+Go to the {room}, locate {name}, and say the day of the week
+Go to the {room}, locate {name}, and say the day of the month
+Go to the {room}, locate {name}, and say something about yourself
+Go to the {room}, locate {name}, and say a joke
+Go to the {room}, locate {name}, and answer a question
+Go to the {room}, find {name}, and tell your team's name
+Go to the {room}, find {name}, and tell your team's country
+Go to the {room}, find {name}, and tell your team's affiliation
+Go to the {room}, find {name}, and tell what day is tomorrow
+Go to the {room}, find {name}, and tell what day is today
+Go to the {room}, find {name}, and tell the time
+Go to the {room}, find {name}, and tell the day of the week
+Go to the {room}, find {name}, and tell the day of the month
+Go to the {room}, find {name}, and tell something about yourself
+Go to the {room}, find {name}, and tell a joke
+Go to the {room}, find {name}, and say your team's name
+Go to the {room}, find {name}, and say your team's country
+Go to the {room}, find {name}, and say your team's affiliation
+Go to the {room}, find {name}, and say what day is tomorrow
+Go to the {room}, find {name}, and say what day is today
+Go to the {room}, find {name}, and say the time
+Go to the {room}, find {name}, and say the day of the week
+Go to the {room}, find {name}, and say the day of the month
+Go to the {room}, find {name}, and say something about yourself
+Go to the {room}, find {name}, and say a joke
+Go to the {room}, find {name}, and answer a question
+Go to the {placement}, look for the {object}, and put it on the {placement}
+Go to the {placement}, look for the {object}, and place it on the {placement}
+Go to the {placement}, look for the {object}, and give it to me
+Go to the {placement}, look for the {object}, and give it to {name} at the {beacon}
+Go to the {placement}, look for the {object}, and deliver it to me
+Go to the {placement}, look for the {object}, and deliver it to {name} at the {beacon}
+Go to the {placement}, look for the {object}, and bring it to me
+Go to the {placement}, look for the {object}, and bring it to {name} at the {beacon}
+Go to the {placement}, locate the {object}, and put it on the {placement}
+Go to the {placement}, locate the {object}, and place it on the {placement}
+Go to the {placement}, locate the {object}, and give it to me
+Go to the {placement}, locate the {object}, and give it to {name} at the {beacon}
+Go to the {placement}, locate the {object}, and deliver it to me
+Go to the {placement}, locate the {object}, and deliver it to {name} at the {beacon}
+Go to the {placement}, locate the {object}, and bring it to me
+Go to the {placement}, locate the {object}, and bring it to {name} at the {beacon}
+Go to the {placement}, find the {object}, and put it on the {placement}
+Go to the {placement}, find the {object}, and place it on the {placement}
+Go to the {placement}, find the {object}, and give it to me
+Go to the {placement}, find the {object}, and give it to {name} at the {beacon}
+Go to the {placement}, find the {object}, and deliver it to me
+Go to the {placement}, find the {object}, and deliver it to {name} at the {beacon}
+Go to the {placement}, find the {object}, and bring it to me
+Go to the {placement}, find the {object}, and bring it to {name} at the {beacon}
+Go to the {beacon}room, look for {name}, and tell your team's name
+Go to the {beacon}room, look for {name}, and tell your team's country
+Go to the {beacon}room, look for {name}, and tell the time
+Go to the {beacon}room, look for {name}, and tell the day of the month
+Go to the {beacon}room, look for {name}, and tell something about yourself
+Go to the {beacon}room, look for {name}, and tell a joke
+Go to the {beacon}room, look for {name}, and say your team's affiliation
+Go to the {beacon}room, look for {name}, and say the time
+Go to the {beacon}room, look for {name}, and say the day of the month
+Go to the {beacon}room, look for {name}, and say something about yourself
+Go to the {beacon}room, look for {name}, and say a joke
+Go to the {beacon}room, look for {name}, and answer a question
+Go to the {beacon}room, locate {name}, and tell your team's affiliation
+Go to the {beacon}room, locate {name}, and tell what day is tomorrow
+Go to the {beacon}room, locate {name}, and tell the time
+Go to the {beacon}room, locate {name}, and tell the day of the week
+Go to the {beacon}room, locate {name}, and tell something about yourself
+Go to the {beacon}room, locate {name}, and tell a joke
+Go to the {beacon}room, locate {name}, and say your team's country
+Go to the {beacon}room, locate {name}, and say what day is tomorrow
+Go to the {beacon}room, locate {name}, and say what day is today
+Go to the {beacon}room, locate {name}, and say the time
+Go to the {beacon}room, locate {name}, and say the day of the week
+Go to the {beacon}room, locate {name}, and say the day of the month
+Go to the {beacon}room, locate {name}, and say a joke
+Go to the {beacon}room, locate {name}, and answer a question
+Go to the {beacon}room, find {name}, and tell your team's country
+Go to the {beacon}room, find {name}, and tell what day is tomorrow
+Go to the {beacon}room, find {name}, and tell what day is today
+Go to the {beacon}room, find {name}, and tell the time
+Go to the {beacon}room, find {name}, and tell the day of the month
+Go to the {beacon}room, find {name}, and tell something about yourself
+Go to the {beacon}room, find {name}, and tell a joke
+Go to the {beacon}room, find {name}, and say what day is tomorrow
+Go to the {beacon}room, find {name}, and say what day is today
+Go to the {beacon}room, find {name}, and say the time
+Go to the {beacon}room, find {name}, and say the day of the week
+Go to the {beacon}room, find {name}, and say something about yourself
+Go to the {beacon}room, find {name}, and say a joke
+Go to the {beacon}room, find {name}, and answer a question
+Give to {name} at the {beacon} the {object} from the {placement}
+Give the {object} to me
+Give the {object} to {name} at the {beacon}
+Give me the {object} from the {placement}
+Give me the {object}
+Get the {object} from the {placement} and put it on the {placement}
+Get the {object} from the {placement} and place it on the {placement}
+Get the {object} from the {placement} and give it to me
+Get the {object} from the {placement} and give it to {name} at the {beacon}
+Get the {object} from the {placement} and deliver it to me
+Get the {object} from the {placement} and deliver it to {name} at the {beacon}
+Get the {object} from the {placement} and bring it to me
+Get the {object} from the {placement} and bring it to {name} at the {beacon}
+Get the {object} and put it on the {placement}
+Get the {object} and place it on the {placement}
+Find the {object} in the {room}
+Find the {object} in the {beacon}room
+Find the {category} in the {room}
+Find the {category} in the {beacon}room
+Find {name} in the {room} and tell your team's name
+Find {name} in the {room} and tell your team's country
+Find {name} in the {room} and tell your team's affiliation
+Find {name} in the {room} and tell what day is tomorrow
+Find {name} in the {room} and tell what day is today
+Find {name} in the {room} and tell the time
+Find {name} in the {room} and tell the day of the week
+Find {name} in the {room} and tell the day of the month
+Find {name} in the {room} and tell something about yourself
+Find {name} in the {room} and tell a joke
+Find {name} in the {room} and say your team's name
+Find {name} in the {room} and say your team's country
+Find {name} in the {room} and say your team's affiliation
+Find {name} in the {room} and say what day is tomorrow
+Find {name} in the {room} and say what day is today
+Find {name} in the {room} and say the time
+Find {name} in the {room} and say the day of the week
+Find {name} in the {room} and say the day of the month
+Find {name} in the {room} and say something about yourself
+Find {name} in the {room} and say a joke
+Find {name} in the {room} and answer a question
+Find {name} in the {beacon}room and tell your team's name
+Find {name} in the {beacon}room and tell your team's affiliation
+Find {name} in the {beacon}room and tell what day is tomorrow
+Find {name} in the {beacon}room and tell what day is today
+Find {name} in the {beacon}room and tell the time
+Find {name} in the {beacon}room and tell the day of the week
+Find {name} in the {beacon}room and tell something about yourself
+Find {name} in the {beacon}room and tell a joke
+Find {name} in the {beacon}room and say your team's name
+Find {name} in the {beacon}room and say your team's country
+Find {name} in the {beacon}room and say your team's affiliation
+Find {name} in the {beacon}room and say what day is tomorrow
+Find {name} in the {beacon}room and say the time
+Find {name} in the {beacon}room and say the day of the week
+Find {name} in the {beacon}room and say the day of the month
+Find {name} in the {beacon}room and say something about yourself
+Find {name} in the {beacon}room and say a joke
+Find {name} in the {beacon}room and answer a question
+Deliver the {object} to me
+Deliver the {object} to {name} at the {beacon}
+Bring to {name} at the {beacon} the {object} from the {placement}
+Bring the {object} to me
+Bring the {object} to {name} at the {beacon}
+Bring me the {object} from the {placement}
+Bring me the {object}
+Answer a question to {name} at the {beacon}
