@@ -50,8 +50,8 @@ class ActionPlanning():
 
         action_ls,target_ls=self.str_pars.makePlan(current_quetion)
         #print(action_ls,target_ls)
-        for k,v in zip(action_ls,target_ls):
-            self.tts(k+" "+v)
+        #for k,v in zip(action_ls,target_ls):
+        #    self.tts(k+" "+v)
         if(action_ls==None):
             self.tts("pardon?")
             return ActionPlanResponse(result=False)
