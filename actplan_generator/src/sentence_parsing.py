@@ -263,14 +263,12 @@ class SentenceParsing():
             location=ob_loc[0] if ob_loc else location
             if category:
                 location=self.tag_data["category"][category]["location"]
-
-
+        else:
+            print(location)
 
         if location:
             if room_ls:=[k for k,v in self.tag_data["room"].items() if location in v]:
                 room=room_ls[0]
-
-
 
 
         #beforeの更新
@@ -296,15 +294,15 @@ class SentenceParsing():
                 self.grasp_flag=False
                 return action,category
 
-        if action=="go" and location:
+        if "go" in action and location:
             if location==self.robot_place:
                 return "skip","skip"
             self.robot_place=location
             self.approach_flag=False
-            return action,location
-        elif action=="go" and room:
+            return "go",location
+        elif "go" in action and room:
             self.approach_flag=False
-            return action,room
+            return "go",room
         elif (action=="approach" or action=="find" or action=="follow") and person:
             if person=="operator":
                 return "go",person
