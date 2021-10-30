@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	This is an example file for testing the generators.
+	The real information used in Montreal 2018 will be published
+	and distributed by the Organizing Committee during Setup days
+//-->
+<categories>
+
+	<category name="drink" defaultLocation="desk" room="dining room">
+		<object name="black coffee" type="known" difficulty="moderate" canPlaceOn="true" />
+		<object name="blue juice" type="known" difficulty="moderate" canPlaceOn="true" />
+	</category>
+
+	<category name="snacks" defaultLocation="table" room="living room">
+		<object name="green snack" difficulty="easy"      canPlaceOn="true" />
+	</category>
+
+	<category name="food"    defaultLocation="shelf" room="living room">
+		<object name="red cup" type="known" difficulty="moderate" canPlaceOn="true" />
+		<object name="blue cup"    type="known" difficulty="moderate" canPlaceOn="true" />
+	</category>
+
+
+</categories>
+
