@@ -39,6 +39,7 @@ scikit-learn==0.24.2
 ngram==3.3.2
 pymagnitude==0.1.143
 wheel==0.37.0
+fuzzy==1.2.2
 
 ```
 

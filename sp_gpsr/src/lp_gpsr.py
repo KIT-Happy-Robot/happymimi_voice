@@ -80,8 +80,8 @@ class GPSR_data(object):
             sentence = sentence.replace(i, "{room}")
         for i in self.LocationData_word_list_nb:
             sentence = sentence.replace(i, "{location}")
-        # for in in self.GestureData_word_list_nb:
-        #     sentence = sentence.replace(i, "{gesture}")
+         for in in self.GestureData_word_list_nb:
+             sentence = sentence.replace(i, "{gesture}")
 
         return sentence
 
