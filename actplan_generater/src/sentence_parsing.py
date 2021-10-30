@@ -30,7 +30,7 @@ file_path=roslib.packages.get_pkg_dir("actplan_generator")+"/resource"
 question_file="/cat1_dataset.txt"
 
 
-common_data_path="/GPSRCmdGen/GPSRCmdGen/Resources"
+common_data_path="/GPSRCmdGen/CommonFiles"
 
 exclusion_VB={"leave"}
 #できない単語をリストアップ
