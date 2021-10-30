@@ -35,15 +35,15 @@ class ActionPlanning():
         rospy.loginfo("planning_srv is ready")
 
     def main(self,request_msg):
-        self.tts("please question for me")
+        #self.tts("please question for me")
 
         quesion_str=self.stt(short_str=False)
         current_quetion=self.str_pars.questionFormating(quesion_str.result_str)
         if current_quetion=="ERROR":
-            self.tts("pardon?")
+            #self.tts("pardon?")
             return ActionPlanResponse(result=False)
         elif not self.str_pars.availabilityJudgement(current_quetion):
-            self.tts("I can't answer")
+            #self.tts("I can't answer")
             return ActionPlanResponse(result=False)
 
         self.tts(current_quetion)
@@ -53,7 +53,7 @@ class ActionPlanning():
         #for k,v in zip(action_ls,target_ls):
         #    self.tts(k+" "+v)
         if(action_ls==None):
-            self.tts("pardon?")
+            #self.tts("pardon?")
             return ActionPlanResponse(result=False)
         else:
             print(action_ls,target_ls)
