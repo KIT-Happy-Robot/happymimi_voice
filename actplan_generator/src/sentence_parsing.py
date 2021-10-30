@@ -52,10 +52,10 @@ action_set={"go":{"navigate","enter"}, "grasp":set(), "find":{"search","locate",
 
 [action_set["give"].add(i) for i in ["distribute","provide","arrange","serve"]]
 [action_set["approach"].add(i) for i in ["contact","face","find","greet","meet"]]
-#skip:None 一つ前のtargetがnoneのときスキップ
+#skip:None 一つ前のtargetがnoneのときスキップ go:location ロケーション優先
 action_dict={"give":["go","grasp","approach","give"],"guide":["approach","speak:please follow me","go"],\
 "introduce":["go","skip:None","approach","speak:The person in the {BeforeRoom} is {BeforeName}"],"follow":["speak:I will follow you","follow"],"speak":["go","approach","speak"],\
-"find":["go","skip:None","find"],"place":["go","place"],"grasp":["go","grasp"],"approach":["go","skip:None","approach"],"answer":["go","skip:None","approach","answer"]}
+"find":["go","skip:None","find"],"place":["go:location","place"],"grasp":["go","grasp"],"approach":["go","skip:None","approach"],"answer":["go","skip:None","approach","answer"]}
 
 
 
@@ -257,11 +257,12 @@ class SentenceParsing():
             if k in target_ls:
                 location=k
                 break
-        if action!="place":
+
+        if ":location" not in action:
             ob_loc=[v["location"] for k,v in self.tag_data["category"].items() if object in v["object"]]
             location=ob_loc[0] if ob_loc else location
-        if category:
-            location=self.tag_data["category"][category]["location"]
+            if category:
+                location=self.tag_data["category"][category]["location"]
 
 
 
