@@ -1,0 +1,4 @@
+string request_data
+---
+string result_data
+bool result

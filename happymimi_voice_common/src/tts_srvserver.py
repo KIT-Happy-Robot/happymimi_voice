@@ -4,8 +4,8 @@
 
 import roslib
 import rospy
-from happymimi_voice_msgs.srv import TTS, TTSResponse
-
+#from happymimi_voice_msgs.srv import TTS, TTSResponse
+from happymimi_msgs.srv import StrTrg,StrTrgResponse
 from google.cloud import texttospeech
 
 import wave
@@ -16,13 +16,13 @@ Filename = 'output.wav'
 class TTS_server(object):
     def __init__(self):
         rospy.init_node('common_texttospeech')
-        self.srv = rospy.Service('/tts', TTS, self.execute)
+        self.srv = rospy.Service('/tts', StrTrg, self.execute)
         rospy.loginfo("Ready to tts stdserver")
         rospy.spin()
 
     def execute(self, data):
         client = texttospeech.TextToSpeechClient()
-        synthesis_input = texttospeech.SynthesisInput(text=data.sentence)
+        synthesis_input = texttospeech.SynthesisInput(text=data.data)
         voice = texttospeech.VoiceSelectionParams(
             language_code='en-US',
             name='en-US-Wavenet-F',
@@ -38,7 +38,7 @@ class TTS_server(object):
             print('Audio content written to file ' + Filename)
 
         self.PlayWaveFile()
-        return TTSResponse()
+        return StrTrgResponse()
 
     def PlayWaveFile(self):
         try:

@@ -74,6 +74,8 @@ class GenderJudgementFromNameByNBC:
 
         return cls(classifier,gender_features,test_set,st_set)
 
+
+
 class GenderJudgementFromNameByRFC:
     def __init__(self,classifier,gender_features,test_set1,test_set2):
         self.classifier=classifier
@@ -94,13 +96,13 @@ class GenderJudgementFromNameByRFC:
             return "male"
 
 
-    def save(self,file_path="./genderStackingmodel.dill"):
+    def save(self,file_path="./genderRFCmodel.dill"):
         dillWrite(file_path,{'model':self.classifier,'features':self.gender_features,
                         'test1':self.test_set1,'test2':self.test_set2})
 
 
     @classmethod
-    def loadNBCmodel(cls,file_path="./genderStackingmodel.dill"):
+    def loadRFCmodel(cls,file_path="./genderRFCgmodel.dill"):
         if(os.path.exists(file_path)):
             data=dillLoad(file_path)
             return cls(data['model'],data['features'],data['test1'],data['test2'])
@@ -109,7 +111,7 @@ class GenderJudgementFromNameByRFC:
             return None
 
     @classmethod
-    def trainStackingmodel(cls,first_num=2,midle_num=1,last_num=1,max_iter1=1000,max_iter2=10000):
+    def trainRFCmodel(cls,first_num=2,midle_num=1,last_num=1,max_iter1=1000,max_iter2=10000):
 
         def gender_features(word):
             x_sub=[]
@@ -194,7 +196,7 @@ class GenderJudgementFromNameByStacking:
 
 
     @classmethod
-    def loadNBCmodel(cls,file_path="./genderStackingmodel.dill"):
+    def loadStackingmodel(cls,file_path="./genderStackingmodel.dill"):
         if(os.path.exists(file_path)):
             data=dillLoad(file_path)
             return cls(data['model'],data['features'],data['test1'],data['test2'])
@@ -274,7 +276,7 @@ class GenderJudgementFromNameByStacking:
 
 
 if __name__ == '__main__':
-    classifier=GenderJudgementFromNameByRFC.trainStackingmodel()
+    classifier=GenderJudgementFromNameByNBC.trainNBCmodel()
     classifier.confirmAccuracy()
 
     while 1:
