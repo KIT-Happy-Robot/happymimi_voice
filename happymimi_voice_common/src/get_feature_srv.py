@@ -3,7 +3,7 @@
 
 import rospy
 import os
-import roslib.pkg
+import roslib.packages
 from happymimi_voice_msgs.srv import StringToString,StringToStringResponse
 #from std_srvs.srv import Empty
 from happymimi_voice_msgs.srv import SpeechToText
@@ -13,9 +13,9 @@ import copy
 from ../happymimi_nlp import sentence_analysis as se
 from ../happymimi_nlp import gender_judgement_from_name　as GetGender
 
-file_path=""
-file_name=""
-file_temp=""
+file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/config/voice_common"
+file_name="/names.txt"
+file_temp="/get_feature.txt"
 class GetFeature():
     def __init__(self):
 

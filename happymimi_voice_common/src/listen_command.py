@@ -11,7 +11,7 @@ from happymimi_voice_msgs.srv import ListenCommandResponse
 #filename and path
 import os.path
 import roslib.packages
-file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/config/listen_cmd"
+file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/config/voice_common"
 
 
 

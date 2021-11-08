@@ -9,17 +9,18 @@ import wave
 import pyaudio
 
 #Filename = 'output.wav'
+file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/config/wave_data"
 
 class WavePlay():
     def __init__(self):
 
-        self.srv = rospy.Service('/tts', StrTrg, self.PlayWaveFile)
+        self.srv = rospy.Service('/waveplay_srv', StrTrg, self.PlayWaveFile)
         rospy.spin()
 
 
     def PlayWaveFile(self,file_name):
         try:
-            wf = wave.open(file_name.data, "rb")
+            wf = wave.open(file_path+file_name.data, "rb")
             print("Time[s]:", float(wf.getnframes()) / wf.getframerate())
         except FileNotFoundError:
             print("[Error 404] No such file or directory: " + file_name.data)
@@ -54,12 +55,12 @@ def waveMake(sentence,file_name):
 
     response = client.synthesize_speech(input=synthesis_input, voice=voice, audio_config=audio_config)
 
-    with open(file_name, 'wb') as out:
+    with open(file_path+file_name, 'wb') as out:
         out.write(response.audio_content)
         print('Audio content written to file ' + file_name)
 
 
 
 if __name__ == '__main__':
-    rospy.init_node('waveplay_sub')
+    rospy.init_node('waveplay_srv')
     WavePlay()
