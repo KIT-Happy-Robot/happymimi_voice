@@ -59,7 +59,7 @@ $ roslaunch happymimi_voice_common voice_common.launch
 | "old" | "年齢" | 文字列の数字
 | "gender" | "性別" | "woman", "man" |
 | "predict gender" | "性別" | "woman","man" ※ |
-※ナイーブベイズ統計による推論　音声再生はない
+※名前からナイーブベイズ統計による推論　音声再生はない
 
 ## Used msgs
 - ### listen_command.py 
