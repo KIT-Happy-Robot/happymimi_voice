@@ -6,8 +6,7 @@ from happymimi_voice_msgs.srv import SpeechToText
 
 import Levenshtein as lev
 import rospy
-from happymimi_voice_msgs.srv import ListenCommand
-from happymimi_voice_msgs.srv import ListenCommandResponse
+from happymimi_voice_msgs.srv import StringToString,StringToStringResponse
 #filename and path
 import os.path
 import roslib.packages
@@ -22,21 +21,21 @@ class GgiinStruction:
         rospy.wait_for_service('/tts')
         rospy.wait_for_service('/stt_server')
         self.stt=rospy.ServiceProxy('/stt_server',SpeechToText)
-        self.server=rospy.Service('/listen_command',ListenCommand,self.main)
+        self.server=rospy.Service('/listen_command',StringToString,self.main)
         #self.sound=rospy.ServiceProxy('/sound', Empty)
         self.tts=rospy.ServiceProxy('/tts', TTS)
 
 
     def main(self,req):
-        with open(file_path+req.file_name,'r') as f:
+        with open(file_path+req.request_data,'r') as f:
             speak_list=[line.strip() for line in f.readlines()]
         self.tts("ready")
         string=self.stt(short_str=True,context_phrases=speak_list,boost_value=20.0)
         num_lev=1
         prog_num=-1
         for str_num in range(len(speak_list)):
-            result = lev.distance(string.result_str, speak_list[str_num])/(max(len(string.result_str), len(speak_list[str_num])) *1.00)
-
+            #result = lev.distance(string.result_str, speak_list[str_num])/(max(len(string.result_str), len(speak_list[str_num])) *1.00)
+            result=lev.ratio(string.result_str,speak_list[str_num])
             if result <0.2:
                 prog_num=str_num
                 break
@@ -54,7 +53,7 @@ class GgiinStruction:
             success=True
 
 
-        return ListenCommandResponse(cmd=command,result=success)
+        return StringToStringResponse(result_data=command,result=success)
 
 
 

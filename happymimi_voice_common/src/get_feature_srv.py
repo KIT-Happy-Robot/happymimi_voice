@@ -16,6 +16,8 @@ from ../happymimi_nlp import gender_judgement_from_name　as GetGender
 file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/config/voice_common"
 file_name="/names.txt"
 file_temp="/get_feature.txt"
+
+
 class GetFeature():
     def __init__(self):
 
@@ -69,6 +71,12 @@ class GetFeature():
             name=se.wordVerification(sentence,current_str,result_str,name,gender_ls,"{gender}")[0]
         else:
             return False
+        if name=="female":
+            name="woman"
+        elif name=="male":
+            name="man"
+
+        return name
 
 
     def getOld(self):
@@ -95,6 +103,7 @@ class GetFeature():
         elif request.request_data=="predict gender":
             if self.name:
                 result=self.GetGender.expectGender(self.name)
+                result="man" if result=="male" else "woman"
             else:
                 result=False
 
