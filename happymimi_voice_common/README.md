@@ -36,33 +36,23 @@ $ roslaunch happymimi_voice_common voice_common.launch
 
 ```
 ## How to use
-- ### listen_command.py 
-#### happymimi_voice_msgs/StringToString.srv
-```
-string request_data  #コマンドとして使うファイル名
----
-string result_data   #成功：'対応したコマンド' 失敗：'' 
-bool result	     #成功：True 失敗：False
-```
-
-- ### stt_server.py
-#### happymimi_voice_msgs/SpeechRecog.srv
-```
----
-string result   #認識結果の文字列
-```
-
-- ### tts_srvserver.py
-> 喋らせたい文字列を渡すと音声合成が再生される
-
-- ### yes_no.py
-> 呼び出すのみ
+基本はUsed msgsに書いてあるので一部のみ記載
 
 - ### waveplay_srv.py
 > 再生した音声合成ファイルの指定
 
+#### 音声ファイルの作成方法
+```
+~/happymimi_voice$ source envs/(環境名)/bin/activate 
+~/happymimi_voice_common/src/ python
+>>> import waveplay_srv as wav
+>>> wav.waveMaker("hello","hello.wav")
+```
+
 - ### get_feature_srv.py
 > 取得したい情報を指定すると、音声を流し欲しい情報を返す
+
+#### 対応表
 | 送信内容 | 受信内容 | 受信種類 |
 ----|----|---- 
 | "name" | "人の名前" | config/voice_common/name.txt参照 |
@@ -70,12 +60,6 @@ string result   #認識結果の文字列
 | "gender" | "性別" | "woman", "man" |
 | "predict gender" | "性別" | "woman","man" ※ |
 ※ナイーブベイズ統計による推論　音声再生はない
-```
-string request_data  #取得したい情報
----
-string result_data   # 取得した情報
-bool result	     #成功：True 失敗：False
-```
 
 ## Used msgs
 - ### listen_command.py 
@@ -90,8 +74,12 @@ bool result	     #成功：True 失敗：False
 - ### stt_server.py
 #### happymimi_voice_msgs/SpeechRecog.srv
 ```
+bool short_str    #扱うものが短い文か長い文か
+#以下２つは必要ない場合省略可
+string[] context_phrases    #認識しやすくしたい単語のリスト
+float32 boost_value         #上記のリストの単語をどのぐらい認識しやすくするか デフォルト 20.0
 ---
-string result   #認識結果の文字列
+string result_str
 ```
 
 - ### tts_srvserver.py

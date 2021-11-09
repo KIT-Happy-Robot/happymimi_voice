@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="voice_common_pkg" name="stt_server" type="stt_server.py" output="screen" />
+  <node pkg="voice_common_pkg" name="tts" type="tts_srvserver.py" output="screen" />
+  <node pkg="spr_speak" name="spr_speak" type="spr_speak.py"     output="screen" />
+</launch>
