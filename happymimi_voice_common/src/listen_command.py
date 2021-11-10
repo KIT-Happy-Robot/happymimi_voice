@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from happymimi_voice_msgs.srv import TTS
+from happymimi_msgs.srv import StrTrg
 #from std_srvs.srv import Empty
 from happymimi_voice_msgs.srv import SpeechToText
 
@@ -10,7 +10,7 @@ from happymimi_voice_msgs.srv import StringToString,StringToStringResponse
 #filename and path
 import os.path
 import roslib.packages
-file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/config/voice_common"
+file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/../config/voice_common"
 
 
 
@@ -23,7 +23,7 @@ class GgiinStruction:
         self.stt=rospy.ServiceProxy('/stt_server',SpeechToText)
         self.server=rospy.Service('/listen_command',StringToString,self.main)
         #self.sound=rospy.ServiceProxy('/sound', Empty)
-        self.tts=rospy.ServiceProxy('/tts', TTS)
+        self.tts=rospy.ServiceProxy('/tts', StrTrg)
 
 
     def main(self,req):

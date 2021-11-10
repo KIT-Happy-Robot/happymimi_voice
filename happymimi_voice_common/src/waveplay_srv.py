@@ -9,7 +9,7 @@ import wave
 import pyaudio
 
 #Filename = 'output.wav'
-file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/config/wave_data"
+file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/../config/wave_data/"
 
 class WavePlay():
     def __init__(self):
@@ -44,7 +44,7 @@ class WavePlay():
 
 def waveMake(sentence,file_name):
     client = texttospeech.TextToSpeechClient()
-    synthesis_input = texttospeech.SynthesisInput(sentence)
+    synthesis_input = texttospeech.SynthesisInput(text=sentence)
     voice = texttospeech.VoiceSelectionParams(
         language_code='en-US',
         name='en-US-Wavenet-F',

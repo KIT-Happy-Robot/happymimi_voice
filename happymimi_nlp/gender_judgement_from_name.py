@@ -282,6 +282,6 @@ if __name__ == '__main__':
     while 1:
         i=input("name or save:")
         if(i=="save"):
-            classifier.save()
+            classifier.save("../config/datset/genderNBCmodel.dill")
         else:
             print(classifier.expectGender(i))

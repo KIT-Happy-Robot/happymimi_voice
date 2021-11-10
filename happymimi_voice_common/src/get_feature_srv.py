@@ -7,38 +7,48 @@ import roslib.packages
 from happymimi_voice_msgs.srv import StringToString,StringToStringResponse
 #from std_srvs.srv import Empty
 from happymimi_voice_msgs.srv import SpeechToText
+from happymimi_msgs.srv import StrTrg
 import re
 import fuzzy
 import copy
-from ../happymimi_nlp import sentence_analysis as se
-from ../happymimi_nlp import gender_judgement_from_name　as GetGender
+import yaml
+import sys
+happymimi_voice_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/.."
+sys.path.insert(0,happymimi_voice_path)
+from happymimi_nlp import sentence_analysis as se
+from happymimi_nlp import gender_judgement_from_name as GetGender
 
-file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/config/voice_common"
-file_name="/names.txt"
+
+file_path=happymimi_voice_path+"/config/voice_common"
 file_temp="/get_feature.txt"
+name_path=roslib.packages.get_pkg_dir("find_my_mates")+"/config/guest_name.yaml"
 
 
 class GetFeature():
     def __init__(self):
-
-        self.names=[name for name in open(file_path+file_name)]
+        rospy.init_node('get_feature_srv')
+        with open(name_path) as f:
+            self.names=yaml.safe_load(f)
         self.template=[s for s in open(file_path+file_temp)]
-        self.GetGender=GetGender.GenderJudgementFromNameByNBC.loadNBCmodel()
+        self.GetGender=GetGender.GenderJudgementFromNameByNBC.loadNBCmodel(happymimi_voice_path+"/config/dataset/genderNBCmodel.dill")
         rospy.wait_for_service('/tts')
         rospy.wait_for_service('/stt_server')
+        rospy.wait_for_service('/waveplay_srv')
+        self.tts=rospy.ServiceProxy('/tts', StrTrg)
+        self.wave_srv=rospy.ServiceProxy('/waveplay_srv', StrTrg)
         self.stt=rospy.ServiceProxy('/stt_server',SpeechToText)
         self.server=rospy.Service('/get_feature_srv',StringToString,self.main)
         #self.sound=rospy.ServiceProxy('/sound', Empty)
-        self.tts=rospy.ServiceProxy('/tts', TTS)
+
         self.name=""
         rospy.spin()
 
 
     def getName(self):
-        self.tts("what's your name?")
-        sentence=self.stt(short_str=False)
+        self.wave_srv("WhatName")
+        sentence=self.stt(short_str=False).result_str.lower()
         for name in self.names:
-            str=sentence.replace(name,"{name}")
+            str=sentence.replace(name.lower(),"{name}")
 
         current_str=self.template[se.levSearch(str,self.template)].split()
         if current_str==-1:
@@ -53,13 +63,13 @@ class GetFeature():
 
 
     def getGender(self):
-        self.tts("What's your gender")
-        sentence=self.stt(short_str=False)
+        self.wave_srv("WhatGender")
+        sentence=self.stt(short_str=False).result_str
         str_ls=sentence.split()
         gender_ls=["woman","man","female","male"]
         for gender in gender_ls:
-            index_ge=[i for i,x in enumerate(str_ls) if x==gender]
-            [str_ls[i]="{gender}" for i in index_ge]
+            for i in [i for i,x in enumerate(str_ls) if x==gender]:
+                str_ls[i]="{gender}"
         str=" ".join(str_ls)
         current_str=self.template[se.levSearch(str,self.template)].split()
         if current_str==-1:
@@ -80,8 +90,8 @@ class GetFeature():
 
 
     def getOld(self):
-        self.tts("How old are you?")
-        sentence=self.stt(short_str=False)
+        self.wave_srv("HowOld")
+        sentence=self.stt(short_str=False).result_str
         num_ls=re.findall(r"\d+", sentence)
         for num in num_ls:
             str=sentence.replace(num,"{num}")
@@ -111,3 +121,7 @@ class GetFeature():
             return StringToStringResponse(result_data=result,result=True)
         else:
             return StringToStringResponse(result=False)
+
+if __name__=="__main__":
+
+    GetFeature()
