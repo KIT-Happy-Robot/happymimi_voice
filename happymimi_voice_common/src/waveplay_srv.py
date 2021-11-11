@@ -59,7 +59,29 @@ def waveMake(sentence,file_name):
         out.write(response.audio_content)
         print('Audio content written to file ' + file_name)
 
+def PlayWaveFile(file_name):
+    try:
+        wf = wave.open(file_path+file_name, "rb")
+        print("Time[s]:", float(wf.getnframes()) / wf.getframerate())
+    except FileNotFoundError:
+        print("[Error 404] No such file or directory: " + file_name)
+        return
 
+    p = pyaudio.PyAudio()
+    stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                    channels=wf.getnchannels(),
+                    rate=wf.getframerate(),
+                    output=True)
+
+    chunk = 1024
+    data = wf.readframes(chunk)
+    while data != b'':
+        stream.write(data)
+        data = wf.readframes(chunk)
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+    return
 
 if __name__ == '__main__':
     rospy.init_node('waveplay_srv')

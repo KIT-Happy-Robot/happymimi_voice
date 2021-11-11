@@ -13,6 +13,7 @@ import fuzzy
 import copy
 import yaml
 import sys
+import math
 happymimi_voice_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/.."
 sys.path.insert(0,happymimi_voice_path)
 from happymimi_nlp import sentence_analysis as se
@@ -45,33 +46,38 @@ class GetFeature():
 
 
     def getName(self):
-        self.wave_srv("WhatName")
-        sentence=self.stt(short_str=False).result_str.lower()
+        self.wave_srv("WhatName.wav")
+        template=[i for i in self.template if "{name}" in i]
+        sentence=self.stt(short_str=False,context_phrases=self.names).result_str.lower()
         for name in self.names:
             str=sentence.replace(name.lower(),"{name}")
 
-        current_str=self.template[se.levSearch(str,self.template)].split()
+        current_str=template[se.levSearch(str,template,default_v=0.4)].split()
         if current_str==-1:
+            print("No such temp")
             return False
         name = [i for i, x in enumerate(current_str) if x == "{name}"]
         result_str=copy.deepcopy(current_str)
         if name:
             self.name=se.wordVerification(sentence,current_str,result_str,name,self.names,"{name}")[0]
+            print(self.name)
             return self.name
         else:
+            print("no mach")
             return False
 
 
     def getGender(self):
-        self.wave_srv("WhatGender")
+        self.wave_srv("WhatGender.wav")
         sentence=self.stt(short_str=False).result_str
         str_ls=sentence.split()
+        template=[i for i in self.template if "{gender}" in i]
         gender_ls=["woman","man","female","male"]
         for gender in gender_ls:
             for i in [i for i,x in enumerate(str_ls) if x==gender]:
                 str_ls[i]="{gender}"
         str=" ".join(str_ls)
-        current_str=self.template[se.levSearch(str,self.template)].split()
+        current_str=template[se.levSearch(str,template)].split()
         if current_str==-1:
             return False
 
@@ -90,13 +96,15 @@ class GetFeature():
 
 
     def getOld(self):
-        self.wave_srv("HowOld")
+        self.wave_srv("HowOld.wav")
         sentence=self.stt(short_str=False).result_str
+        template=[i for i in self.template if "{num}" in i]
         num_ls=re.findall(r"\d+", sentence)
+        str=""
         for num in num_ls:
             str=sentence.replace(num,"{num}")
 
-        current_str=self.template[se.levSearch(str,self.template)]
+        current_str=template[se.levSearch(str,template)]
         if current_str==-1 or len(num_ls)==0:
             return False
         else:
@@ -112,6 +120,7 @@ class GetFeature():
             result=self.getOld()
         elif request.request_data=="predict gender":
             if self.name:
+                print(self.name)
                 result=self.GetGender.expectGender(self.name)
                 result="man" if result=="male" else "woman"
             else:

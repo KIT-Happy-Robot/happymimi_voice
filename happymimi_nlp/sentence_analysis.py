@@ -6,6 +6,7 @@ import fuzzy
 from nltk.tag.stanford import StanfordPOSTagger
 import nltk
 import numpy as np
+import copy
 file_path="../config"
 
 

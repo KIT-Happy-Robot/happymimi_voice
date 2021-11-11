@@ -7,7 +7,7 @@ import dill
 from nltk.corpus import names
 import numpy as np
 import random
-import math
+
 import os.path
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import make_pipeline
@@ -17,6 +17,7 @@ from sklearn.ensemble import StackingClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 import ngram
+import math
 
 #pickleだとlambdaでエラーが出るためdillを使う
 def dillWrite(file_path,data):
@@ -276,12 +277,13 @@ class GenderJudgementFromNameByStacking:
 
 
 if __name__ == '__main__':
-    classifier=GenderJudgementFromNameByNBC.trainNBCmodel()
+    classifier=GenderJudgementFromNameByNBC.loadNBCmodel("../config/dataset/genderNBCmodel.dill")
+    #classifier=GenderJudgementFromNameByNBC.trainNBCmodel()
     classifier.confirmAccuracy()
 
     while 1:
         i=input("name or save:")
         if(i=="save"):
-            classifier.save("../config/datset/genderNBCmodel.dill")
+            classifier.save("../config/dataset/genderNBCmodel.dill")
         else:
             print(classifier.expectGender(i))
