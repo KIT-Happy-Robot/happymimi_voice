@@ -10,7 +10,11 @@ from happymimi_voice_msgs.srv import StringToString,StringToStringResponse
 #filename and path
 import os.path
 import roslib.packages
-file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/../config/voice_common"
+import sys
+happymimi_voice_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/.."
+sys.path.insert(0,happymimi_voice_path)
+from happymimi_nlp import sentence_analysis as se
+file_path=happymimi_voice_path+"/config/voice_common/"
 
 
 
@@ -27,30 +31,19 @@ class GgiinStruction:
 
 
     def main(self,req):
-        with open(file_path+req.request_data,'r') as f:
-            speak_list=[line.strip() for line in f.readlines()]
+        speak_list=[s.replace("\n","") for s in open(file_path+req.request_data)]
+        #print(speak_list)
         self.tts("ready")
-        string=self.stt(short_str=True,context_phrases=speak_list,boost_value=20.0)
-        num_lev=1
-        prog_num=-1
-        for str_num in range(len(speak_list)):
-            #result = lev.distance(string.result_str, speak_list[str_num])/(max(len(string.result_str), len(speak_list[str_num])) *1.00)
-            result=lev.ratio(string.result_str,speak_list[str_num])
-            if result <0.2:
-                prog_num=str_num
-                break
+        string=self.stt(short_str=True,context_phrases=speak_list,boost_value=20.0).result_str
 
-            elif num_lev>result and result<0.5:
-                num_lev=result
-                prog_num=str_num
-
-        success=False
-        if prog_num<0 or prog_num>=len(speak_list):
-            command=''
-            success=False
-        else:
-            command=speak_list[prog_num]
+        current_str=se.levSearch(string,speak_list,fuz=True)
+        if current_str!=-1:
+            command=speak_list[current_str]
             success=True
+        else:
+            command=""
+            success=False
+
 
 
         return StringToStringResponse(result_data=command,result=success)

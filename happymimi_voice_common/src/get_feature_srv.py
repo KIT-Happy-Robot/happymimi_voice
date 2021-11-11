@@ -49,13 +49,18 @@ class GetFeature():
         self.wave_srv("WhatName.wav")
         template=[i for i in self.template if "{name}" in i]
         sentence=self.stt(short_str=False,context_phrases=self.names).result_str.lower()
-        for name in self.names:
-            str=sentence.replace(name.lower(),"{name}")
+        name=""
+        current_str=-1
+        for word in self.names:
+            current_str=se.levSearch(word,sentence.split(),default_v=0.6,fuz=True)
+            if current_str!=-1:
+                return word
 
-        current_str=template[se.levSearch(str,template,default_v=0.4)].split()
         if current_str==-1:
             print("No such temp")
             return False
+        '''
+        current_str=template[current_str].split()
         name = [i for i, x in enumerate(current_str) if x == "{name}"]
         result_str=copy.deepcopy(current_str)
         if name:
@@ -65,6 +70,7 @@ class GetFeature():
         else:
             print("no mach")
             return False
+        '''
 
 
     def getGender(self):
@@ -77,10 +83,10 @@ class GetFeature():
             for i in [i for i,x in enumerate(str_ls) if x==gender]:
                 str_ls[i]="{gender}"
         str=" ".join(str_ls)
-        current_str=template[se.levSearch(str,template)].split()
+        current_str=se.levSearch(str,template)
         if current_str==-1:
             return False
-
+        current_str=template[current_str].split()
         name = [i for i, x in enumerate(current_str) if x == "{gender}"]
         result_str=copy.deepcopy(current_str)
         if name:
@@ -104,7 +110,7 @@ class GetFeature():
         for num in num_ls:
             str=sentence.replace(num,"{num}")
 
-        current_str=template[se.levSearch(str,template)]
+        current_str=se.levSearch(str,template)
         if current_str==-1 or len(num_ls)==0:
             return False
         else:

@@ -49,17 +49,31 @@ def wordVerification(recog_sentence,sentence_ls,result_question,tag_data,xml_dat
 
     return get_tag
 
-def levSearch(word:str,com_ls:list,default_v=0.6)->int:
+def levSearch(word:str,com_ls:list,default_v=0.6,fuz=False)->int:
     current_str=-1
+    if fuz:
+        dmeta = fuzzy.DMetaphone()
+        word=dmeta(word)[0].decode()
+        for i,str in enumerate(com_ls):
+            str1=dmeta(str)[0].decode()
 
-    for i,str in enumerate(com_ls):
-        value=lev.ratio(word,str)
-        #value=lev.distance(word, str)/(max(len(word), len(str)) *1.00)
-        if (default_v<value):
-            default_v=value
-            current_str=i
-    #print(default_v)
-    return current_str
+            value=lev.ratio(word,str1)
+            #value=lev.distance(word, str)/(max(len(word), len(str)) *1.00)
+            if (default_v<value):
+                default_v=value
+                current_str=i
+                #print(str)
+        #print(default_v)
+        return current_str
+    else:
+        for i,str in enumerate(com_ls):
+            value=lev.ratio(word,str)
+            #value=lev.distance(word, str)/(max(len(word), len(str)) *1.00)
+            if (default_v<value):
+                default_v=value
+                current_str=i
+        #print(default_v)
+        return current_str
 
 
 class MorphologicalAnalysis():
