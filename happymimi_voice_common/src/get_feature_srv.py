@@ -107,14 +107,21 @@ class GetFeature():
         template=[i for i in self.template if "{num}" in i]
         num_ls=re.findall(r"\d+", sentence)
         str=""
+        '''
         for num in num_ls:
             str=sentence.replace(num,"{num}")
 
         current_str=se.levSearch(str,template)
+
         if current_str==-1 or len(num_ls)==0:
             return False
         else:
             return num_ls[0]
+        '''
+        if(num_ls):
+            return num_ls[0]
+        else:
+            return False
 
 
     def main(self,request):
