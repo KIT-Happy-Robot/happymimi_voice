@@ -48,7 +48,7 @@ class GetFeature():
     def getName(self):
         self.wave_srv("WhatName.wav")
         template=[i for i in self.template if "{name}" in i]
-        sentence=self.stt(short_str=False,context_phrases=self.names).result_str.lower()
+        sentence=self.stt(short_str=True,context_phrases=self.names).result_str.lower()
         name=""
         current_str=-1
         for word in self.names:
@@ -103,7 +103,7 @@ class GetFeature():
 
     def getOld(self):
         self.wave_srv("HowOld.wav")
-        sentence=self.stt(short_str=False).result_str
+        sentence=self.stt(short_str=True).result_str
         template=[i for i in self.template if "{num}" in i]
         num_ls=re.findall(r"\d+", sentence)
         str=""

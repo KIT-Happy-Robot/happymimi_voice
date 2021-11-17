@@ -87,7 +87,7 @@ string result_str
 ```
 string data  #喋らせたい文字列
 ---
-bool result     #削除予定（すべてFalse）
+bool result     
 ```
 
 - ### yes_no.py

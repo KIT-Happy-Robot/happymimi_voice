@@ -65,6 +65,7 @@ find_package(catkin REQUIRED COMPONENTS
     SpeechToText.srv
     ListenCommand.srv
     SprInformation.srv
+    YesNo.srv
  )
 
 ## Generate actions in the 'action' folder
