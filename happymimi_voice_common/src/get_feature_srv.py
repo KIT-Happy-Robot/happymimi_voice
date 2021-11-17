@@ -7,7 +7,7 @@ import roslib.packages
 from happymimi_voice_msgs.srv import StringToString,StringToStringResponse
 #from std_srvs.srv import Empty
 from happymimi_voice_msgs.srv import SpeechToText
-from happymimi_msgs.srv import StrTrg
+from happymimi_msgs.srv import StrTrg,StrToStr,StrToStrResponse
 import re
 import fuzzy
 import copy
@@ -38,7 +38,7 @@ class GetFeature():
         self.tts=rospy.ServiceProxy('/tts', StrTrg)
         self.wave_srv=rospy.ServiceProxy('/waveplay_srv', StrTrg)
         self.stt=rospy.ServiceProxy('/stt_server',SpeechToText)
-        self.server=rospy.Service('/get_feature_srv',StringToString,self.main)
+        self.server=rospy.Service('/get_feature_srv',StrToStr,self.main)
         #self.sound=rospy.ServiceProxy('/sound', Empty)
 
         self.name=""
@@ -57,7 +57,7 @@ class GetFeature():
                 return word
 
         if current_str==-1:
-            print("No such temp")
+            print("No such name")
             return False
         '''
         current_str=template[current_str].split()
@@ -118,13 +118,13 @@ class GetFeature():
 
 
     def main(self,request):
-        if request.request_data=="name":
+        if request.req_data=="name":
             result=self.getName()
-        elif request.request_data=="gender":
+        elif request.req_data=="gender":
             result=self.getGender()
-        elif request.request_data=="old":
+        elif request.req_data=="old":
             result=self.getOld()
-        elif request.request_data=="predict gender":
+        elif request.req_data=="predict gender":
             if self.name:
                 print(self.name)
                 result=self.GetGender.expectGender(self.name)
@@ -133,9 +133,9 @@ class GetFeature():
                 result=False
 
         if result:
-            return StringToStringResponse(result_data=result,result=True)
+            return StrToStrResponse(res_data=result,result=True)
         else:
-            return StringToStringResponse(result=False)
+            return StrToStrResponse(result=False)
 
 if __name__=="__main__":
 

@@ -64,9 +64,7 @@ find_package(catkin REQUIRED COMPONENTS
     GgiLearning.srv
     SpeechToText.srv
     ListenCommand.srv
-    YesNo.srv
     SprInformation.srv
-    StringToString.srv
  )
 
 ## Generate actions in the 'action' folder

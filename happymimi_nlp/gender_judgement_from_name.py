@@ -57,7 +57,7 @@ class GenderJudgementFromNameByNBC:
             data=dillLoad(file_path)
             return cls(data['model'],data['features'],data['test1'],data['test2'])
         else:
-            print("No such file")
+            print("No such "+file_path)
             return None
 
     @classmethod
@@ -108,7 +108,7 @@ class GenderJudgementFromNameByRFC:
             data=dillLoad(file_path)
             return cls(data['model'],data['features'],data['test1'],data['test2'])
         else:
-            print("No such file")
+            print("No such "+file_path)
             return None
 
     @classmethod
@@ -202,7 +202,7 @@ class GenderJudgementFromNameByStacking:
             data=dillLoad(file_path)
             return cls(data['model'],data['features'],data['test1'],data['test2'])
         else:
-            print("No such file")
+            print("No such "+file_path)
             return None
 
     @classmethod
