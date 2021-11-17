@@ -51,21 +51,29 @@ def wordVerification(recog_sentence,sentence_ls,result_question,tag_data,xml_dat
 
 def levSearch(word:str,com_ls:list,default_v=0.6,fuz=False)->int:
     current_str=-1
+    error_f=False
     if fuz:
-        dmeta = fuzzy.DMetaphone()
-        word=dmeta(word)[0].decode()
-        for i,str in enumerate(com_ls):
-            str1=dmeta(str)[0].decode()
+        try:
+            dmeta = fuzzy.DMetaphone()
+            word=dmeta(word)[0].decode()
+            for i,str in enumerate(com_ls):
+                str1=dmeta(str)[0].decode()
 
-            value=lev.ratio(word,str1)
-            #value=lev.distance(word, str)/(max(len(word), len(str)) *1.00)
-            if (default_v<value):
-                default_v=value
-                current_str=i
-                #print(str)
-        #print(default_v)
-        return current_str
-    else:
+                value=lev.ratio(word,str1)
+                #value=lev.distance(word, str)/(max(len(word), len(str)) *1.00)
+                if (default_v<value):
+                    default_v=value
+                    current_str=i
+                    #print(str)
+            #print(default_v)
+            return current_str
+        except IndexError:
+            print("IndexError")
+            error_f=True
+        except TypeError:
+            print("TypeError")
+            error_f=True
+    if(fuz==False or error_f):
         for i,str in enumerate(com_ls):
             value=lev.ratio(word,str)
             #value=lev.distance(word, str)/(max(len(word), len(str)) *1.00)
