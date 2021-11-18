@@ -43,7 +43,7 @@ class WavePlay():
         wf.close()
         return StrTrgResponse(result=True)
 
-def waveMake(sentence,file_name,config):
+def waveMake(sentence,file_name):
     client = texttospeech.TextToSpeechClient()
     synthesis_input = texttospeech.SynthesisInput(text=sentence)
     voice = texttospeech.VoiceSelectionParams(
