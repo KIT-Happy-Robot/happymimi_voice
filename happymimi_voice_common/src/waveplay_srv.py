@@ -9,7 +9,7 @@ import wave
 import pyaudio
 
 #Filename = 'output.wav'
-file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/../config/wave_data/"
+file_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/../config/wave_data"
 
 class WavePlay():
     def __init__(self):
@@ -40,9 +40,10 @@ class WavePlay():
         stream.stop_stream()
         stream.close()
         p.terminate()
+        wf.close()
         return StrTrgResponse(result=True)
 
-def waveMake(sentence,file_name):
+def waveMake(sentence,file_name,config):
     client = texttospeech.TextToSpeechClient()
     synthesis_input = texttospeech.SynthesisInput(text=sentence)
     voice = texttospeech.VoiceSelectionParams(

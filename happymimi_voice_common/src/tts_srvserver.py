@@ -61,6 +61,7 @@ class TTS_server(object):
             data = wf.readframes(chunk)
         stream.stop_stream()
         stream.close()
+        wf.close()
         p.terminate()
         return
 
