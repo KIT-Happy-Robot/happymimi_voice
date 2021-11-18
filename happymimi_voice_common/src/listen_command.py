@@ -31,7 +31,7 @@ class GgiinStruction:
     def main(self,req):
         speak_list=[s.replace("\n","") for s in open(file_path+req.request_data)]
         #print(speak_list)
-        self.wave_srv("Ready.wav")
+        self.wave_srv("/Ready.wav")
         string=self.stt(short_str=True,context_phrases=speak_list,boost_value=20.0).result_str
 
         current_str=se.levSearch(string,speak_list,fuz=True)
