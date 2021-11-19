@@ -44,6 +44,15 @@ class GetFeature():
         self.name=""
         rospy.spin()
 
+    def tempNumMake(self):
+        self.number=[]
+        self.number_word=[]
+        base1={'1':"one",'2':"two",'3':"three",'4':"four",'5':"five",'6':"six",'7':"seven",'8':"eight",'9':"nine",
+        '10':"ten",'11':"eleven",'12':"twelve",'13':"thirteen",'14':"fourteen",'15':"fifteen",'16':"sixteen",'17':"seventeen",'18':"eighteen",'19':"nineteen",
+        '2':"twenty",'3':"thirty",'4':"forty",'5':"fifty",'6':"sixty",'7':"seventy",'8':"eighty",'9':"ninety"}
+        for k,v in base1.items():
+            self.number.append(k)
+            self.number_word.append(v)
 
     def getName(self):
         self.wave_srv("/WhatName.wav")
@@ -121,8 +130,16 @@ class GetFeature():
         if(num_ls):
             return num_ls[0]
         else:
-            return False
-
+            sub_ls=[]
+            current_str=-1
+            for i in sentence.split():
+                current_str=levSearch(i,self.number_word)
+                if current_str!=-1:
+                    sub_ls.append(self.number[current_str])
+            if current_str==-1:
+                return False
+            else:
+                return ''.join(sub_ls)
 
     def main(self,request):
         if request.req_data=="name":
