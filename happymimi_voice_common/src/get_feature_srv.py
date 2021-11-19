@@ -28,6 +28,7 @@ name_path=roslib.packages.get_pkg_dir("find_my_mates")+"/config/guest_name.yaml"
 class GetFeature():
     def __init__(self):
         rospy.init_node('get_feature_srv')
+        self.tempNumMake()
         with open(name_path) as f:
             self.names=yaml.safe_load(f)
         self.template=[s for s in open(file_path+file_temp)]
@@ -133,7 +134,7 @@ class GetFeature():
             sub_ls=[]
             current_str=-1
             for i in sentence.split():
-                current_str=levSearch(i,self.number_word)
+                current_str=se.levSearch(i,self.number_word)
                 if current_str!=-1:
                     sub_ls.append(self.number[current_str])
             if current_str==-1:
