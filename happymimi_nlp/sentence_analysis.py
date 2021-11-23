@@ -3,12 +3,12 @@
 
 import Levenshtein as lev
 import fuzzy
-from nltk.tag.stanford import StanfordPOSTagger
+#from nltk.tag.stanford import StanfordPOSTagger
 import nltk
 import numpy as np
 import copy
 file_path="../config"
-
+import spacy
 
 # 引数 認識文　変更しない正しい文split 結果に書き換えていく正しい文split タグの要素番号　対応タグのリスト　タグ名　
 def wordVerification(recog_sentence,sentence_ls,result_question,tag_data,xml_data,tag_name,):
@@ -84,17 +84,81 @@ def levSearch(word:str,com_ls:list,default_v=0.6,fuz=False)->int:
         return current_str
 
 
+def branchMake(token,dep=0):
+    print(dep * '_' + token.text)
+    for child in token.children:
+        branchMake(child, dep + 1)
+
+# docからセンテンスを取り出しルート要素から木構造を出力する
+
 class MorphologicalAnalysis():
-    def __init__(self):
+    def __init__(self,**kwargs):
+        self.data_dict=kwargs
         #nltkのモデル読み込み
+        '''
         self.pos_tag = StanfordPOSTagger(model_filename = file_path + "/dataset/stanford-postagger/models/english-bidirectional-distsim.tagger",
                                     path_to_jar = file_path + "/dataset/stanford-postagger/stanford-postagger.jar")
 
+        '''
+        self.pos_tag= spacy.load("en_core_web_trf")
+
     #汎用性を持たせるために形態素解析した結果を辞書型に(act_planではつかわない)
     def morphologicalAnalysis(self,sentence):
-        dict_word={}
-        pos_ls=self.pos_tag.tag(nltk.word_tokenize(sentence))
+        pos_ls=self.pos_tag(sentence)
         return pos_ls
+
+    def actionGet(self,sentence):
+        action_ls=[]
+        target_ls=[]
+        #action_sub=[]
+        target_sub=[]
+        target_cnt=0
+        que_flag=False
+        VB_flag=False
+        if "speak_set" in self.data_dict:
+            que_set=self.data_dict["speak_set"]
+        else:
+            que_set={"say","tell","answer"}
+        #pos_ls=self.pos_tag.tag(nltk.word_tokenize(sentence))  #品詞分解
+        pos_ls=self.pos_tag(sentence)
+
+
+        for pos in pos_ls:
+            word = pos.text
+            tag=pos.tag_
+            children=list(pos.children)
+            #word=stemmer.stem(word)#単語を原型に直す
+            if(word in que_set):   #tell say answerへの対処
+                VB_flag=True
+                action_ls.append("speak")
+                if target_cnt>0:
+                    target_ls.append(target_sub)
+                    target_sub=[]
+                    target_cnt=0
+
+            elif(word in "," or word in "." or tag in "CC"):
+                VB_flag=False
+                continue
+
+            elif "exclusion_VB" in self.data_dict and word in self.data_dict["exclusion_VB"]:
+                target_sub.append((word,tag))
+
+            elif "VB" in tag and "VBP"!=tag and "VBZ"!=tag:   #動詞の抽出
+                VB_flag=True
+                action_ls.append(word)
+                if target_cnt>0:
+                    target_ls.append(target_sub)
+                    target_sub=[]
+                    target_cnt=0
+
+            elif VB_flag: #targetを抽出
+                target_cnt+=1
+                target_sub.append((word,tag))
+
+        if target_cnt>0:
+            target_ls.append(target_sub)
+
+        return action_ls,target_ls
 
 
 
@@ -136,3 +200,12 @@ class MorphologicalAnalysis():
                 "WP	Wh-pronoun	Wh 代名詞",
                 "WP$	Possessive wh-pronoun	所有 Wh 代名詞",
                 "WRB	Wh-adverb	Wh 副詞",end="\n")
+
+if __name__=='__main__':
+    i=input()
+    pos_tag= spacy.load("en_core_web_trf")
+    #for sent in pos_tag(i).sents:
+        #branchMake(sent.root)
+    #    print(sent)
+    for j in pos_tag(i):
+        print(j.text,list(j.children))

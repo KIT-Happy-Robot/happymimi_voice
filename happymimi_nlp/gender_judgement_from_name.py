@@ -17,6 +17,7 @@ from sklearn.ensemble import StackingClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 import ngram
+import fuzzy
 import math
 
 #pickleだとlambdaでエラーが出るためdillを使う

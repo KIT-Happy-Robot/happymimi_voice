@@ -40,7 +40,7 @@ ngram==3.3.2
 pymagnitude==0.1.143
 wheel==0.37.0
 fuzzy==1.2.2
-
+spacy==3.1.4
 ```
 
 ## How to build enviroment
@@ -79,6 +79,19 @@ cd enviroment_building
 sh enviroment.sh
 
 ```
+
+### word2vec data install
+```
+#8Gぐらいある
+wget -c http://magnitude.plasticity.ai/fasttext/heavy/crawl-300d-2M.magnitude
+mv crawl-300d-2M.magnitude ../config/dataset/
+```
+軽い重みを使いたい場合は
+https://github.com/plasticityai/magnitude
+からダウンロードし名前を変更
+
+
+### pyThorch
 本パッケージではword2vecを高速で扱うためにpymagnitudeを利用しているが、各自の端末に適したpyTorchが必要になる。
 以下のリンクからinstallコマンドを生成してインストールを実行してください。
 https://pytorch.org/get-started/locally/

@@ -57,8 +57,8 @@ class GetFeature():
 
     def getName(self):
         self.wave_srv("/WhatName.wav")
-        template=[i for i in self.template if "{name}" in i]
-        sentence=self.stt(short_str=True,context_phrases=self.names).result_str.lower()
+        #template=[i for i in self.template if "{name}" in i]
+        sentence=self.stt(short_str=True,context_phrases=self.names,boost_value=25.0).result_str.lower()
         name=""
         current_str=-1
         for word in self.names:

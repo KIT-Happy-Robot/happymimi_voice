@@ -23,7 +23,7 @@ class GgiinStruction:
     def yes_no(self,req):
         while 1:
             str=self.stt(short_str=True,context_phrases=answer_list,
-                    boost_value=15.0)
+                    boost_value=25.0)
             if answer_list[0] in str.result_str:
                 return YesNoResponse(result=True)
             elif answer_list[1] in str.result_str:
