@@ -8,7 +8,7 @@ import nltk
 import numpy as np
 import copy
 file_path="../config"
-#import spacy
+import spacy
 
 # 引数 認識文　変更しない正しい文split 結果に書き換えていく正しい文split タグの要素番号　対応タグのリスト　タグ名　
 def wordVerification(recog_sentence,sentence_ls,result_question,tag_data,xml_data,tag_name,):
