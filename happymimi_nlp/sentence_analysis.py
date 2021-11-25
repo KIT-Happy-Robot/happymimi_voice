@@ -160,6 +160,51 @@ class MorphologicalAnalysis():
 
         return action_ls,target_ls
 
+    def actionGetv2(self,sentence):
+        def useChildren(ch_ls,q_f=False):
+            for word in ch_ls:
+                word=pos_ls[word_ls.index(word)]
+                if word.text in que_set or speak_flag:
+                    speak_flag=True
+                    if "CC"==word.tag_ or ","==word.text:
+                        speak_flag=False
+                    else:
+                        target_sub.append(word.text+target_sub.pop(0))
+                
+
+
+                elif "NN" in word.tag_:
+                    if "obj" in word.dep_ or "nsubj" in word.dep_:
+                        target_sub.append(word.lemma_)
+                    elif len(target_sub)!=0 and "compound" in word.dep_:
+                        target_sub.append(word.lemma_+target_sub.pop(0))
+                elif "JJ" in word.tag_:
+                    if "amod"==word.dep_:
+                        target_sub.append(word.lemma_+target_sub.pop(0))
+                elif "VB" in word.tag_ and ("conj"==word.dep_ or "ccomp" ==word.dep_):
+                    action_ls.append(word.lemma_)
+                    if VB_cnt!=0:
+                        target_ls.append(target_sub)
+                    VB_cnt+=1
+
+        action_ls=[]
+        target_ls=[]
+        target_sub=[]
+        VB_cnt=0
+        speak_flag=False
+        if "speak_set" in self.data_dict:
+            que_set=self.data_dict["speak_set"]
+        else:
+            que_set={"say","tell","answer"}
+
+        pos_ls=self.pos_tag(sentence)
+        root_word=[i.root for i in pos_ls.sents][0]
+        action_ls.append(root_word)
+        word_ls=[i.text for i in pos_ls]
+        useChildren(list(root_word.children))
+
+
+
 
 
 
