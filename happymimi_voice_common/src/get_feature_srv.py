@@ -66,7 +66,7 @@ class GetFeature():
 
         for word in self.names:
             current_str,default_value=se.levSearch(word,sentence.split(),default_v=default_value,fuz=True,get_value=True)
-            #print(word,default_value)
+            print(word,default_value)
             if current_str!=-1:
                 current_name=word
         if current_name!="":
