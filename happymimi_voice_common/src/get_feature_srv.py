@@ -118,7 +118,7 @@ class GetFeature():
 
 
     def getOld(self):
-        self.wave_srv("/HowOld.wav")
+        self.wave_srv("/HowOld2")
         sentence=self.stt(short_str=True).result_str
         template=[i for i in self.template if "{num}" in i]
         num_ls=re.findall(r"\d+", sentence)
