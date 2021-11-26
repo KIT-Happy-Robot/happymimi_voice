@@ -26,12 +26,12 @@ def wordVerification(recog_sentence,sentence_ls,result_question,tag_data,xml_dat
                 for j in current_quetion:
                     a = dmeta(j)[0]
                     if a!=None:
-                        list1.append(a.decode())
+                        list1.append(a)
 
                 for k in recog_sentence.replace(',', ' ,').split():
                     b = dmeta(k)[0]
                     if b!=None:
-                        list2.append(b.decode())
+                        list2.append(b)
 
                 #print(' '.join(list1) + "\t\t:" + ' '.join(list2))
                 distance.append(lev.ratio(' '.join(list1), ' '.join(list2))*1.00)
@@ -55,9 +55,9 @@ def levSearch(word:str,com_ls:list,default_v=0.6,fuz=False,get_value=False)->int
     if fuz:
         try:
             dmeta = fuzzy.DMetaphone()
-            word=dmeta(word)[0].decode()
+            word=dmeta(word)[0]
             for i,string in enumerate(com_ls):
-                str1=dmeta(string)[0].decode()
+                str1=dmeta(string)[0]
 
                 value=lev.ratio(word,str1)
                 #print(word,value)
