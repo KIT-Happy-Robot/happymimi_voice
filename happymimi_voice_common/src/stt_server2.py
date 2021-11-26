@@ -17,6 +17,8 @@ import roslib.packages
 happymimi_voice_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/.."
 import pyaudio
 from six.moves import queue
+import wave
+import pyaudio
 
 # Audio recording parameters
 RATE = 16000
@@ -89,7 +91,7 @@ class MicrophoneStream(object):
 class speech_server():
     def __init__(self):
         print('server is ready')
-        self.server=rospy.Service('/stt_server',SpeechToText,self.google_speech_api)
+        self.server=rospy.Service('/stt_server2',SpeechToText,self.google_speech_api)
 
     def listen_print_loop(self,responses):
         num_chars_printed = 0
@@ -169,7 +171,28 @@ class speech_server():
             config=config,
             interim_results=True)
 
+        try:
+            wf = wave.open(file_path+file_name.data, "rb")
+            print("Time[s]:", float(wf.getnframes()) / wf.getframerate())
+        except FileNotFoundError:
+            print("[Error 404] No such file or directory: " + file_name.data)
+            return StrTrgResponse(result=False)
 
+        p = pyaudio.PyAudio()
+        stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                        channels=wf.getnchannels(),
+                        rate=wf.getframerate(),
+                        output=True)
+
+        chunk = 1024
+        data = wf.readframes(chunk)
+        while data != b'':
+            stream.write(data)
+            data = wf.readframes(chunk)
+        stream.stop_stream()
+        stream.close()
+        p.terminate()
+        wf.close()
 
         with MicrophoneStream(RATE, CHUNK) as stream:
             audio_generator = stream.generator()
@@ -181,6 +204,6 @@ class speech_server():
 
 
 if __name__=='__main__':
-    rospy.init_node('stt_server')
+    rospy.init_node('stt_server2')
     f=speech_server()
     rospy.spin()
