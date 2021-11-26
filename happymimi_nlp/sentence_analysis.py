@@ -74,12 +74,17 @@ def levSearch(word:str,com_ls:list,default_v=0.6,fuz=False,get_value=False)->int
             print("TypeError")
             error_f=True
     if(fuz==False or error_f):
+        try:
         for i,string in enumerate(com_ls):
             value=lev.ratio(word,string)
             #value=lev.distance(word, string)/(max(len(word), len(string)) *1.00)
             if (default_v<value):
                 default_v=value
                 current_str=i
+        except TypeError:
+            if get_value:
+                return current_str,default_v
+            return current_str
         #print(default_v)
     if get_value:
         return current_str,default_v
