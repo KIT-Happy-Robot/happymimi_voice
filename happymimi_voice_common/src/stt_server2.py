@@ -14,7 +14,7 @@ from google.cloud import speech_v1p1beta1 as speech
 #from google.cloud.speech import enums 消えたらしい
 #from google.cloud.speech import types
 import roslib.packages
-happymimi_voice_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/.."
+happymimi_voice_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/../config/wave_data/PI.wav"
 import pyaudio
 from six.moves import queue
 import wave
@@ -172,12 +172,10 @@ class speech_server():
             interim_results=True)
 
         try:
-            wf = wave.open(file_path+file_name.data, "rb")
+            wf = wave.open(happymimi_voice_path, "rb")
             print("Time[s]:", float(wf.getnframes()) / wf.getframerate())
         except FileNotFoundError:
-            print("[Error 404] No such file or directory: " + file_name.data)
-            return StrTrgResponse(result=False)
-
+            pass
         p = pyaudio.PyAudio()
         stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
                         channels=wf.getnchannels(),
