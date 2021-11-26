@@ -35,11 +35,11 @@ class GetFeature():
         self.template=[s for s in open(file_path+file_temp)]
         self.GetGender=GetGender.GenderJudgementFromNameByNBC.loadNBCmodel(happymimi_voice_path+"/config/dataset/genderNBCmodel.dill")
         rospy.wait_for_service('/tts')
-        rospy.wait_for_service('/stt_server2')
+        rospy.wait_for_service('/stt_server')
         rospy.wait_for_service('/waveplay_srv')
         self.tts=rospy.ServiceProxy('/tts', StrTrg)
         self.wave_srv=rospy.ServiceProxy('/waveplay_srv', StrTrg)
-        self.stt=rospy.ServiceProxy('/stt_server2',SpeechToText)
+        self.stt=rospy.ServiceProxy('/stt_server',SpeechToText)
         self.server=rospy.Service('/get_feature_srv',StrToStr,self.main)
         #self.sound=rospy.ServiceProxy('/sound', Empty)
 
@@ -69,9 +69,11 @@ class GetFeature():
                 #print(word)
                 continue
             current_str,default_value=se.levSearch(word,self.names,default_v=default_value,fuz=True,get_value=True)
-            #print(word,default_value)
+
             if current_str!=-1:
+
                 current_name=self.names[current_str]
+                print(word,default_value,current_name)
         if current_name!="":
             return current_name
 

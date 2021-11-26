@@ -28,11 +28,13 @@ CHUNK = int(RATE / 10)  # 100ms
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
     def __init__(self, rate, chunk):
+
         self._rate = rate
         self._chunk = chunk
 
         self._buff = queue.Queue()
         self.closed = True
+
 
     def __enter__(self):
         self._audio_interface = pyaudio.PyAudio()
@@ -47,7 +49,28 @@ class MicrophoneStream(object):
             # overflow while the calling thread makes network requests, etc.
             stream_callback=self._fill_buffer,
         )
+        '''
+        try:
+            wf = wave.open(happymimi_voice_path, "rb")
+            print("Time[s]:", float(wf.getnframes()) / wf.getframerate())
+        except FileNotFoundError:
+            pass
+        p = pyaudio.PyAudio()
+        stre = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                        channels=wf.getnchannels(),
+                        rate=wf.getframerate(),
+                        output=True)
 
+        chunk = 1024
+        data = wf.readframes(chunk)
+        while data != b'':
+            stre.write(data)
+            data = wf.readframes(chunk)
+        stre.stop_stream()
+        stre.close()
+        p.terminate()
+        wf.close()
+        '''
         self.closed = False
 
         return self
@@ -178,26 +201,7 @@ class speech_server():
             audio_generator = stream.generator()
             requests = (speech.StreamingRecognizeRequest(audio_content=content)
                         for content in audio_generator)
-            try:
-                wf = wave.open(happymimi_voice_path, "rb")
-                print("Time[s]:", float(wf.getnframes()) / wf.getframerate())
-            except FileNotFoundError:
-                pass
-            p = pyaudio.PyAudio()
-            stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
-                            channels=wf.getnchannels(),
-                            rate=wf.getframerate(),
-                            output=True)
 
-            chunk = 1024
-            data = wf.readframes(chunk)
-            while data != b'':
-                stream.write(data)
-                data = wf.readframes(chunk)
-            stream.stop_stream()
-            stream.close()
-            p.terminate()
-            wf.close()
 
             responses = client.streaming_recognize(streaming_config, requests)
             return SpeechToTextResponse(result_str=self.listen_print_loop(responses))
