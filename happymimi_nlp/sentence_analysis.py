@@ -60,7 +60,8 @@ def levSearch(word:str,com_ls:list,default_v=0.6,fuz=False,get_value=False)->int
                 str1=dmeta(string)[0]
 
                 value=lev.ratio(word,str1)
-                #print(word,value)
+
+                #print(word,str1,value)
                 #value=lev.distance(word, str)/(max(len(word), len(str)) *1.00)
                 if (default_v<value):
                     default_v=value

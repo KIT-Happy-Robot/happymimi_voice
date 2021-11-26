@@ -64,11 +64,14 @@ class GetFeature():
         current_name=""
         default_value=0.5
 
-        for word in self.names:
-            current_str,default_value=se.levSearch(word,sentence.split(),default_v=default_value,fuz=True,get_value=True)
-            print(word,default_value)
+        for word in sentence.split():
+            if word in {"is","my","name"}:
+                #print(word)
+                continue
+            current_str,default_value=se.levSearch(word,self.names,default_v=default_value,fuz=True,get_value=True)
+            #print(word,default_value)
             if current_str!=-1:
-                current_name=word
+                current_name=self.names[current_str]
         if current_name!="":
             return current_name
 

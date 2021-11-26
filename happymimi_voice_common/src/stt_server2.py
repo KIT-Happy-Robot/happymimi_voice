@@ -171,31 +171,33 @@ class speech_server():
             config=config,
             interim_results=True)
 
-        try:
-            wf = wave.open(happymimi_voice_path, "rb")
-            print("Time[s]:", float(wf.getnframes()) / wf.getframerate())
-        except FileNotFoundError:
-            pass
-        p = pyaudio.PyAudio()
-        stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
-                        channels=wf.getnchannels(),
-                        rate=wf.getframerate(),
-                        output=True)
 
-        chunk = 1024
-        data = wf.readframes(chunk)
-        while data != b'':
-            stream.write(data)
-            data = wf.readframes(chunk)
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
-        wf.close()
 
         with MicrophoneStream(RATE, CHUNK) as stream:
+
             audio_generator = stream.generator()
             requests = (speech.StreamingRecognizeRequest(audio_content=content)
                         for content in audio_generator)
+            try:
+                wf = wave.open(happymimi_voice_path, "rb")
+                print("Time[s]:", float(wf.getnframes()) / wf.getframerate())
+            except FileNotFoundError:
+                pass
+            p = pyaudio.PyAudio()
+            stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                            channels=wf.getnchannels(),
+                            rate=wf.getframerate(),
+                            output=True)
+
+            chunk = 1024
+            data = wf.readframes(chunk)
+            while data != b'':
+                stream.write(data)
+                data = wf.readframes(chunk)
+            stream.stop_stream()
+            stream.close()
+            p.terminate()
+            wf.close()
 
             responses = client.streaming_recognize(streaming_config, requests)
             return SpeechToTextResponse(result_str=self.listen_print_loop(responses))
