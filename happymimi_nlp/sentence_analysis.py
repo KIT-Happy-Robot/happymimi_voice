@@ -169,22 +169,28 @@ class MorphologicalAnalysis():
                     if "CC"==word.tag_ or ","==word.text:
                         speak_flag=False
                     else:
-                        target_sub.append(word.text+target_sub.pop(0))
-                
+                        target_sub.append(word.text)
+                        useChildren(list(word.children))
+
 
 
                 elif "NN" in word.tag_:
                     if "obj" in word.dep_ or "nsubj" in word.dep_:
                         target_sub.append(word.lemma_)
+                        useChildren(list(word.children))
                     elif len(target_sub)!=0 and "compound" in word.dep_:
                         target_sub.append(word.lemma_+target_sub.pop(0))
+                        useChildren(list(word.children))
                 elif "JJ" in word.tag_:
                     if "amod"==word.dep_:
                         target_sub.append(word.lemma_+target_sub.pop(0))
+                        useChildren(list(word.children))
                 elif "VB" in word.tag_ and ("conj"==word.dep_ or "ccomp" ==word.dep_):
                     action_ls.append(word.lemma_)
+                    useChildren(list(word.children))
                     if VB_cnt!=0:
                         target_ls.append(target_sub)
+                        useChildren(list(word.children))
                     VB_cnt+=1
 
         action_ls=[]
