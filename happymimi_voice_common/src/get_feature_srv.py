@@ -31,6 +31,7 @@ class GetFeature():
         self.tempNumMake()
         with open(name_path) as f:
             self.names=yaml.safe_load(f)
+        print(self.names)
         self.template=[s for s in open(file_path+file_temp)]
         self.GetGender=GetGender.GenderJudgementFromNameByNBC.loadNBCmodel(happymimi_voice_path+"/config/dataset/genderNBCmodel.dill")
         rospy.wait_for_service('/tts')
@@ -60,13 +61,18 @@ class GetFeature():
         #template=[i for i in self.template if "{name}" in i]
         sentence=self.stt(short_str=True,context_phrases=self.names,boost_value=20.0).result_str.lower()
         name=""
-        current_str=-1
-        for word in self.names:
-            current_str=se.levSearch(word,sentence.split(),default_v=0.6,fuz=True)
-            if current_str!=-1:
-                return word
+        current_name=""
+        default_value=0.5
 
-        if current_str==-1:
+        for word in self.names:
+            current_str,default_value=se.levSearch(word,sentence.split(),default_v=default_value,fuz=True,get_value=True)
+            #print(word,default_value)
+            if current_str!=-1:
+                current_name=word
+        if current_name!="":
+            return current_name
+
+        else:
             print("No such name")
             return False
         '''
