@@ -57,7 +57,7 @@ class GetFeature():
             self.number_word.append(v)
 
     def getName(self):
-        self.wave_srv("/WhatName.wav")
+        self.wave_srv("/WhatName2")
         #template=[i for i in self.template if "{name}" in i]
         sentence=self.stt(short_str=True,context_phrases=self.names,boost_value=20.0).result_str.lower()
         name=""
