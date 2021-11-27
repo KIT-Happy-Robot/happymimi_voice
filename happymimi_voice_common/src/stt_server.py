@@ -170,14 +170,16 @@ class speech_server():
             interim_results=True)
 
 
+        try:
+            with MicrophoneStream(RATE, CHUNK) as stream:
+                audio_generator = stream.generator()
+                requests = (speech.StreamingRecognizeRequest(audio_content=content)
+                            for content in audio_generator)
 
-        with MicrophoneStream(RATE, CHUNK) as stream:
-            audio_generator = stream.generator()
-            requests = (speech.StreamingRecognizeRequest(audio_content=content)
-                        for content in audio_generator)
-
-            responses = client.streaming_recognize(streaming_config, requests)
-            return SpeechToTextResponse(result_str=self.listen_print_loop(responses))
+                responses = client.streaming_recognize(streaming_config, requests)
+                return SpeechToTextResponse(result_str=self.listen_print_loop(responses))
+        except:
+            return SpeechToTextResponse(result_str="")
 
 
 if __name__=='__main__':
