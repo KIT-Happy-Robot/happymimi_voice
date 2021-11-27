@@ -16,10 +16,10 @@ class GgiinStruction:
 
         print("server is ready")
         rospy.wait_for_service('/tts')
-        rospy.wait_for_service('/stt_server')
+        rospy.wait_for_service('/stt_server2')
         self.server=rospy.Service('/yes_no',YesNo,self.yes_no)
         self.tts=rospy.ServiceProxy('/tts', TTS)
-        self.stt=rospy.ServiceProxy('/stt_server',SpeechToText)
+        self.stt=rospy.ServiceProxy('/stt_server2',SpeechToText)
     def yes_no(self,req):
         while 1:
             str=self.stt(short_str=True,context_phrases=answer_list,

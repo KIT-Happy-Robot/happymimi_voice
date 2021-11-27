@@ -49,7 +49,7 @@ class MicrophoneStream(object):
             # overflow while the calling thread makes network requests, etc.
             stream_callback=self._fill_buffer,
         )
-        '''
+
         try:
             wf = wave.open(happymimi_voice_path, "rb")
             print("Time[s]:", float(wf.getnframes()) / wf.getframerate())
@@ -70,7 +70,6 @@ class MicrophoneStream(object):
         stre.close()
         p.terminate()
         wf.close()
-        '''
         self.closed = False
 
         return self
@@ -195,17 +194,18 @@ class speech_server():
             interim_results=True)
 
 
+        try:
+            with MicrophoneStream(RATE, CHUNK) as stream:
 
-        with MicrophoneStream(RATE, CHUNK) as stream:
-
-            audio_generator = stream.generator()
-            requests = (speech.StreamingRecognizeRequest(audio_content=content)
-                        for content in audio_generator)
+                audio_generator = stream.generator()
+                requests = (speech.StreamingRecognizeRequest(audio_content=content)
+                            for content in audio_generator)
 
 
-            responses = client.streaming_recognize(streaming_config, requests)
-            return SpeechToTextResponse(result_str=self.listen_print_loop(responses))
-
+                responses = client.streaming_recognize(streaming_config, requests)
+                return SpeechToTextResponse(result_str=self.listen_print_loop(responses))
+        except:
+            return SpeechToTextRespons(result_str="")
 
 if __name__=='__main__':
     rospy.init_node('stt_server2')

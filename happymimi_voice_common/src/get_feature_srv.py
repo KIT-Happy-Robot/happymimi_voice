@@ -35,11 +35,11 @@ class GetFeature():
         self.template=[s for s in open(file_path+file_temp)]
         self.GetGender=GetGender.GenderJudgementFromNameByNBC.loadNBCmodel(happymimi_voice_path+"/config/dataset/genderNBCmodel.dill")
         rospy.wait_for_service('/tts')
-        rospy.wait_for_service('/stt_server')
+        rospy.wait_for_service('/stt_server2')
         rospy.wait_for_service('/waveplay_srv')
         self.tts=rospy.ServiceProxy('/tts', StrTrg)
         self.wave_srv=rospy.ServiceProxy('/waveplay_srv', StrTrg)
-        self.stt=rospy.ServiceProxy('/stt_server',SpeechToText)
+        self.stt=rospy.ServiceProxy('/stt_server2',SpeechToText)
         self.server=rospy.Service('/get_feature_srv',StrToStr,self.main)
         #self.sound=rospy.ServiceProxy('/sound', Empty)
 
