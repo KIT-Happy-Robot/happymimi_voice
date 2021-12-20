@@ -71,10 +71,10 @@ class GetFeature():
             current_str,default_value=se.levSearch(word,self.names,default_v=default_value,fuz=True,get_value=True)
 
             if current_str!=-1:
-
                 current_name=self.names[current_str]
                 print(word,default_value,current_name)
         if current_name!="":
+            self.name=current_name
             return current_name
 
         else:
@@ -96,30 +96,15 @@ class GetFeature():
 
     def getGender(self):
         self.wave_srv("/WhatGender.wav")
-        sentence=self.stt(short_str=False).result_str
-        str_ls=sentence.split()
-        template=[i for i in self.template if "{gender}" in i]
-        gender_ls=["woman","man","female","male"]
-        for gender in gender_ls:
-            for i in [i for i,x in enumerate(str_ls) if x==gender]:
-                str_ls[i]="{gender}"
-        str=" ".join(str_ls)
-        current_str=se.levSearch(str,template)
-        if current_str==-1:
-            return False
-        current_str=template[current_str].split()
-        name = [i for i, x in enumerate(current_str) if x == "{gender}"]
-        result_str=copy.deepcopy(current_str)
-        if name:
-            name=se.wordVerification(sentence,current_str,result_str,name,gender_ls,"{gender}")[0]
+        sentence=self.stt(short_str=False,context_phrases=["woman","man","female","male"],boost_value=20.0).result_str.lower()
+
+        if "female" in sentence or "woman" in sentence:
+            return "female"
+        elif "male" in sentence or "man" in sentence:
+            return "male"
         else:
             return False
-        if name=="female":
-            name="woman"
-        elif name=="male":
-            name="man"
 
-        return name
 
 
     def getOld(self):
@@ -154,6 +139,7 @@ class GetFeature():
                 return ''.join(sub_ls)
 
     def main(self,request):
+        result=False
         if request.req_data=="name":
             result=self.getName()
         elif request.req_data=="gender":
@@ -164,9 +150,11 @@ class GetFeature():
             if self.name:
                 print(self.name)
                 result=self.GetGender.expectGender(self.name)
-                result="man" if result=="male" else "woman"
+                #result="man" if result=="male" else "woman"
             else:
                 result=False
+
+
 
         if result:
             return StrToStrResponse(res_data=result,result=True)

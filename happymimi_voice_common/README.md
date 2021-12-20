@@ -46,7 +46,7 @@ $ roslaunch happymimi_voice_common voice_common.launch
 ~/happymimi_voice$ source envs/(環境名)/bin/activate 
 ~/happymimi_voice_common/src/ python
 >>> import waveplay_srv as wav
->>> wav.waveMaker("hello","hello.wav")
+>>> wav.waveMaker("hello","/hello.wav")
 ```
 
 - ### get_feature_srv.py
