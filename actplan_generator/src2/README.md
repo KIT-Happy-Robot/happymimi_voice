@@ -30,6 +30,10 @@ https://kithappyrobot.esa.io/posts/97
 |  target  |  {対象のもの}  |
 |  location  |  {場所}  |
 |  target  |  {対象の人}  |
+|  tag  |  target  |
+| ---- | ---- |
+|  TD  |  TD  |
+|  TD  |  TD  |
 
 ※ない場合はNone
 ※ すべて１単語 sayの場合は答えと対応付できる単語
