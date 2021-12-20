@@ -216,4 +216,3 @@ if __name__=='__main__':
     #    print(sent)
     for j in pos_tag(i):
         print(j.text,list(j.children))
-'''
