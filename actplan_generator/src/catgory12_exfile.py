@@ -80,15 +80,18 @@ class DataMaker():
             for i in duplicate_confirmation:
                 f.write(i)
 
+
     def allQuestionMaker(self):
         before_question=0
         self.main()
         cnt=0
         f=open("cat"+self.category+"_dataset.txt","r")
         question_len=sum([1 for _ in f])
-        while before_question==question_len and cnt>3:
+        while before_question==question_len and cnt>5:
             if before_question==question_len:
                 cnt+=1
+            else:
+                cnt=0
             before_question=sum([1 for _ in f])
             f.close()
             self.main()
@@ -207,12 +210,21 @@ def writeExdata_by_origin():
             f.write(question)
         #d.main(category="2")
 
+def merge():
+    category_set=set()
+    for i in open("cat1_dataset.txt","r"):
+        category_set.add(i)
+    for i in open("cat2_dataset.txt","r"):
+        category_set.add(i)
+    with open("cat12_dataset.txt","w") as f:
+        for i in category_set:
+            f.write(i)
 
 if __name__ == '__main__':
-    if sys.argv[1]=="dataset1":
+    if sys.argv[1]=="dataset1" or sys.argv[1]=="dataset12":
         d=DataMaker()
         d.allQuestionMaker()
-    elif sys.argv[1]=="dataset2":
+    if sys.argv[1]=="dataset2" or sys.argv[1]=="dataset12":
         d=DataMaker(category="2")
         d.allQuestionMaker()
     elif sys.argv[1]=="ex1":
@@ -225,3 +237,5 @@ if __name__ == '__main__':
         writeExdata_by_origin()
     else:
         print("please set argv")
+    if sys.argv[1]=="dataset12":
+        merge()

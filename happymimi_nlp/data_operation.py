@@ -8,7 +8,7 @@ import pickle as pk
 
 
 class DataOperation():
-    def data_load(self,input_id="../data/input_id.txt",output_id="../data/output_id.txt",seed=1984):
+    def data_load(self,input_id="../data/input_id.txt",output_id="../data/output_id.txt"):
         with open("../data/dict_word.pkl","rb") as f:
             self.dict_word = pk.load(f)
             self.dict_num = pk.load(f)

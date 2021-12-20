@@ -10,9 +10,9 @@ from sklearn import datasets
 
 
 class DatasetMaker():
-    def __init__(self,dataset_path="../data",read_file="sequence.txt",read_file2="sequence2.txt",
+    def __init__(self,dataset_path="../resource",read_file="sequence.txt",read_file2="sequence2.txt",
                 input_out="input_str.txt",output_out="output_str.txt",input_id="input_id.txt",
-                output_id="output_id.txt",lang="ja",max_data=50000):
+                output_id="output_id.txt",lang="en",max_data=50000):
         self.dataset_path=dataset_path
         self.read_file=dataset_path+"/"+read_file
         self.read_file2=dataset_path+"/"+read_file2
@@ -29,6 +29,7 @@ class DatasetMaker():
         self.dict_num[2]="<end>"
         self.dict_num[1]="<start>"
         self.word_number=2
+        self.lang=lang
         self.max_data=max_data
         with open(self.dataset_path+"/dataset_state.txt","w") as f:
             f.write("raw_data="+read_file+"\n")
@@ -42,7 +43,7 @@ class DatasetMaker():
                     #print(str)
                     str2=re.sub("\（.+?\）", "", str)
                     str3=re.sub("[A-Z]\d+","human",str2)
-                    str4=re.sub(r"[,.!?:;' ]", "",str3)
+                    str4=re.sub(r"[.!?:;' ]", "",str3)
                     str4=re.sub(r"＊+","human",str4)
                     w.write(str4)
 
@@ -51,25 +52,57 @@ class DatasetMaker():
         input_str=""
         output_str=""
         if "input" in str_line:
-            input_str=str_line.replace("input","")
+            input_str=str_line.replace("input: ","")
         elif "output" in str_line:
-            output_str=str_line.replace("output","")
+            output_str=str_line.replace("output: ","")
 
         return (input_str,output_str)
 
+    def sentenceSplit(self,sentence,inp):
+        sentence_ls=[]
+        str_ls=sentence.split()
+        if inp:
+            delimiter_ls=[i for i,x in enumerate(str_ls) if "," in x or "and" in x]
+            for i,num in enumerate(delimiter_ls):
+                if i==0:
+                    if "and" in str_ls[num]:
+                        sentence_ls.append(str_ls[:num])
+                    else:
+                        str_ls[num]=str_ls[num].replace(",","")
+                        sentence_ls.append(str_ls[:num+1])
+                else:
+                    str_ls[num]=str_ls[num].replace(",","")
+                    if len(delimiter_ls)-1 != i:
+                        sentence_ls.append(str_ls[num+1:delimiter_ls[i+1]])
+                    else:
+                        sentence_ls.append(str_ls[num+1:])
+
+        else:
+            sub_ls=[]
+            for i,word in enumerate(str_ls):
+                sub_ls.append(word)
+                if i%4==3:
+                    sentence_ls.append(sub_ls)
+                    sub_ls=[]
+
+        return sentence_ls
+
+
     def segmentationwrite(self):
-        wakati = MeCab.Tagger("-Owakati")
         input_txt=open(self.input_out,"w")
         output_txt=open(self.output_out,"w")
         with open(self.read_file2,"r") as f:
             for str in f:
                 input_str,output_str=self.delethead(str)
                 if input_str:
-                    input_txt.write(wakati.parse(input_str))
+                    for sentence in self.sentenceSplit(input_str,True):
+                        input_txt.write(" ".join(sentence))
                 else:
-                    output_txt.write(wakati.parse(output_str))
+                    for sentence in self.sentenceSplit(input_str,False);
+                        output_txt.write(" ".join(sentence))
         input_txt.close()
         output_txt.close()
+
 
 
     def changer(self,file_name,write_name,):

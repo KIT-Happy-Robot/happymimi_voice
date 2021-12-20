@@ -16,6 +16,15 @@ GPSR等の文章から行動計画を生成する機能を提供する
 - ### src/sentence_parsing.py
     > 文章を解析し行動計画を組むモジュール
 
+- ### src2/action_plan_train.py
+    > Attentionモデルで行動計画を生成する学習をする。作ったがデバッグできていない
+
+- ### src2/decord_talk.py
+    > 学習データのテストを行う。デバッグできていない
+
+- ### src2/dataset_maker.py
+    > 学習用データを整形する学習できる形に変換するプログラム。デバッグはしてない
+
 ## Requirement
 happymimi_voiceと同様
 
@@ -50,10 +59,15 @@ cp category12_exfile.py ../resource/GPSRCmdGen
 #データセット作成
 ##category1
 python3 category12_exfile.py dataset1
+mv cat1_dataset.txt ../
 ##category2
 python3 category12_exfile.py dataset2
-mv cat1_dataset.txt ../
 mv cat2_dataset.txt ../
+##category12
+python3 category12_exfile.py dataset12
+mv cat12_dataset.txt ../
+
+
 
 #例文作成
 ##category1
@@ -69,16 +83,22 @@ mv cat2_ex.txt ../
 ```
 #行動計画デバッグ(仮想環境内)
 ~/src$ python sentence_parsing.py
-### ~/resorce$ success_question.txt(行動計画生成成功) fail.log(生成失敗)
+#~/resorce$に２つのファイルが作成される success_question.txt(行動計画生成成功) fail.log(生成失敗)
 ```
 - #### 失敗する原因
   >     - 不完全な文（場所情報が抜けている）
 	- xmlに存在しないオブジェクトや場所が含まれている
-	- 
+
+- ### src/planning_srv.py
+```
+rosrun actplan_generator planning_srv.py
+```
+- ### src2はsrc2/READMEを参照
+
 ### Technology used
 - Speech-To-Text and Text-To-Speech
 - 自然言語処理
 - レーベンシュタイン距離
 
 ## comment and memo
-いま実装されているものは出題されるすべての動詞に対して設定を行わなければならないため汎用性が低い。形態素解析とword2vecを用いた類似度計算で行動計画を組んでいたが形態素解析の不確実性（誤認識）が発覚しかつ時間がなかったため断念した。
+いま実装されているものは出題されるすべての動詞に対して設定を行わなければならないため汎用性が低い。形態素解析とword2vecを用いた類似度計算で行動計画を組んでいたが形態素解析の不確実性（誤認識）が発覚しかつ時間がなかったため断念した。spacyとかAttentionモデルとか調べてみるといいかも

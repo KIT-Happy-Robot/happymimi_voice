@@ -33,12 +33,28 @@ female
 #学習をかけた際と同様に扱える
 ```
 
-## morphological_analysis.py
+## sentence_analysis.py
 ### 概要
-形態素解析を行い、整理するノード
-### 使い方
+文解析系の機能を持つ。（morphological_analysisも統合したほうがいい）
+#### wordVerificationメソッド
+リストから単語の距離が最も近いものを探す
+##### 引数
+|  引数名  |  内容  |
+| ---- | ---- |
+|  word:str  |  対象の単語  |
+|  com_ls:list  |  単語のリスト  |
+|  default_v=0.6  |  レーベンシュタイン距離の閾値  |
+|  fuz=False  |  DMetaphoneを使うか否か  |
+|  get_value=False  |  評価値を返すか否か  |
+
+###### 返り値
+最も近い単語の要素番号
+
+#### MorphologicalAnalysisクラス
+もともとmorphological_analysis.pyにあるやつ
+:warning: spacy適応したいけどできてない
 ```
->>>import morphological_analysis as ma
+>>>import sentence_analysis as ma
 >>>morp=ma.MorphologicalAnalysis()
 #形態素解析の記号割当を確認する
 >>>morp.infoTag()
@@ -49,5 +65,17 @@ CD	Cardinal number	基数
 >>>morp.getActionplan(sentence)
 ["go","take","go","give"],["bath room","bottle","bed room","iida"]
 ```
+## Attention_Model.py
+embedding層をword2vecに置き換えたAttentionモデル
+使い方は省略
+actplan_generatorのsrc2/_action_plan_train.pyを参照
+
+## data_operation.py
+データを学習できる形式に変換してloadするプログラム
+```
+data_class=data_operation.DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
+(input_train,input_test) , (output_train , output_test) = data_class.data_load()
+```
+
 
 

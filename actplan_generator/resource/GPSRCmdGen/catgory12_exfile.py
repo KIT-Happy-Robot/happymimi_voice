@@ -13,6 +13,7 @@ import sys
 import time
 #import subprocess as sub
 DSPL_OPL=False
+dataset_add=False
 #question_file="/Category1.txt"
 
 import random
@@ -45,11 +46,12 @@ for ges in ET.parse(common_data_path+"/Gestures.xml").getroot():
 
 
 class DataMaker():
-    def __init__(self,category="1"):
+    def __init__(self,category="1",add=False):
+        self.add=add
         self.category=category
-    def cmdPlayer(self,cmd,cnt=10000,add=False):
+    def cmdPlayer(self,cmd,cnt=10000):
         iv_str="Hit Enter to generate:"
-        mode="a" if add else "w"
+        mode="a" if self.add else "w"
         gpsr_cmd=pex.spawn(cmd,encoding='utf-8')
         gpsr_cmd.logfile_read=open("cat"+self.category+"_ex_row.txt",mode)
         if gpsr_cmd.isalive():
@@ -80,15 +82,18 @@ class DataMaker():
             for i in duplicate_confirmation:
                 f.write(i)
 
+
     def allQuestionMaker(self):
         before_question=0
         self.main()
         cnt=0
         f=open("cat"+self.category+"_dataset.txt","r")
         question_len=sum([1 for _ in f])
-        while before_question==question_len and cnt>3:
+        while before_question==question_len and cnt>5:
             if before_question==question_len:
                 cnt+=1
+            else:
+                cnt=0
             before_question=sum([1 for _ in f])
             f.close()
             self.main()
@@ -207,12 +212,21 @@ def writeExdata_by_origin():
             f.write(question)
         #d.main(category="2")
 
+def merge():
+    category_set=set()
+    for i in open("cat1_dataset.txt","r"):
+        category_set.add(i)
+    for i in open("cat2_dataset.txt","r"):
+        category_set.add(i)
+    with open("cat12_dataset.txt","w") as f:
+        for i in category_set:
+            f.write(i)
 
 if __name__ == '__main__':
-    if sys.argv[1]=="dataset1":
+    if sys.argv[1]=="dataset1" or sys.argv[1]=="dataset12":
         d=DataMaker()
         d.allQuestionMaker()
-    elif sys.argv[1]=="dataset2":
+    if sys.argv[1]=="dataset2" or sys.argv[1]=="dataset12":
         d=DataMaker(category="2")
         d.allQuestionMaker()
     elif sys.argv[1]=="ex1":
@@ -225,3 +239,5 @@ if __name__ == '__main__':
         writeExdata_by_origin()
     else:
         print("please set argv")
+    if sys.argv[1]=="dataset12":
+        merge()

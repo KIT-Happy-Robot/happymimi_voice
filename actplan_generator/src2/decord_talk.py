@@ -38,31 +38,42 @@ decoder = Decoder(data_class.get_size(), embedding_dim, units, BATCH_SIZE,len(ou
 optimizer = tf.keras.optimizers.Adam()
 
 
-#保存するための変数を定義
-checkpoint_dir = '../../learn_data/training_checkpoints_en'
-checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt")
-checkpoint = tf.train.Checkpoint(optimizer=optimizer,
-                                 encoder=encoder,
-                                 decoder=decoder)
+checkpoint_dir = '../../config/dataset/training_checkpoints'
 
+#チェックポイントをロード（学習済みモデル）
 checkpoint.restore(tf.train.latest_checkpoint(checkpoint_dir))
 #.assert_consumed()
-#正規化
-def preprocess_sentence(str):
-    wakati = MeCab.Tagger("-Owakati")
-    #print(str)
-    str2=re.sub("\（.+?\）", "", str)
-    str3=re.sub("[A-Z]\d*","human",str2)
-    str4=re.sub(r"[,.!?:;' ]", "",str3)
-    return "<start> "+wakati.parse(str4).replace("\n","")+"<end>"
-
-
-def evaluate(sentence,Jp_=True):
-    try:
-        if Jp_:
-            sentence = preprocess_sentence(sentence)
+#前処理
+def sentenceSplit(sentence):
+    sentence_ls=[]
+    sentence=re.sub("\（.+?\）", "", sentence)
+    sentence=re.sub("[A-Z]\d+","human",sentence)
+    sentence=re.sub(r"[.!?:;' ]", "",sentence)
+    sentence=re.sub(r"＊+","human",sentence)
+    str_ls=sentence.split()
+    delimiter_ls=[i for i,x in enumerate(str_ls) if "," in x or "and" in x]
+    for i,num in enumerate(delimiter_ls):
+        if i==0:
+            if "and" in str_ls[num]:
+                sentence_ls.append(str_ls[:num])
+            else:
+                str_ls[num]=str_ls[num].replace(",","")
+                sentence_ls.append(str_ls[:num+1])
         else:
-            sentence=sentence.replace("."," .").replace("?", " ?").replace("!"," !")
+            str_ls[num]=str_ls[num].replace(",","")
+            if len(delimiter_ls)-1 != i:
+                sentence_ls.append(str_ls[num+1:delimiter_ls[i+1]])
+            else:
+                sentence_ls.append(str_ls[num+1:])
+
+
+    return sentence_ls
+
+
+
+def evaluate(sentence):
+    try:
+        sentence=sentenceSplit(sentence)
         print(sentence,sentence.split(' '))
         inputs = [targ_lang[i] for i in sentence.split(' ')]
         inputs = tf.keras.preprocessing.sequence.pad_sequences([inputs],
@@ -110,6 +121,6 @@ def evaluate(sentence,Jp_=True):
 if __name__=='__main__':
     while(1):
         str=input("input:")
-        result, sentence = evaluate(str,Jp_=False)
+        result, sentence = evaluate(str)
 
         print('response: {}'.format(result))

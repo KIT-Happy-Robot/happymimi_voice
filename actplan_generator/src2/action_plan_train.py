@@ -13,7 +13,7 @@ from happymimi_nlp.Attention_Model import *
 #print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
 
-data_class=data_operation.DataOperation()
+data_class=data_operation.DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
 targ_lang,targ_num=data_class.word_dict()
 split_num=1
@@ -40,7 +40,7 @@ loss_object = tf.keras.losses.SparseCategoricalCrossentropy(
             from_logits=True, reduction='none')
 
 #保存するための変数を定義
-checkpoint_dir = '../config/dataset/training_checkpoints'
+checkpoint_dir = '../../config/dataset/training_checkpoints'
 checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt")
 checkpoint = tf.train.Checkpoint(optimizer=optimizer,
                                  encoder=encoder,

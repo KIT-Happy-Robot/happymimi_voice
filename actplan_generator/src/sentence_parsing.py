@@ -145,7 +145,7 @@ class SentenceParsing():
         except TypeError:
             print("TypeError")
             pass
-
+#文章整形する　コピーしてもいい　呼び出してる関数もコピー
     def questionFormating(self,sentence):
         self.recog_sentence=sentence
         self.tag_ls=[]
