@@ -50,7 +50,7 @@ $ roslaunch happymimi_voice_common voice_common.launch
 ```
 
 - ### get_feature_srv.py
-> 取得したい情報を指定すると、音声を流し欲しい情報を返す
+> 取得したい情報を指定すると、音声を流し欲しい情報を返す(エラーの場合名前を読み込むファイルがない)
 
 #### 対応表
 | 送信内容 | 受信内容 | 受信種類 |
