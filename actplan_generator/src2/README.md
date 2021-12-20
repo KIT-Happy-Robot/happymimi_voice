@@ -25,7 +25,7 @@ https://kithappyrobot.esa.io/posts/97
 2. sequence.txtの内容を以下のようなアノテーションの内容に変更する（内容の変更は可、順番は統一すること）。アノテーション次第で精度は変わるため試行錯誤が必要
 - 対応表　
 |  tag  |  target  |
-|  ---  |  ---  |
+|  ----  |  ----  |
 | action | {動詞} |
 |  target  |  {対象のもの}  |
 |  location  |  {場所}  |
