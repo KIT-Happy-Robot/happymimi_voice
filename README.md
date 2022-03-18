@@ -2,6 +2,7 @@
 
 ## Overview
 This package is a collection of the voice processing functions.
+(このパッケージは音声関連の機能をまとめています)
 
 ## Description
 ### Features this package has
