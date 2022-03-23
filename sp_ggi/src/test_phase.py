@@ -3,21 +3,23 @@
 import pickle
 from os import path
 #発話
-from gcp_texttospeech.srv import TTS
+#from gcp_texttospeech.srv import TTS
+from happymimi_msgs.srv import StrTrg
 #音声認識
-from voice_common_pkg.srv import SpeechToText
+from happymimi_voice_msgs.srv import SpeechToText
 #word2vec(どのくらい似てるか)
 import gensim.downloader as api
 import sys
-from voice_common_pkg.srv import GgiLearning
-from voice_common_pkg.srv import GgiLearningResponse
+from happymimi_voice_msgs.srv import GgiLearning
+from happymimi_voice_msgs.srv import GgiLearningResponse
 from nltk.tag.stanford import StanfordPOSTagger
 import rospy
 import random
 
-file_path=path.expanduser('~/catkin_ws/src/voice_common_pkg/config')
+file_path=path.expanduser('~/catkin_ws/src/happymimi_voice/config')
 minimum_value=0.5 #コサイン類似度の最低値
 #ベクトル読み込み
+print("data loading...")
 word_vectors = api.load("glove-twitter-200")
 #nltkのモデルを読み込む
 pos_tag = StanfordPOSTagger(model_filename = file_path + "/stanford-postagger/models/english-bidirectional-distsim.tagger",
@@ -31,12 +33,13 @@ class GgiTest():
         rospy.wait_for_service('/stt_server')
         print('test_phase is ready')
         self.stt=rospy.ServiceProxy('/stt_server',SpeechToText)
-        self.tts=rospy.ServiceProxy('/tts', TTS)
+        self.tts=rospy.ServiceProxy('/tts', StrTrg)
         self.server=rospy.Service('/test_phase',GgiLearning,self.main)
 
 
     def main(self,req):
         switch_num=0
+        print("start test_phase")
         #登録したファイルを読み込む
         if not path.isfile(file_path+'/object_file.pkl'):
             print('not found object file')
@@ -226,14 +229,6 @@ class SearchObject():
             return ' '.join(self.dict['place_feature'][correct]) +' '+' '.join(self.dict['place_name'][correct])
         else:
             return ' '.join(self.dict['place_name'][correct])
-
-
-
-
-
-
-
-
 
 
 
