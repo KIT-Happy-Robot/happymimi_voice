@@ -28,9 +28,9 @@ class GgiinStruction:
                         'place_name':[],'place_feature':[]}
             pickle.dump(dictionary, f)
         #google speech to textが認識しやすいよう設定する単語をリスト化
-        with open(file_path+'/place_name','r') as f:
+        with open(file_path+'/ggi_params/place_name','r') as f:
             self.object_template=[line.strip() for line in f.readlines()]
-        with open(file_path+'/place_name','r') as c:
+        with open(file_path+'/ggi_params/place_name','r') as c:
             self.place_template=[line.strip() for line in c.readlines()]
         #pickleファイルに保存するデータを保存するリスト
         self.name=[]
@@ -136,7 +136,7 @@ class GgiinStruction:
 
 
 
-    #保存  st=string ob=name or place addはpickleファイルに保存するか否か
+    #保存  st=string ob=name or place(名前はTrue,場所はFalse) addはpickleファイルに保存するか否か
     def save_name(self,st,ob,add=True):
         #形態素解析を行う
         pos=pos_tag.tag(st.split())  #品詞分解
@@ -164,6 +164,7 @@ class GgiinStruction:
                 dict_data['place_feature'].append(self.feature)
                 with open(file_path+'/object_file.pkl','wb') as f:
                     pickle.dump(dict_data, f)
+                #場所に特徴が有るか無いか（有るときはfeatureとnameを紐付け）
                 if dict_data['place_feature'][len(dict_data['place_feature'])-1]:
                     str=' '.join(dict_data['place_feature'][len(dict_data['place_feature'])-1])+' '+' '.join(dict_data['place_name'][len(dict_data['place_name'])-1])
                 else:
