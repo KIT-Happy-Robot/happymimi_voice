@@ -6,7 +6,7 @@ import numpy as np
 import sys
 import time
 
-sys.path.append('..')
+sys.path.append('../../')
 from happymimi_nlp import data_operation
 from happymimi_nlp.Attention_Model import *
 #datasetのロード

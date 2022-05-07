@@ -7,13 +7,18 @@ import numpy as np
 import pickle as pk
 
 
-class DataOperation():
-    def data_load(self,input_id="../data/input_id.txt",output_id="../data/output_id.txt"):
+class DataOperation:
+
+    def __init__(self, input_id, output_id):
+        self.input_id = input_id
+        self.output_id = output_id
+
+    def data_load(self):
         with open("../data/dict_word.pkl","rb") as f:
             self.dict_word = pk.load(f)
             self.dict_num = pk.load(f)
-        int_input=[list(map(int,str_num.split())) for str_num in open(input_id,"r")]
-        int_output=[list(map(int,str_num.split())) for str_num in open(output_id,"r")]
+        int_input=[list(map(int,str_num.split())) for str_num in open(self.input_id,"r")]
+        int_output=[list(map(int,str_num.split())) for str_num in open(self.output_id,"r")]
         input_max=0
         output_max=0
         for i in int_input:
