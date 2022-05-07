@@ -10,7 +10,7 @@ from sklearn import datasets
 
 
 class DatasetMaker():
-    def __init__(self,dataset_path="../resource",read_file="sequence.txt",read_file2="sequence2.txt",
+    def __init__(self,dataset_path="../resource",read_file="sequence_ex.txt",read_file2="sequence2.txt",
                 input_out="input_str.txt",output_out="output_str.txt",input_id="input_id.txt",
                 output_id="output_id.txt",lang="en",max_data=50000):
         self.dataset_path=dataset_path
@@ -98,7 +98,7 @@ class DatasetMaker():
                     for sentence in self.sentenceSplit(input_str,True):
                         input_txt.write(" ".join(sentence))
                 else:
-                    for sentence in self.sentenceSplit(input_str,False);
+                    for sentence in self.sentenceSplit(input_str,False):
                         output_txt.write(" ".join(sentence))
         input_txt.close()
         output_txt.close()
@@ -137,3 +137,8 @@ class DatasetMaker():
         self.normalization()
         self.segmentationwrite()
         self.changeid()
+
+if __name__ == "__main__":
+    datasetmaker = DatasetMaker()
+    datasetmaker.all_run()
+
