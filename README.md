@@ -29,7 +29,7 @@ This package is a collection of the voice processing functions.
   etc
 
 ### Technology used(使用している技術)
-- Speech-To-Text and Text-To-Speech（「Sppech-To-Text」,「Text-To-Speech」）
+- Speech-To-Text and Text-To-Speech（「Speech-To-Text」,「Text-To-Speech」）
 - Morphological Analysis（形態素解析）
 - word2vec and cosine similarity used it（「word2vec」を用いたコサイン類似度計算）
 - Levenshtein Distance（レーベンシュタイン距離）
