@@ -10,18 +10,23 @@ sys.path.append('../../')
 from happymimi_nlp import data_operation
 from happymimi_nlp.Attention_Model import *
 #datasetのロード
-#print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+# print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
-
+#インスタンス化
 data_class=data_operation.DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
+
+#dictでtarg_langは文字列をキーに
+#targ_numはidをキーにしている
 targ_lang,targ_num=data_class.word_dict()
-split_num=1
+
+#定数
+SPLIT_NUM=1
 BUFFER_SIZE = len(input_train)
 BATCH_SIZE = int(20)
-steps_per_epoch = len(input_train)//BATCH_SIZE
-embedding_dim = int(256/8)
-units = int(1024/10)
+STEPS_PER_EPOCH = len(input_train)//BATCH_SIZE
+EMBEDDING_DIM = int(256/8)
+UNITS = int(1024/10)
 
 #datasetをバッチに分解
 dataset = tf.data.Dataset.from_tensor_slices((input_train, output_train)).shuffle(BUFFER_SIZE)
@@ -31,9 +36,10 @@ dataset = dataset.batch(BATCH_SIZE, drop_remainder=True)
 EPOCHS = 10
 
 #encoderとdecorderを定義  get_sizeは後で変更
-encoder = Encoder(data_class.get_size(), embedding_dim, units, BATCH_SIZE,len(input_train[0]))
-decoder = Decoder(data_class.get_size(), embedding_dim, units, BATCH_SIZE,len(output_train[0]))
+encoder = Encoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(input_train[0]))
+decoder = Decoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(output_train[0]))
 del data_class
+
 #使う最適化アルゴリズムと損失関数を定義
 optimizer = tf.keras.optimizers.Adam()
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy(
@@ -60,11 +66,14 @@ def loss_function(real, pred):
 #inp:batch input targ: batch output
 def train_step(inp, targ, enc_hidden):
     loss = 0
-    change_word=lambda x:[targ_num[int(i)] for i in x.split()]
+    #lambdaのxの引数はinp
+    #change_word = lambda x:[targ_num[int(i)] for i in x.split()]
+    change_word = changer(inp)
+    # print(change_word)
     #自動微分できるようにする
     with tf.GradientTape() as tape:
         #内部情報、最後の出力
-        enc_output, enc_hidden = encoder(list(map(change_word,inp)), enc_hidden)
+        enc_output, enc_hidden = encoder.call(change_word, enc_hidden)
 
         dec_hidden = enc_hidden
         #batchsize分用意する
@@ -72,8 +81,9 @@ def train_step(inp, targ, enc_hidden):
 
         # Teacher Forcing - 正解値を次の入力として供給
         for t in range(1, targ.shape[1]):
-            # passing enc_output to the decoder    (start, encorderの最後の出力, encorderの内部情報)2,3引数はattentionにも使う
-            predictions, dec_hidden, _ = decoder(dec_input, dec_hidden, enc_output)
+            # passing enc_output to the decoder    
+            #(start, encorderの最後の出力, encorderの内部情報)2,3引数はattentionにも使う
+            predictions, dec_hidden, _ = decoder.call(dec_input, dec_hidden, enc_output)
 
             loss += loss_function(targ[:, t], predictions)
 
@@ -91,16 +101,34 @@ def train_step(inp, targ, enc_hidden):
 
     return batch_loss
 
+#これがしたいはず...
+def changer(inp):
+
+    change_list = []
+    #numpy()でtf.tensorを変換
+    np_list = inp.numpy()
+    #リストの形をリスト化して代入
+    shape = list(np_list.shape)
+    for i in range(shape[0]):
+        for j in range(shape[1]):
+
+            factor = np_list[i][j]
+            change_list.append(targ_num[factor])
+    #print(change_list)
+    return change_list
 
 if __name__=="__main__":
     print("start trainning")
     for epoch in range(EPOCHS):
         start = time.time()
-
         enc_hidden = encoder.initialize_hidden_state() #zeroの行列
         total_loss = 0
+
         # inp:input data targ: output data (バッチ単位)
-        for (batch, (inp, targ)) in enumerate(dataset.take(steps_per_epoch)):
+        for (batch, (inp, targ)) in enumerate(dataset.take(STEPS_PER_EPOCH)):
+            # print(inp)
+            # print(targ)
+            print(enc_hidden[0][0])
             batch_loss = train_step(inp, targ, enc_hidden)
             total_loss += batch_loss
 
@@ -113,5 +141,5 @@ if __name__=="__main__":
             checkpoint.save(file_prefix = checkpoint_prefix)
 
         print('Epoch {} Loss {:.4f}'.format(epoch + 1,
-                                          total_loss / steps_per_epoch))
+                                          total_loss / STEPS_PER_EPOCH))
         print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
