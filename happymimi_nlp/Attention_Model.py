@@ -4,36 +4,62 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 import os
-from pymagnitude import Magnitude as mag
+from pymagnitude import Magnitude
+from pymagnitude import MagnitudeUtils
 
+import numpy 
+import threading
+#magnitudeのデータは少し読み込みに時間がかかる
+#並列処理で読み込みを待つ
+
+file_path = os.path.expanduser('~/catkin_ws/src/happymimi_voice/config/dataset/')
+file_mg = file_path + 'wiki-news-300d-1M-subword.magnitude'
+
+magnitude_data = Magnitude(file_mg)
+#vecs = Magnitude(MagnitudeUtils.download_model(file_mg))
+"""
 def get_embedding(embedding,x):
     main_tf=[]
+    print(embedding)
     for sentence in x:
         sub_tf=[]
         for word in sentence:
-            sub_tf.append(embedding(word))
+            sub_tf.append(embedding[word][0])
         main_tf.append(sub_tf)
+    print(main_tf)
     return tf.constant(main_tf)
+"""
+def get_embedding(embedding,x):
+    main_tf=[]
+    print(embedding)
+    for sentence in x:
+        sub_tf=[]
+        for i in range(len(embedding)):
+            sub_tf.append(embedding[i][0])
+        main_tf.append(sub_tf)
+    print(main_tf)
+    return tf.constant(main_tf)
+
 
 class Encoder(tf.keras.Model):
     def __init__(self, vocab_size, embedding_dim, enc_units, batch_sz,input_length):
         super(Encoder, self).__init__() #オーバーライドするため
         self.batch_sz = batch_sz
         self.enc_units = enc_units
-        '''
-        self.embedding = tf.keras.layers.Embedding(vocab_size,
-                        embedding_dim,input_length=input_length)
-        '''
-        self.embedding=mag("../config/daataset/crawl-300d-2M.magnitude")
+        # self.embedding = tf.keras.layers.Embedding(vocab_size,
+                        # embedding_dim,input_length=input_length)
+        # self.embedding=mag("../../config/dataset/crawl-300d-2M.magnitude")
+
+        self.embedding = magnitude_data
         self.gru = tf.keras.layers.GRU(self.enc_units,
                                        return_sequences=True,
                                        return_state=True,
                                        recurrent_initializer='glorot_uniform')#Glorot の一様分布（Xavier の一様分布とも呼ばれます）による初期化を返します
 
     def call(self, x, hidden):
-        x = get_embedding(self.embedding,x)
-        #print("embed shape:"+str(x.shape))
-        output, state = self.gru(x, initial_state = hidden)
+        x1= get_embedding(self.embedding,x)
+        # print("embed shape:"+str(x.shape))
+        output, state = self.gru(x1, initial_state = hidden)
         return output, state
 
     def initialize_hidden_state(self):
@@ -77,8 +103,9 @@ class Decoder(tf.keras.Model):
         super(Decoder, self).__init__()
         self.batch_sz = batch_sz
         self.dec_units = dec_units
-        #self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim,input_length=output_length)
-        self.embedding=mag("../config/daataset/crawl-300d-2M.magnitude")
+        # self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim,input_length=output_length)
+        #self.embedding=Magnitude(file_mg)
+        self.embedding = magnitude_data
         self.gru = tf.keras.layers.GRU(self.dec_units,
                                        return_sequences=True,
                                        return_state=True,
