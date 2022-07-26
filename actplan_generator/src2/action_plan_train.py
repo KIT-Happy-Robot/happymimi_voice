@@ -123,12 +123,12 @@ if __name__=="__main__":
         start = time.time()
         enc_hidden = encoder.initialize_hidden_state() #zeroの行列
         total_loss = 0
+        print("start epoch")
 
         # inp:input data targ: output data (バッチ単位)
         for (batch, (inp, targ)) in enumerate(dataset.take(STEPS_PER_EPOCH)):
-            # print(inp)
-            # print(targ)
-            print(enc_hidden[0][0])
+            #print(inp)
+            #print(targ)
             batch_loss = train_step(inp, targ, enc_hidden)
             total_loss += batch_loss
 
