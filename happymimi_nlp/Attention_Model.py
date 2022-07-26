@@ -35,7 +35,7 @@ def get_embedding(embedding,x):
     for sentence in x:
         sub_tf=[]
         for i in range(len(embedding)):
-            sub_tf.append(embedding[i][0])
+            sub_tf.append(embedding[i][1])
         main_tf.append(sub_tf)
     print(main_tf)
     return tf.constant(main_tf)

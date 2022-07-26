@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 import MeCab
 import pickle as pk
@@ -16,21 +15,25 @@ class DatasetMaker():
         self.dataset_path=dataset_path
         self.read_file=dataset_path+"/"+read_file
         self.read_file2=dataset_path+"/"+read_file2
+
         self.input_out=dataset_path+"/"+input_out
         self.output_out=dataset_path+"/"+output_out
         self.input_id=dataset_path+"/"+input_id
         self.output_id=dataset_path+"/"+output_id
+
         self.dict_word={}
         self.dict_num={}
         self.dict_num[0]="<PAD>"
+        self.dict_num[1]="<start>"
+        self.dict_num[2]="<end>"
         self.dict_word["<PAD>"]=0
         self.dict_word["<start>"]=1
         self.dict_word["<end>"]=2
-        self.dict_num[2]="<end>"
-        self.dict_num[1]="<start>"
+
         self.word_number=2
         self.lang=lang
         self.max_data=max_data
+
         with open(self.dataset_path+"/dataset_state.txt","w") as f:
             f.write("raw_data="+read_file+"\n")
             f.write("language="+lang)
@@ -48,34 +51,46 @@ class DatasetMaker():
                     w.write(str4)
 
 
-    def delethead(self,str_line):
+    def delethead(self,str_line,cnt):
         input_str=""
         output_str=""
+        cnt = False
         if "input" in str_line:
-            input_str=str_line.replace("input: ","")
-        elif "output" in str_line:
-            output_str=str_line.replace("output: ","")
+            input_str=str_line.replace("input","")
+            cnt = True
 
-        return (input_str,output_str)
+        else:
+            output_str=str_line.replace("output","")
+            cnt = False
+
+        return (input_str,output_str,cnt)
 
     def sentenceSplit(self,sentence,inp):
         sentence_ls=[]
+        delimiter_ls=[]
+        del_ls = 0
+        #listに変換
         str_ls=sentence.split()
+        # print(str_ls)
         if inp:
-            delimiter_ls=[i for i,x in enumerate(str_ls) if "," in x or "and" in x]
+            # delimiter_ls=[i for i,x in enumerate(str_ls) if "," in x or "and" in x]
+            for i,x in enumerate(str_ls):
+                if "," in x or "and" in x:
+                    del_ls += 1
+            delimiter_ls.append(del_ls)
             for i,num in enumerate(delimiter_ls):
                 if i==0:
-                    if "and" in str_ls[num]:
-                        sentence_ls.append(str_ls[:num])
+                    if "and" in str_ls[i]:
+                        sentence_ls.append(str_ls[i])
                     else:
-                        str_ls[num]=str_ls[num].replace(",","")
-                        sentence_ls.append(str_ls[:num+1])
+                        str_ls[i]=str_ls[i].replace(",","")
+                        sentence_ls.append(str_ls[:i+1])
                 else:
-                    str_ls[num]=str_ls[num].replace(",","")
+                    str_ls[i]=str_ls[i].replace(",","")
                     if len(delimiter_ls)-1 != i:
-                        sentence_ls.append(str_ls[num+1:delimiter_ls[i+1]])
+                        sentence_ls.append(str_ls[i+1:delimiter_ls[i+1]])
                     else:
-                        sentence_ls.append(str_ls[num+1:])
+                        sentence_ls.append(str_ls[i+1:])
 
         else:
             sub_ls=[]
@@ -85,29 +100,43 @@ class DatasetMaker():
                     sentence_ls.append(sub_ls)
                     sub_ls=[]
 
+        # print(sentence_ls)
         return sentence_ls
 
 
     def segmentationwrite(self):
         input_txt=open(self.input_out,"w")
         output_txt=open(self.output_out,"w")
+        cnt = False
         with open(self.read_file2,"r") as f:
             for str in f:
-                input_str,output_str=self.delethead(str)
-                if input_str:
-                    for sentence in self.sentenceSplit(input_str,True):
-                        input_txt.write(" ".join(sentence))
+                # print("str:",str)
+                input_str,output_str,cnt=self.delethead(str,cnt)
+                # print(input_str)
+                # print(output_str)
+                # print(cnt)
+                if cnt == True:
+                    #sentence = self.sentenceSplit(input_str, True)
+                    #input_txt.write(" ".join(sentence))
+                    for sentence_in in self.sentenceSplit(input_str,True):
+                        input_txt.write(" ".join(sentence_in))
+                        #print(sentence)
+
                 else:
-                    for sentence in self.sentenceSplit(input_str,False):
-                        output_txt.write(" ".join(sentence))
+                    #sentence = self.sentenceSplit(output_str, False)
+                    #output_txt.write(" ".join(sentence))
+                    for sentence_out in self.sentenceSplit(output_str,False):
+                        output_txt.write(" ".join(sentence_out))
+                        # print(sentence_out)
+
         input_txt.close()
         output_txt.close()
 
 
 
-    def changer(self,file_name,write_name,):
+    def changer(self,file_name,write_name):
         with open(file_name,"r") as f:
-            with open(write_name,"w") as w:
+            with open(write_name,"a") as w:
                 for i,str_line in enumerate(f):
                     if (i>=self.max_data):
                         break
@@ -141,4 +170,3 @@ class DatasetMaker():
 if __name__ == "__main__":
     datasetmaker = DatasetMaker()
     datasetmaker.all_run()
-
