@@ -1,0 +1,200 @@
+input: Robot please go to the {room}, look for a boy, and tell a joke
+output: go None {room} None tell None None boy
+input: Go to the {location}, find the tray, and give it to {name} at the {location}
+output: go None {room} None find tray None None give None {location} {name} 
+input: Could you tell me how many people in the {room} are standing
+output: tell standing {room} people 
+input: Could you Tell me the name of the person in the {room}
+output: tell name {room} person 
+input: Could you go to the {location}, find the bowl, and place it on the {location}
+output: go None {location} None find bowl None None place None {location} None
+input: Robot please locate a girl in the {room} and say the day of the month
+output: locate girl {room} None say day None None 
+input: Robot please locate a male person in the {room} and tell the time
+output: locate person {room} None tell time None None 
+input: Could you please go to the {location}, look for the tray, and place it on the {location}
+output: go None {location} None look tray None None place None {location} None
+input: Could you please navigate to the {location}, look for the cloth, and put it on the {location}
+output: navigate None {location} None look cloth None None put None {location} None
+input: Robot please face {name} at the {location} and escort him to his uber
+output: face {name} {location} None escort him None None
+input: Robot please take my trolley to the taxi
+output: take trolley None taxi
+input: Navigate to the {room}, find a boy, and say the day of the week
+output: navigate None {room} None find boy None None say day None None
+input: Robot please distribute {category}s to everyone in the {room}.
+output: distribute {category} {room} everyone
+input: Please find a person sitting in the {room} and tell the time
+output: find person {room} None tell time None None 
+input: Robot please answer a question to the person {gesture} in the {room}
+output: answer question {room} person
+input: Tell me what's the biggest object on the {location}
+output: tell object {location} me
+input: Get the tray from the {location} and put it on the {location}
+output: get tray {location} None put None {location} None
+input: Put the tray on the {location}
+output: put tray {location} None
+input: Contact {name} at the rear {location} and introduce her to all the men in the {room}.
+output: contact {name} {location} None introduce her {room} men
+input: Deliver the tray to the person {gesture} in the {room}
+output: deliver tray {room} person
+input: Please tell me which are the three thinnest {category} on the {location}
+output: tell {category} {location} me  
+input: Bring me the {object}
+output: bring {object} None me
+input: Robot please contact {name} at the {location} and take him to his uber
+output: contact {name} {location} None take him uber None
+input: Could you please go to the {location}, meet {name}, and take her to the {location}
+output: go None {location} None meet {name} None None take her {location} None
+input: Find {name} at the main {location} and introduce her to everyone in the {room}.
+output: find {name} {location} None introduce her {room} everyone
+input: Could you locate the tray in the {room}
+output: locate tray {room} None
+input: Robot please lead {name} to the {location}, you may find her at the {location}
+output: lead {name} {location} None find her {location} None
+input: Navigate to the {location}, look for the bowl, and put it on the {location}
+output: navigate None {location} None look bowl None None put None {location} None
+input: Robot please find {name} at the main {location} and introduce him to everyone in the {room}.
+output: find {name} {location} None introduce him {room} everyone
+input: Robot please contact {name} at the {location} and accompany her to her uber
+output: contact {name} {location} None accompany her uber None
+input: Contact {name} at the back door and introduce her to everyone in the {room}.
+output: contact {name} door None introduce her {room} everyone
+input: Could you meet {name} and guide her
+output: meet {name} None None guide her None None
+input: Could you please escort {name} from the {location} to the {location}
+output: escort {name} {location} None None None {location} None
+input: Please Tell me how many tray there are on the {location}
+output: tell tray {location} me
+input: Provide {category}s to everyone in the {room}.
+output: provide {category} {room} everyone
+input: Robot please bring my trolley to the uber
+output: bring trolley uber None
+input: Could you please place the cloth on the {location}
+output: place cloth {location} None
+input: Robot please Tell me what's the largest {category} on the {location}
+output: tell {category} {location} None
+input: Could you please get the bowl and put it on the {location}
+output: get bowl None None put None {location} None
+input: Could you please grasp the bowl from the {location} and place it on the {location}
+output: grasp bowl {location} None place None {location} None
+input: Robot please escort {name} to the {location}, you can find him at the {location}
+output: escort {name} {location} None find him {location} None
+input: Go to the {room}, find a person standing, and say what day is tomorrow
+output: go None {room} None find standing None person say day None None
+input: Get the cloth from the {location} and place it on the {location}
+output: get cloth {location} None place None {location} None
+input: Meet {name} at the {location} and follow her
+output: meet {name} {location} None follow her None None
+input: Face {name} at the back door and introduce him to everyone in the {room}.
+output: face {name} door None introduce him {room} everyone
+input: Please find {name} at the {location} and accompany her to her uber
+output: find {name} {location} None accompany her uber None
+input: Robot please look for a person sitting in the {room} and tell something about yourself
+output: look sitting {room} person tell yourself None None
+input: Please look for three {category} in the {room}
+output: look {category} {room} None
+input: Go to the {location}, locate the cloth, and place it on the {location}
+output: go None {location} None locate cloth None None place None {location} None
+input: Please follow {name} from the {location} to the {room}
+output: follow {name} {location} None None None {room} None
+input: Could you contact {name} at the rear door and introduce her to everyone in the {room}.
+output: contact {name} door None introduce her {room} everyone
+input: Could you contact {name} at the back door and introduce her to everyone in the {room}.
+output: contact {name} door None introduce her {room} everyone
+input: Please put the tray on the {location}
+output: put tray {location} None
+input: Robot please tell me which are the three heaviest {category} on the {location}
+output: tell {category} {location} None
+input: Could you please go to the {location}, meet {name}, and lead him to the {location}
+output: go None {location} None meet {name} None None lead him {location} None
+input: Robot please deliver {category} to the person {gesture} in the {room}
+output: deliver {category} {room} person
+input: Contact {name} at the {location} and ask her to leave
+output: contact {name} {location} None ask her None None
+input: Could you guide {name} to the {location}, you can find her at the {location}
+output: guide {name} {location} None find her {location} None
+input: Could you give {category} to me
+output: give {category} None None
+input: Could you bring {category} to the person {gesture} in the {room}
+output: bring {category} {room} person
+input: Please deliver {category} to all the women in the {room}.
+output: deliver {category} {room} women
+input: Please accompany {name} to the {location}, you may find her at the {location}
+output: accompany {name} {location} None find her {location} None
+input: Robot please get the {object} from the {location} and place it on the {location}
+output: get {object} {location} None place None {location} None
+input: Locate a person lying down in the {room} and tell something about yourself
+output: locate lying {room} person tell yourself None None
+input: Could you contact {name} at the {location} and ask her to leave
+output: contact {name} {location} None ask her None None
+input: Robot please navigate to the {room}, locate a girl, and answer a question
+output: navigate None {room} None locate girl None None answer question None None
+input: Robot please face {name} at the main {location} and introduce him to all the women in the {room}.
+output: face {name} {location} None introduce him {room} women
+input: Meet {name} at the {location}, follow her, and navigate to the {room}
+output: meet {name} {location} None follow her None None navigate None {room} None
+input: Robot please face {name} at the back {location} and introduce her to everyone in the {room}.
+output: face {name} {location} None introduce her {room} everyone
+input: Could you please look for three {category} in the {room}
+output: look {category} {room} None
+input: Please navigate to the {room}, find a person sitting, and say a joke
+output: navigate None {room} None find sitting None person say joke None None 
+input: Navigate to the {location}, meet {name}, and take him to the {location}
+output: navigate None {location} None meet {name} None None take him {location} None
+input: Could you navigate to the {location}, meet {name}, and follow him
+output: navigate None {location} None meet {name} None None follow him None None
+input: Navigate to the {location}, locate the bowl, and deliver it to me
+output: navigate None {location} None locate bowl None none deliver None None None
+input: Please go to the {location}, meet {name}, and take her
+output; go None {location} None meet {name} None None take her None None
+input: Could you distribute {category} to everyone in the {room}.
+output: distribute {category} {room} everyone
+input: Give {category}s to all the men in the {room}.
+output: give {category} {room} men
+input: Tell me which are the three heaviest {category} on the {location}
+output: tell {category} {location} None
+input: Robot please pick up the cloth from the {location} and place it on the {location}
+output: pick cloth {location} None place None {location} None
+input: Please deliver {category} to everyone in the {room}.
+output: deliver {category} {room} everyone
+input: Tell me which are the three biggest objects on the {location}
+output: tell objects {location} None
+input: Could you go to the {location}, meet {name}, and lead him to the {location}
+output: go None {location} None meet {name} None None lead him {location} None
+input: Navigate to the {location}, look for the tray, and put it on the {location}
+output: navigate None {location} None look tray None None put None {location} None
+input: Please meet {name} at the {location}, follow him, and navigate to the {room}
+output: meet {name} {location} None follow him None None navigate None {room} None
+input: Tell me which are the three largest {category} on the {location}
+output: tell {category} {location} None
+input: Contact {name} at the {location} and take him to his cab
+output: contact {name} {location} None take him cab None
+input: Tell me how many tray there are on the {location}
+output: tell tray {location} None
+input: Deliver {category}s to all the guests in the {room}.
+output: deliver {category} {room} guests
+input: Robot please meet {name} at the {location}, follow him, and go to the {room}
+output: meet {name} {location} None follow him None None go None {room} None
+input: Take the cloth from the {location} and bring it to {name} at the {location}
+output: take cloth {location} None bring None {location} {name}
+input: Please find a woman in the {room} and answer a question
+output: find woman {room} None answer question None None
+input: Give the {object} to me
+output: give {object} None None
+input: Could you meet {name} at the {location}, follow him, and navigate to the {room}
+output: meet {name} {location} None follow him None None navigate None {room} None
+input: Face {name} at the front {location} and introduce him to all the guests in the {room}.
+output: face {name} {location} None introduce him {room} guests
+input: Locate the {category} in the {room}
+output: locate {category} {room} None
+input: Navigate to the {room}, find a person {gesture}, and say what day is tomorrow
+output: navigate None {room} None find person None None say day None None
+input: Robot please pick up the bowl from the {location} and deliver it to me
+output: pick bowl {location} None deliver None None None
+input: Go to the {location}, look for the tray, and put it on the {location}
+output: go None {location} None look tray None None put None {location}
+input: Go to the {room}, find a man, and say something about yourself
+output: go None {room} None find man None None say yourself None None
+input: Tell me how many people in the {room} are boys
+output: tell people {room} boys
