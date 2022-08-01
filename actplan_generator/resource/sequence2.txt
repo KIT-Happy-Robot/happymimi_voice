@@ -1,0 +1,200 @@
+input robot please go to the room , look for a boy , and tell a joke
+output go none room none tell none none boy
+input go to the location , find the tray , and give it to name at the location
+output go none room none find tray none none give none location name
+input could you tell me how many people in the room are standing
+output tell standing room people
+input could you tell me the name of the person in the room
+output tell name room person
+input could you go to the location , find the bowl , and place it on the location
+output go none location none find bowl none none place none location none
+input robot please locate a girl in the room and say the day of the month
+output locate girl room none say day none none
+input robot please locate a male person in the room and tell the time
+output locate person room none tell time none none
+input could you please go to the location , look for the tray , and place it on the location
+output go none location none look tray none none place none location none
+input could you please navigate to the location , look for the cloth , and put it on the location
+output navigate none location none look cloth none none put none location none
+input robot please face name at the location and escort him to his uber
+output face name location none escort him none none
+input robot please take my trolley to the taxi
+output take trolley none taxi
+input navigate to the room , find a boy , and say the day of the week
+output navigate none room none find boy none none say day none none
+input robot please distribute category s to everyone in the room
+output distribute category room everyone
+input please find a person sitting in the room and tell the time
+output find person room none tell time none none
+input robot please answer a question to the person gesture in the room
+output answer question room person
+input tell me what s the biggest object on the location
+output tell object location me
+input get the tray from the location and put it on the location
+output get tray location none put none location none
+input put the tray on the location
+output put tray location none
+input contact name at the rear location and introduce her to all the men in the room
+output contact name location none introduce her room men
+input deliver the tray to the person gesture in the room
+output deliver tray room person
+input please tell me which are the three thinnest category on the location
+output tell category location me
+input bring me the object
+output bring object none me
+input robot please contact name at the location and take him to his uber
+output contact name location none take him uber none
+input could you please go to the location , meet name , and take her to the location
+output go none location none meet name none none take her location none
+input find name at the main location and introduce her to everyone in the room
+output find name location none introduce her room everyone
+input could you locate the tray in the room
+output locate tray room none
+input robot please lead name to the location , you may find her at the location
+output lead name location none find her location none
+input navigate to the location , look for the bowl , and put it on the location
+output navigate none location none look bowl none none put none location none
+input robot please find name at the main location and introduce him to everyone in the room
+output find name location none introduce him room everyone
+input robot please contact name at the location and accompany her to her uber
+output contact name location none accompany her uber none
+input contact name at the back door and introduce her to everyone in the room
+output contact name door none introduce her room everyone
+input could you meet name and guide her
+output meet name none none guide her none none
+input could you please escort name from the location to the location
+output escort name location none none none location none
+input please tell me how many tray there are on the location
+output tell tray location me
+input provide category s to everyone in the room
+output provide category room everyone
+input robot please bring my trolley to the uber
+output bring trolley uber none
+input could you please place the cloth on the location
+output place cloth location none
+input robot please tell me what s the largest category on the location
+output tell category location none
+input could you please get the bowl and put it on the location
+output get bowl none none put none location none
+input could you please grasp the bowl from the location and place it on the location
+output grasp bowl location none place none location none
+input robot please escort name to the location , you can find him at the location
+output escort name location none find him location none
+input go to the room , find a person standing , and say what day is tomorrow
+output go none room none find standing none person say day none none
+input get the cloth from the location and place it on the location
+output get cloth location none place none location none
+input meet name at the location and follow her
+output meet name location none follow her none none
+input face name at the back door and introduce him to everyone in the room
+output face name door none introduce him room everyone
+input please find name at the location and accompany her to her uber
+output find name location none accompany her uber none
+input robot please look for a person sitting in the room and tell something about yourself
+output look sitting room person tell yourself none none
+input please look for three category in the room
+output look category room none
+input go to the location , locate the cloth , and place it on the location
+output go none location none locate cloth none none place none location none
+input please follow name from the location to the room
+output follow name location none none none room none
+input could you contact name at the rear door and introduce her to everyone in the room
+output contact name door none introduce her room everyone
+input could you contact name at the back door and introduce her to everyone in the room
+output contact name door none introduce her room everyone
+input please put the tray on the location
+output put tray location none
+input robot please tell me which are the three heaviest category on the location
+output tell category location none
+input could you please go to the location , meet name , and lead him to the location
+output go none location none meet name none none lead him location none
+input robot please deliver category to the person gesture in the room
+output deliver category room person
+input contact name at the location and ask her to leave
+output contact name location none ask her none none
+input could you guide name to the location , you can find her at the location
+output guide name location none find her location none
+input could you give category to me
+output give category none none
+input could you bring category to the person gesture in the room
+output bring category room person
+input please deliver category to all the women in the room
+output deliver category room women
+input please accompany name to the location , you may find her at the location
+output accompany name location none find her location none
+input robot please get the object from the location and place it on the location
+output get object location none place none location none
+input locate a person lying down in the room and tell something about yourself
+output locate lying room person tell yourself none none
+input could you contact name at the location and ask her to leave
+output contact name location none ask her none none
+input robot please navigate to the room , locate a girl , and answer a question
+output navigate none room none locate girl none none answer question none none
+input robot please face name at the main location and introduce him to all the women in the room
+output face name location none introduce him room women
+input meet name at the location , follow her , and navigate to the room
+output meet name location none follow her none none navigate none room none
+input robot please face name at the back location and introduce her to everyone in the room
+output face name location none introduce her room everyone
+input could you please look for three category in the room
+output look category room none
+input please navigate to the room , find a person sitting , and say a joke
+output navigate none room none find sitting none person say joke none none
+input navigate to the location , meet name , and take him to the location
+output navigate none location none meet name none none take him location none
+input could you navigate to the location , meet name , and follow him
+output navigate none location none meet name none none follow him none none
+input navigate to the location , locate the bowl , and deliver it to me
+output navigate none location none locate bowl none none deliver none none none
+input please go to the location , meet name , and take her
+output go none location none meet name none none take her none none
+input could you distribute category to everyone in the room
+output distribute category room everyone
+input give category s to all the men in the room
+output give category room men
+input tell me which are the three heaviest category on the location
+output tell category location none
+input robot please pick up the cloth from the location and place it on the location
+output pick cloth location none place none location none
+input please deliver category to everyone in the room
+output deliver category room everyone
+input tell me which are the three biggest objects on the location
+output tell objects location none
+input could you go to the location , meet name , and lead him to the location
+output go none location none meet name none none lead him location none
+input navigate to the location , look for the tray , and put it on the location
+output navigate none location none look tray none none put none location none
+input please meet name at the location , follow him , and navigate to the room
+output meet name location none follow him none none navigate none room none
+input tell me which are the three largest category on the location
+output tell category location none
+input contact name at the location and take him to his cab
+output contact name location none take him cab none
+input tell me how many tray there are on the location
+output tell tray location none
+input deliver category s to all the guests in the room
+output deliver category room guests
+input robot please meet name at the location , follow him , and go to the room
+output meet name location none follow him none none go none room none
+input take the cloth from the location and bring it to name at the location
+output take cloth location none bring none location name
+input please find a woman in the room and answer a question
+output find woman room none answer question none none
+input give the object to me
+output give object none none
+input could you meet name at the location , follow him , and navigate to the room
+output meet name location none follow him none none navigate none room none
+input face name at the front location and introduce him to all the guests in the room
+output face name location none introduce him room guests
+input locate the category in the room
+output locate category room none
+input navigate to the room , find a person gesture , and say what day is tomorrow
+output navigate none room none find person none none say day none none
+input robot please pick up the bowl from the location and deliver it to me
+output pick bowl location none deliver none none none
+input go to the location , look for the tray , and put it on the location
+output go none location none look tray none none put none location
+input go to the room , find a man , and say something about yourself
+output go none room none find man none none say yourself none none
+input tell me how many people in the room are boys
+output tell people room boys

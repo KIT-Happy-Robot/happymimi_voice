@@ -1,0 +1,100 @@
+go none room none tell none none boy
+go none room none find tray none none give none location name
+tell standing room people
+tell name room person
+go none location none find bowl none none place none location none
+locate girl room none say day none none
+locate person room none tell time none none
+go none location none look tray none none place none location none
+navigate none location none look cloth none none put none location none
+face name location none escort him none none
+take trolley none taxi
+navigate none room none find boy none none say day none none
+distribute category room everyone
+find person room none tell time none none
+answer question room person
+tell object location me
+get tray location none put none location none
+put tray location none
+contact name location none introduce her room men
+deliver tray room person
+tell category location me
+bring object none me
+contact name location none take him uber none
+go none location none meet name none none take her location none
+find name location none introduce her room everyone
+locate tray room none
+lead name location none find her location none
+navigate none location none look bowl none none put none location none
+find name location none introduce him room everyone
+contact name location none accompany her uber none
+contact name door none introduce her room everyone
+meet name none none guide her none none
+escort name location none none none location none
+tell tray location me
+provide category room everyone
+bring trolley uber none
+place cloth location none
+tell category location none
+get bowl none none put none location none
+grasp bowl location none place none location none
+escort name location none find him location none
+go none room none find standing none person say day none none
+get cloth location none place none location none
+meet name location none follow her none none
+face name door none introduce him room everyone
+find name location none accompany her uber none
+look sitting room person tell yourself none none
+look category room none
+go none location none locate cloth none none place none location none
+follow name location none none none room none
+contact name door none introduce her room everyone
+contact name door none introduce her room everyone
+put tray location none
+tell category location none
+go none location none meet name none none lead him location none
+deliver category room person
+contact name location none ask her none none
+guide name location none find her location none
+give category none none
+bring category room person
+deliver category room women
+accompany name location none find her location none
+get object location none place none location none
+locate lying room person tell yourself none none
+contact name location none ask her none none
+navigate none room none locate girl none none answer question none none
+face name location none introduce him room women
+meet name location none follow her none none navigate none room none
+face name location none introduce her room everyone
+look category room none
+navigate none room none find sitting none person say joke none none
+navigate none location none meet name none none take him location none
+navigate none location none meet name none none follow him none none
+navigate none location none locate bowl none none deliver none none none
+go none location none meet name none none take her none none
+distribute category room everyone
+give category room men
+tell category location none
+pick cloth location none place none location none
+deliver category room everyone
+tell objects location none
+go none location none meet name none none lead him location none
+navigate none location none look tray none none put none location none
+meet name location none follow him none none navigate none room none
+tell category location none
+contact name location none take him cab none
+tell tray location none
+deliver category room guests
+meet name location none follow him none none go none room none
+take cloth location none bring none location name
+find woman room none answer question none none
+give object none none
+meet name location none follow him none none navigate none room none
+face name location none introduce him room guests
+locate category room none
+navigate none room none find person none none say day none none
+pick bowl location none deliver none none none
+go none location none look tray none none
+go none room none find man none none say yourself none none
+tell people room boys
