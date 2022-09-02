@@ -1,4 +1,4 @@
-# Happymimi_voice(*´∀｀*)
+# Happymimi_voice
 
 ## Overview
 This package is a collection of the voice processing functions.
