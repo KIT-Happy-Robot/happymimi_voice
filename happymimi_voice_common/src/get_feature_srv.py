@@ -18,12 +18,15 @@ happymimi_voice_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/.."
 sys.path.insert(0,happymimi_voice_path)
 from happymimi_nlp import sentence_analysis as se
 from happymimi_nlp import gender_judgement_from_name as GetGender
+import pickle
+from happymimi_voice_msgs.srv import YesNo
 
 
 file_path=happymimi_voice_path+"/config/voice_common"
 file_temp="/get_feature.txt"
 name_path=roslib.packages.get_pkg_dir("find_my_mates")+"/config/guest_name.yaml"
 
+pkl_name_path=roslib.packages.get_pkg_dir("find_my_mates")+"/config/guest_name.pkl"
 
 class GetFeature():
     def __init__(self):
@@ -31,17 +34,22 @@ class GetFeature():
         self.tempNumMake()
         with open(name_path) as f:
             self.names=yaml.safe_load(f)
+        with open(pkl_name_path,"wb") as pf:
+            pickle.dump(self.names,pf)
         print(self.names)
         self.template=[s for s in open(file_path+file_temp)]
-        self.GetGender=GetGender.GenderJudgementFromNameByNBC.loadNBCmodel(happymimi_voice_path+"/config/dataset/genderNBCmodel.dill")
+        #self.GetGender=GetGender.GenderJudgementFromNameByNBC.loadNBCmodel(happymimi_voice_path+"/config/dataset/genderNBCmodel.dill")
         rospy.wait_for_service('/tts')
         rospy.wait_for_service('/stt_server2')
         rospy.wait_for_service('/waveplay_srv')
+        rospy.wait_for_service('/yes_no')
         self.tts=rospy.ServiceProxy('/tts', StrTrg)
         self.wave_srv=rospy.ServiceProxy('/waveplay_srv', StrTrg)
         self.stt=rospy.ServiceProxy('/stt_server2',SpeechToText)
         self.server=rospy.Service('/get_feature_srv',StrToStr,self.main)
         #self.sound=rospy.ServiceProxy('/sound', Empty)
+        self.yes_no_srv = rospy.ServiceProxy('/yes_no',YesNo)
+        print("server is ready")
 
         self.name=""
         rospy.spin()
@@ -93,6 +101,30 @@ class GetFeature():
             return False
         '''
 
+    def fmmGetName(self):
+        with open(pkl_name_path,"rb") as pf:
+            names = pickle.load(pf)
+        if names:
+            ans_name = ""
+            for name in names:
+                if name == names[-1]:
+                    ans_name = names[-1]
+                    break
+                else:
+                    self.tts("Are you" + name)
+                    yes_no = self.yes_no_srv().result
+                    if yes_no:
+                        ans_name = name
+                        break
+                    else:
+                        continue
+            names.remove(ans_name)
+            with open(pkl_name_path,"wb") as pf:
+                pickle.dump(names,pf)
+        else:
+            ans_name = None
+
+        return ans_name
 
     def getGender(self):
         self.wave_srv("/WhatGender.wav")
@@ -153,6 +185,8 @@ class GetFeature():
                 #result="man" if result=="male" else "woman"
             else:
                 result=False
+        elif request.req_data=="fmm name":
+            result=self.fmmGetName()
 
 
 
