@@ -111,8 +111,9 @@ class GetFeature():
                     ans_name = names[-1]
                     break
                 else:
-                    self.tts("Are you" + name)
+                    self.tts("Are you" + name + "Please answer yes or no")
                     yes_no = self.yes_no_srv().result
+
                     if yes_no:
                         ans_name = name
                         break
