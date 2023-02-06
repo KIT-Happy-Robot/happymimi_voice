@@ -12,5 +12,5 @@ if [ ! -e $FILE ]; then
   mv stanford-postagger-full-2020-11-17 ../config/dataset/stanford-postagger
 fi
 
-python -m spacy download en_core_web_trf
-python nltk_download.py
+python3 -m spacy download en_core_web_trf
+python3 nltk_download.py
