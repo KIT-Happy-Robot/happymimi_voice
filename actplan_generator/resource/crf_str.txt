@@ -1,100 +1,100 @@
-robot please <act>go</act> to the <location>room<location> <act>look</act> for a <target>boy</target> <act>tell</act> a <target>joke</target>
-go to the location find the tray give it to name at the location
-could you tell me how many people in the room are
-could you tell me the name of the person in the room
-could you go to the location find the bowl place it on the location
-robot please locate a girl in the room say the day of the month
-robot please locate a male person in the room tell the time
-could you please go to the location look for the tray place it on the location
-could you please navigate to the location look for the cloth put it on the location
-robot please face name at the location escort him to his uber
-robot please take my trolley to the taxi
-navigate to the room find a boy say the day of the week
-robot please distribute category s to everyone in the room
-please find a person sitting in the room tell the time
-robot please answer a question to the person gesture in the room
-tell me what s the biggest object on the location
-get the tray from the location put it on the location
-put the tray on the location
-contact name at the rear location introduce her to all the men in the room
-deliver the tray to the person gesture in the room
-please tell me which are the three thinnest category on the location
-bring me the object
-robot please contact name at the location take him to his uber
-could you please go to the location meet name take her to the location
-find name at the main location introduce her to everyone in the room
-could you locate the tray in the room
-robot please lead name to the location you may find her at the location
-navigate to the location look for the bowl put it on the location
-robot please find name at the main location introduce him to everyone in the room
-robot please contact name at the location accompany her to her uber
-contact name at the back door introduce her to everyone in the room
-could you meet name guide her
-could you please escort name from the location to the location
-please tell me how many tray there are on the location
-provide category s to everyone in the room
-robot please bring my trolley to the uber
-could you please place the cloth on the location
-robot please tell me what s the largest category on the location
-could you please get the bowl put it on the location
-could you please grasp the bowl from the location place it on the location
-robot please escort name to the location you can find him at the location
-go to the room find a person and say what day is tomorrow
-get the cloth from the location place it on the location
-meet name at the location follow her
-face name at the back door introduce him to everyone in the room
-please find name at the location accompany her to her uber
-robot please look for a person sitting in the room tell something about yourself
-please look for three category in the room
-go to the location locate the cloth place it on the location
-please follow name from the location to the room
-could you contact name at the rear door introduce her to everyone in the room
-could you contact name at the back door introduce her to everyone in the room
-please put the tray on the location
-robot please tell me which are the three heaviest category on the location
-could you please go to the location meet name lead him to the location
-robot please deliver category to the person gesture in the room
-contact name at the location ask her to leave
-could you guide name to the location you can find her at the location
-could you give category to me
-could you bring category to the person gesture in the room
-please deliver category to all the women in the room
-please accompany name to the location you may find her at the location
-robot please get the object from the location place it on the location
-locate a person lying down in the room tell something about yourself
-could you contact name at the location ask her to leave
-robot please navigate to the room locate a girl answer a question
-robot please face name at the main location introduce him to all the women in the room
-meet name at the location follow her navigate to the room
-robot please face name at the back location introduce her to everyone in the room
-could you please look for three category in the room
-please navigate to the room find a person sitting say a joke
-navigate to the location meet name take him to the location
-could you navigate to the location meet name follow him
-navigate to the location locate the bowl deliver it to me
-please go to the location meet name take her
-could you distribute category to everyone in the room
-give category s to all the men in the room
-tell me which are the three heaviest category on the location
-robot please pick up the cloth from the location place it on the location
-please deliver category to everyone in the room
-tell me which are the three biggest objects on the location
-could you go to the location meet name lead him to the location
-navigate to the location look for the tray put it on the location
-please meet name at the location follow him navigate to the room
-tell me which are the three largest category on the location
-contact name at the location take him to his cab
-tell me how many tray there are on the location
-deliver category s to all the guests in the room
-robot please meet name at the location follow him go to the room
-take the cloth from the location bring it to name at the location
-please find a woman in the room answer a question
-give the object to me
-could you meet name at the location follow him navigate to the room
-face name at the front location introduce him to all the guests in the room
-locate the category in the room
-navigate to the room find a person gesture say what day is tomorrow
-robot please pick up the bowl from the location deliver it to me
-go to the location look for the tray put it on the location
-go to the room find a man say something about yourself
-tell me how many people in the room are boys
+robot please <act>go</act> to the <location>room</location> <act>look</act> for a <human>boy</human> <act>tell</act> a <target>joke</target>
+<act>go</act> to the <location>location</location> <act>find</act> the <target>tray</target> <act>give</act> it to <human>name</human> at the <location>location</location>
+could you <act>tell</act> <human>me</human> how many <target>people</target> in the <location>room</location> are
+could you <act>tell</act> <human>me</human> the <target>name</target> of the <human>person</human> in the <location>room</location>
+could you <act>go</act> to the <location>location</location> <act>find</act> the <target>bowl</target> <act>place</act> it on the <location>location</location>
+robot please <act>locate</act> a <human>girl</human> in the <location>room</location> <act>say</act> the <target>day</target> of the month
+robot please <act>locate</act> a male <human>person</human> in the <location>room</location> <act>tell</act> the <target>time</target>
+could you please <act>go</act> to the <location>location</location> <act>look</act> for the <target>tray</target> <act>place</act> it on the <location>location</location>
+could you please <act>navigate</act> to the <location>location</location> <act>look</act> for the <target>cloth</target> <act>put</act> it on the <location>location</location>
+robot please <act>face</act> <human>name</human> at the <location>location</location> <act>escort</act> him to his <location>uber</location>
+robot please <act>take</act> my <target>trolley</target> to the <location>taxi</location>
+<act>navigate</act> to the <location>room</location> <act>find</act> a <human>boy</human> <act>say</act> the <target>day</target> of the week
+robot please <act>distribute</act> <target>category</target> s to <target>everyone</target> in the <location>room</location>
+please <act>find</act> a <human>person</human> sitting in the <location>room</location> <act>tell</act> the <target>time</target>
+robot please <act>answer</act> a <target>question</target> to the <human>person</human> <act>gesture</act> in the <location>room</location>
+<act>tell</act> <human>me</human> what s the biggest <target>object</target> on the <location>location</location>
+<act>get</act> the <target>tray</target> from the <location>location</location> <act>put</act> it on the <location>location</location>
+<act>put</act> the <target>tray</target> on the <location>location</location>
+<act>contact</act> <human>name</human> at the rear <location>location</location> <act>introduce</act> <human>her</human> to all the <human>men</human> in the <location>room</location>
+<act>deliver</act> the <target>tray</target> to the <human>person</human> <act>gesture</act> in the <location>room</location>
+please <act>tell</act> <human>me</human> which are the three thinnest <target>category</target> on the <location>location</location>
+<act>bring</act> <human>me</human> the <target>object</target>
+robot please <act>contact</act> <human>name</human> at the <location>location</location> <act>take</act> <human>him</human> to his <location>uber</location>
+could you please <act>go</act> to the <location>location</location> <act>meet</act> <human>name</human> <act>take</act> <human>her</human> to the <location>location</location>
+<act>find</act> <human>name</human> at the main <location>location</location> <act>introduce</act> <human>her</human> to <target>everyone</target> in the <location>room</location>
+could you <act>locate</act> the <target>tray</target> in the <location>room</location>
+robot please <act>lead</act> <human>name</human> to the <location>location</location> you may <act>find</act> <human>her</human> at the <location>location</location>
+<act>navigate<act> to the <location>location</location> <act>look</act> for the <target>bowl</target> <act>put</act> it on the <location>location</location>
+robot please <act>find</act> <human>name</human> at the main <location>location</location> <act>introduce</act> <human>him</human> to <target>everyone</target> in the <location>room</location>
+robot please <act>contact</act> <human>name</human> at the <location>location</location> <act>accompany</act> <human>her</human> to her <location>uber</location>
+<act>contact</act> <human>name</human> at the back <location>door</location> <act>introduce</act> <human>her</human> to <target>everyone</target> in the <location>room</location>
+could you <act>meet</act> <human>name</human> <act>guide</act> <human>her</human>
+could you please <act>escort</act> <human>name</human> from the <location>location</location> to the <location>location</location>
+please <act>tell</act> <human>me</human> how many <target>tray</target> there are on the <location>location</location>
+<act>provide</act> <target>category</target> s to <target>everyone</target> in the <location>room</location>
+robot please <act>bring</act> my <target>trolley</target> to the <location>uber</location>
+could you please <act>place</act> the <target>cloth</target> on the <location>location</location>
+robot please <act>tell</act> <human>me</human> what s the largest <target>category</target> on the <location>location</location>
+could you please <act>get</act> the <target>bowl</target> <act>put</act> it on the <location>location</location>
+could you please <act>grasp</act> the <target>bowl</target> from the <location>location</location> <act>place</act> it on the <location>location</location>
+robot please <act>escort</act> <human>name</human> to the <location>location</location> you can <act>find</act> <human>him<human> at the <location>location</location>
+<act>go</act> to the <location>room</location> <act>find</act> a <human>person</human> and <act>say</act> what day is <target>tomorrow</target>
+<act>get</act> the <target>cloth</target> from the <location>location</location> <act>place</act> it on the <location>location</location>
+<act>meet</act> <human>name</human> at the <location>location</location> <act>follow</act> <human>her</human>
+<act>face</act> <human>name</human> at the back <target>door</target> <act>introduce</act> <human>him</human> to <target>everyone</target> in the <location>room</location>
+please <act>find</act> <human>name</human> at the <location>location</location> <act>accompany</act> <human>her</human> to <human>her</human> <location>uber</location>
+robot please <act>look</act> for a <human>person</human> sitting in the <location>room</location> <act>tell</act> <target>something</target> about yourself
+please <act>look</act> for three <target>category</target> in the <location>room</location>
+<act>go</act> to the <location>location</location> <act>locate</act> the <target>cloth</target> <act>place</act> it on the <location>location</location>
+please <act>follow</act> <human>name</human> from the <location>location</location> to the <location>room</location>
+could you <act>contact</act> <human>name</human> at the rear <location>door</location> <act>introduce</act> <human>her</human> to <target>everyone</target> in the <location>room</location>
+could you <act>contact</act> <human>name</human> at the back <location>door</location> <act>introduce</act> <human>her</human> to <target>everyone</target> in the <location>room</location>
+please <act>put</act> the <target>tray</target> on the <location>location</location>
+robot please <act>tell</act> <human>me</human> which are the three heaviest <target>category</target> on the <location>location</location>
+could you please <act>go</act> to the <location>location</location> <act>meet</act> <human>name</human> <act>lead</act> <human>him</human> to the <location>location</location>
+robot please <act>deliver</act> <target>category</target> to the <human>person</human> <act>gesture</act> in the <location>room</location>
+<act>contact</act> <human>name</human> at the <location>location</location> <act>ask</act> <human>her</human> to <act>leave<act>
+could you <act>guide</act> <human>name</human> to the <location>location</location> you can <act>find<act> <human>her</human> at the <location>location</location>
+could you <act>give</act> <target>category</target> to <human>me</human>
+could you <act>bring</act> <target>category</target> to the <human>person</human> <act>gesture</act> in the <location>room</location>
+please <act>delive</act> <target>category</target> to all the <human>women</human> in the <location>room</location>
+please <act>accompany</act> <human>name</human> to the <location>location</location> you may <act>find</act> <human>her</human> at the <location>location</location>
+robot please <act>get</act> the <target>object</target> from the <location>location</location> <act>place</act> it on the <location>location</location>
+<act>locate</act> a <human>person</human> lying down in the <location>room</location> <act>tell</act> <target>something</target> about yourself
+could you <act>contact<act> <human>name</human> at the <location>location</location> <act>ask</act> <human>her</human> to <act>leave<act>
+robot please <act>navigate</act> to the <location>room</location> <act>locate</act> a <human>girl</human> <act>answer</act> a <target>question</target>
+robot please <act>face</act> <human>name</human> at the main <location>location</location> <act>introduce</act> <human>him</human> to all the <human>women</human> in the <location>room</human>
+<act>meet</act> <human>name</human> at the <location>location</location> <act>follow</act> <human>her</human> <act>navigate</act> to the <location>room</location>
+robot please <act>face</act> <human>name</human> at the back <location>location</location> <act>introduce</act> <human>her</human> to <target>everyone</target> in the <location>room</location>
+could you please <act>look</act> for three <target>category</target> in the <location>room</location>
+please <act>navigate</act> to the <location>room</location> <act>find</act> a <human>person</human> sitting <act>say</act> a <target>joke</target>
+<act>navigate</act> to the <location>location</location> <act>meet</act> <human>name</human> <act>take</act> <human>him</human> to the <location>location</location>
+could you <act>navigate</act> to the <location>location</location> <act>meet</act> <human>name</human> <act>follow</act> <human>him</human>
+<act>navigate</act> to the <location>location</location> <act>locate</act> the <target>bowl</target> <act>deliver</act> it to <human>me</human>
+please <act>go</act> to the <location>location</location> <act>meet</act> <human>name</human> <act>take</act> <human>her</human>
+could you <act>distribute</act> <target>category</target> to <target>everyone</target> in the <location>room</location>
+<act>give</act> <target>category</target> s to all the <human>men</human> in the <location>room</location>
+<act>tell</act> <human>me</human> which are the three heaviest <target>category</target> on the <location>location</location>
+robot please <act>pick</act> up the <target>cloth</target> from the <location>location</location> <act>place</act> it on the <location>location</location>
+please <act>deliver</act> <target>category</target> to <target>everyone</target> in the <location>room</location>
+<act>tell</act> <human>me</human> which are the three biggest <target>objects</target> on the <location>location</location>
+could you <act>go</act> to the <location>location</location> <act>meet</act> <human>name</human> <act>lead</act> <human>him</human> to the <location>location</location>
+<act>navigate</act> to the <location>location</location> <act>look</act> for the <target>tray</target> <act>put</act> it on the <location>location</location>
+please <act>meet</act> <human>name</human> at the <location>location</location> <act>follow</act> <human>him</human> <act>navigate</act> to the <location>room</location>
+<act>tell</act> <human>me</human> which are the three largest <target>category</target> on the <location>location</location>
+<act>contact<act> <human>name</human> at the <location>location</location> <act>take</act> <human>him</human> to his <location>cab</location>
+<act>tell</act> <human>me</human> how many <target>tray</target> there are on the <location>location</location>
+<act>deliver<act> <target>category</target> s to all the <target>guests</target> in the <location>room</location>
+robot please <act>meet</act> <human>name</human> at the <location>location</location> <act>follow</act> <human>him</human> <act>go</act> to the <location>room</location>
+<act>take</act> the <target>cloth</target> from the <location>location</location> <act>bring<act> it to <human>name</human> at the <location>location</location>
+please <act>find</act> a <human>woman</human> in the <location>room</location> <act>answer</act> a <target>question</target>
+<act>give</act> the <target>object</target> to <human>me</human>
+could you <act>meet</act> <human>name</human> at the <location>location</location> <act>follow</act> <human>him</human> <act>navigate</act> to the <location>room</location>
+<act>face</act> <human>name</human> at the front <location>location</location> <act>introduce</act> <human>him</human> to all the <target>guests</target> in the <location>room</location>
+<act>locate</act> the <target>category</target> in the <location>room</location>
+<act>navigate</act> to the <location>room</location> <act>find</act> a <human>person</human> <target>gesture</target> <act>say</act> what day is <target>tomorrow</target>
+robot please <act>pick</act> up the <target>bowl</target> from the <location>location</location> <act>deliver</act> it to <human>me</human>
+<act>go</act> to the <location>location</location> <act>look</act> for the <target>tray</target> <act>put</act> it on the <location>location</location>
+<act>go</act> to the <location>room</location> <act>find</act> a <human>man</human> <act>say</act> <target>something</target> about yourself
+<act>tell</act> <human>me</human> how many <target>people<target> in the <location>room</location> are <target>boys</target>
