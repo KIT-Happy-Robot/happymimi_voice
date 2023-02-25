@@ -15,15 +15,6 @@ from pymagnitude import Magnitude
 print("now_loading...")
 vectors = Magnitude("/home/kouya/Downloads/crawl-300d-2M.magnitude")
 
-#from gensim.models import KeyedVectors
-#import gensim.downloader as api
-
-results = vectors.most_similar(u'go', topn = 10)
-
-# resultsを表示。
-for result in results:
-    print(result)
-
 w = "<nc>robot please</nc> <act>go</act> to the <location>room</location> <act>look</act> for a <human>boy</human> <act>tell</act> a <target>joke</target>"
 
 act_go = ["go","navigate","meet","find"]
@@ -35,7 +26,18 @@ hum = ["Noah","Liam","Oliver","James","Mason",
         "Olivia","Emma","Ava","Mia","Elizabeth",
         "me","boy","girl"]
 
+def compare_similarity(word):
+     word_list = ["go","tell","grasp"]
+     word_dict = {}
+     result = []
+     for i in range(3):
+          result.append(vectors.similarity(word,word_list[i]))
+          word_dict[word_list[i]] = result[i]
 
+     print(word_dict)
+     return max(word_dict.values())
+
+          
 def random_generate(root):
         buffer = ""
         pos = 0
@@ -83,4 +85,4 @@ def random_generate(root):
 root = xml.etree.ElementTree.fromstring("<dummy>"+w+"</dummy>")
 sen, posdict = random_generate(root)
 print(sen)
-print(posdict)
+print(compare_similarity("find"))
