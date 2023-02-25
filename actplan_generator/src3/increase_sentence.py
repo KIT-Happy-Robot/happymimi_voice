@@ -6,7 +6,7 @@ from os import path
 import re
 import random
 import xml.etree.ElementTree
-#import MeCab
+import MeCab
 import nltk
 
 #from gensim.models import KeyedVectors
@@ -17,6 +17,8 @@ file_path=path.expanduser('~/ros1_ws/src/happymimi_voice/config')
 print("now loading..")
 #コサイン類似度の最小閾値
 MIN_VEC = 0.5
+
+#nltk.download('veraged_perceptron_tagger')
 word_vec = api.load("glove-twitter-200")
 
 
@@ -73,7 +75,7 @@ class Increase_Sentence():
 
             if sentence.tail is not None:
                 buffer += sentence.tail
-                pos += len(pos.tail)
+                pos += len(sentence.tail)
 
         return buffer, posdict
                 
@@ -99,7 +101,8 @@ class Increase_Sentence():
                     lis = []
                     pos = 0
                     prev_label = 0
-                    for line in mecab.parse(sen).splitlines():
+                    #nltkを使用
+                    for line in nltk.pos_tag(sen).splitlines():
                         if line == "EOS": break
                         else:
                             word, feature_str = line.split("\t")
