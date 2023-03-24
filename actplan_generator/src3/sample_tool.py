@@ -11,11 +11,16 @@ import xml.etree.ElementTree
 import MeCab
 import nltk
 
+
 from pymagnitude import Magnitude
+
+mecab = MeCab.Tagger()
+mecab.parse('')
 print("now_loading...")
 vectors = Magnitude("/home/kouya/Downloads/crawl-300d-2M.magnitude")
 
-w = "<nc>robot please</nc> <act>go</act> to the <location>room</location> <act>look</act> for a <human>boy</human> <act>tell</act> a <target>joke</target>"
+#w = "<nc>robot please</nc> <act>go</act> to the <location>room</location> <act>look</act> for a <human>boy</human> <act>tell</act> a <target>joke</target>"
+#w = "<nc>could you</nc> <act>tell</act> <human>me</human> how many <target>people</target> in the <location>room</location> are"
 
 act_go = ["go","move","pass"]
 act_navigate = ["navigate","escort","guide"]
@@ -59,7 +64,14 @@ def compare_similarity_target(word):
      max_key = max(word_dict.items(), key = lambda x:x[1])
      return max_key[0]
 
-          
+
+def get_label(pos, posdic):
+    for label, (start, end) in posdic.items():
+        if start <= pos and pos < end:
+            return label
+    return "O"
+
+      
 def random_generate(root):
         buffer = ""
         pos = 0
@@ -96,7 +108,7 @@ def random_generate(root):
                 elif compare_similarity_target(sentence.text) == 'human':
                     target = random.choice(tar_human)
                 
-                    buffer += target
+                buffer += target
                 posdict["target"] = (pos,pos+len(target))
                 pos += len(target)
 
@@ -118,7 +130,51 @@ def random_generate(root):
 
         return buffer, posdict
 
-root = xml.etree.ElementTree.fromstring("<dummy>"+w+"</dummy>")
-sen, posdict = random_generate(root)
-print(sen)
-#print(compare_similarity("guide"))
+def main():
+    cnt = 0
+    f = open("crf_sentences.dat","w")
+    for line in open("exam.txt", "r"):
+        line  = line.strip()
+        if re.search(r'^da=', line):
+            da = line.replace('da=', '')
+        elif line == "":
+            pass
+        else:
+            cnt += 1
+            print(cnt,":",line)
+            root = xml.etree.ElementTree.fromstring("<dummy>"+line+"</dummy>")
+            for i in range(1000):
+                sen, posdict = random_generate(root)
+                lis = []
+                pos = 0
+                prev_label = 0
+                for line in mecab.parse(sen).splitlines():
+                    if line == "EOS": break
+                    else:
+                        word, feature_str = line.split("\t")
+                        features = feature_str.split(',')
+                        postag  = features[0]
+                        label = get_label(pos, posdict)
+                        if label == "O":
+                            lis.append([word,postag,"O"])
+                        elif label == prev_label:
+                            lis.append([word,postag,"I-"+label])
+                        else:
+                            lis.append([word,postag,"B-"+label])
+                        
+                        pos += len(word)
+                        prev_label = label
+
+            for word, postag, label in lis:
+                f.write(word + "\t" + postag + "\t" + label +"\n")
+            f.write("\n")
+    
+    print("finish increase")
+    f.close()
+    #print(sen)
+
+if __name__ == "__main__":
+    #root = xml.etree.ElementTree.fromstring("<dummy>"+w+"</dummy>")
+    #sen, posdict = random_generate(root)
+    #print(sen)
+    main()
