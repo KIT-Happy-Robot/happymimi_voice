@@ -21,6 +21,7 @@ vectors = Magnitude("/home/kouya/Downloads/crawl-300d-2M.magnitude")
 
 #w = "<nc>robot please</nc> <act>go</act> to the <location>room</location> <act>look</act> for a <human>boy</human> <act>tell</act> a <target>joke</target>"
 #w = "<nc>could you</nc> <act>tell</act> <human>me</human> how many <target>people</target> in the <location>room</location> are"
+w = "<act>go</act> to the <location>location</location> <act>find</act> the <target>tray</target> <act>give</act> it to <human>name</human> at the <location>location</location>"
 
 act_go = ["go","move","pass"]
 act_navigate = ["navigate","escort","guide"]
@@ -143,6 +144,7 @@ def main():
             cnt += 1
             print(cnt,":",line)
             root = xml.etree.ElementTree.fromstring("<dummy>"+line+"</dummy>")
+            
             for i in range(1000):
                 sen, posdict = random_generate(root)
                 lis = []
@@ -150,6 +152,7 @@ def main():
                 prev_label = 0
                 for line in mecab.parse(sen).splitlines():
                     if line == "EOS": break
+                        
                     else:
                         word, feature_str = line.split("\t")
                         features = feature_str.split(',')
