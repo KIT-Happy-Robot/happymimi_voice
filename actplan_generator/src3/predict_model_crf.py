@@ -16,19 +16,17 @@ def split_and_pos(sen):
     return pos
 
 def extract(utt):
-    words = []
+    lis = []
     #for line in mecab.parse(utt).splitlines():
     lines = split_and_pos(utt)
     for line in range(len(lines)):
-        if line == "EOS": break
+        word = lines[line][0]
+        postag = lines[line][1]
+        lis.append([word, postag, "O"])
         
-        else:
-            word = lines[line][0]
-            postag = lines[line][1]
-            words.append([word, postag, "O"])
     
-    words = [x[0] for x in words]
-    X = [sent2features(s) for s in [words]]
+    words = [x[0] for x in lis]
+    X = [sent2features(s) for s in [lis]]
     labels = crf.predict(X)[0]
     
     conceptdic = {}
@@ -44,10 +42,11 @@ def extract(utt):
             buf += word
         elif label == "O":
             if buf != "":
-                _label = last_label.replace('-B','').replace('-I','')
+                _label = last_label.replace('B-','').replace('I-','')
                 conceptdic[_label] = buf
                 buf = ""
         last_label = label
+        
     if buf != "":
         _label = last_label.replace('B-','').replace('I-','')
         conceptdic[_label] = buf
