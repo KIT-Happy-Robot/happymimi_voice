@@ -23,6 +23,7 @@ vectors = Magnitude("/home/kouya/Downloads/crawl-300d-2M.magnitude")
 #w = "<nc>could you</nc> <act>tell</act> <human>me</human> how many <target>people</target> in the <location>room</location> are"
 w = "<act>go</act> to the <location>location</location> <act>find</act> the <target>tray</target> <act>give</act> it to <human>name</human> at the <location>location</location>"
 
+
 act_go = ["go","move","pass"]
 act_navigate = ["navigate","escort","guide"]
 act_tell = ["tell","introduce","speak","say","contact","meet","find"]
@@ -77,6 +78,11 @@ def random_generate(root):
         buffer = ""
         pos = 0
         posdict = {}
+        num_act = 0
+        num_loc = 0
+        num_tar = 0
+        num_hum = 0
+        
         if len(root) == 0:
             return root.text, posdict
         
@@ -91,7 +97,8 @@ def random_generate(root):
                 elif compare_similarity_action(sentence.text) == 'grasp':
                      act = random.choice(act_grasp)
 
-                buffer += act
+                buffer += act 
+                
                 posdict["act"] = (pos,pos+len(act))
                 pos += len(act)
 
@@ -152,8 +159,9 @@ def main():
                 prev_label = 0
                 for line in mecab.parse(sen).splitlines():
                     if line == "EOS": break
-                        
+                      
                     else:
+                        
                         word, feature_str = line.split("\t")
                         features = feature_str.split(',')
                         postag  = features[0]

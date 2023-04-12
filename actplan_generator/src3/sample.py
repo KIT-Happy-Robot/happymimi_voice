@@ -74,13 +74,14 @@ def compare_similarity_target(word):
 def get_label(pos, posdic):
     for label, (start, end) in posdic.items():
         if start <= pos and pos < end:
+            print(label)
             return label
     return "O"
 
 def split_and_pos(sen):
-    morph = nltk.word_tokenize(sen)   #分かち書き
+    morph = nltk.word_tokenize(sen)   #分かち書き)
     pos =  nltk.pos_tag(morph) #品詞の取得
-    print(pos)
+    #print(pos)
     #print(a)
     
     return pos
@@ -89,6 +90,10 @@ def split_and_pos(sen):
 def random_generate(root):
         buffer = ""
         pos = 0
+        num_act = 1
+        num_loc = 1
+        num_tar = 1
+        num_hum = 1
         posdict = {}
         if len(root) == 0:
             return root.text, posdict
@@ -105,15 +110,26 @@ def random_generate(root):
                      act = random.choice(act_grasp)
 
                 buffer += act
-                posdict["act"] = (pos,pos+len(act))
+                if "act_0" in posdict:
+                    posdict["act_"+ str(num_act)] = (pos,pos+len(act))
+                    num_act += 1
+                
+                else:
+                    posdict["act_0"] = (pos,pos+len(act))
                 pos += len(act)
 
             elif sentence.tag == "location":
                 location = random.choice(loc)
                 buffer += location
-                posdict["location"] = (pos,pos+len(location))
+                if "location_0" in posdict:
+                    posdict["location_"+ str(num_loc)] = (pos,pos+len(location))
+                    num_loc += 1
+                    
+                else:
+                    posdict["location_0"] = (pos,pos+len(location))
                 pos += len(location)
 
+                                    
             elif sentence.tag == "target":
                 if compare_similarity_target(sentence.text) == 'object':
                     target = random.choice(tar_object)
@@ -123,18 +139,29 @@ def random_generate(root):
                     target = random.choice(tar_human)
                 
                 buffer += target
-                posdict["target"] = (pos,pos+len(target))
+                if "target_0" in posdict:
+                    posdict["target_"+ str(num_tar)] = (pos,pos+len(target))
+                    num_tar += 1
+                    
+                else:
+                    posdict["target_0"] = (pos,pos+len(target))
                 pos += len(target)
 
             elif sentence.tag == "human":
                 human = random.choice(hum)
                 buffer += human
-                posdict["human"] = (pos,pos+len(human))
+                if "human_0" in posdict:
+                    posdict["human_"+ str(num_hum)] = (pos,pos+len(human))
+                    num_hum += 1
+                    
+                else:
+                    posdict["human_0"] = (pos,pos+len(human))
                 pos += len(human)
 
             elif sentence.tag == "nc":
                  buffer += sentence.text
-                 pos += len(sentence)
+                 #print(sentence.text)
+                 pos += len(sentence.text)
 
             if sentence.tail is not None:
                 buffer += sentence.tail
@@ -146,16 +173,35 @@ def random_generate(root):
 
 def main():
     root = xml.etree.ElementTree.fromstring("<dummy>"+w+"</dummy>")
-    
+    #print(w)
     for i in range(1):
+        pos = 0
+        prev_label = 0
+        
+        lis = []
         sen, posdict = random_generate(root)
-        for line in sen.split():
-            print(line)
-            
+        line = split_and_pos(sen)
+        print("posdict:",posdict)
+        for j in range(len(line)):
+            word = line[j][0]
+            postag = line[j][1]
+            label = get_label(pos, posdict)
+            print("pos:",pos,"word:",word)
+            if label == "O":
+                lis.append([word,postag,"O"])
+            elif label == prev_label:
+                lis.append([word,postag,"I-"+label])
+            else:
+                lis.append([word,postag,"B-"+label])
+                        
+            pos += len(word)
+            pos += 1
+            prev_label = label
+    print(lis)
+
         
         
         
 
 if __name__ == "__main__":
     main()
-    
