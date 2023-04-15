@@ -38,6 +38,8 @@ EPOCHS = 10
 #encoderとdecorderを定義  get_sizeは後で変更
 encoder = Encoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(input_train[0]))
 decoder = Decoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(output_train[0]))
+
+#リソース管理
 del data_class
 
 #使う最適化アルゴリズムと損失関数を定義
@@ -69,11 +71,12 @@ def train_step(inp, targ, enc_hidden):
     #lambdaのxの引数はinp
     #change_word = lambda x:[targ_num[int(i)] for i in x.split()]
     change_word = changer(inp)
-    # print(change_word)
+    #print(change_word)
     #自動微分できるようにする
     with tf.GradientTape() as tape:
         #内部情報、最後の出力
-        enc_output, enc_hidden = encoder.call(change_word, enc_hidden)
+        #print(enc_hidden)
+        enc_output, enc_hidden = encoder.call(inp, enc_hidden)
 
         dec_hidden = enc_hidden
         #batchsize分用意する
