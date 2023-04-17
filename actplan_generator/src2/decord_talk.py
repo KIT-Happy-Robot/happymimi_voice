@@ -8,12 +8,22 @@ import time
 import MeCab
 import re
 
-sys.path.append('..')
-from common import data_operation
-from common.Attention_Model import *
+from action_plan_train import checkpoint
+
+sys.path.append('../../')
+from happymimi_nlp import data_operation
+from happymimi_nlp.Attention_Model import *
+
+from pymagnitude import *
+
+file_path = os.path.expanduser('~/catkin_ws/src/happymimi_voice/config/dataset/')
+file_mg = file_path + 'crawl-300d-2M.magnitude'
+print("now loading..")
+magnitude_data = Magnitude(file_mg)
+
 
 max_output=100
-data_class=data_operation.DataOperation()
+data_class=data_operation.DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
 targ_lang,targ_num=data_class.word_dict()
 
@@ -31,8 +41,8 @@ dataset = dataset.batch(BATCH_SIZE, drop_remainder=True)
 
 
 #encoderとdecorderを定義  get_sizeは後で変更
-encoder = Encoder(data_class.get_size(), embedding_dim, units, BATCH_SIZE,len(input_train[0]))
-decoder = Decoder(data_class.get_size(), embedding_dim, units, BATCH_SIZE,len(output_train[0]))
+encoder = Encoder(data_class.get_size(), embedding_dim, units, BATCH_SIZE,len(input_train[0]),magnitude_data)
+decoder = Decoder(data_class.get_size(), embedding_dim, units, BATCH_SIZE,len(output_train[0]),magnitude_data)
 
 #使う最適化アルゴリズム
 optimizer = tf.keras.optimizers.Adam()
@@ -120,7 +130,7 @@ def evaluate(sentence):
 
 if __name__=='__main__':
     while(1):
-        str=input("input:")
+        str="Bring me a drink from the bookshelf."
         result, sentence = evaluate(str)
 
         print('response: {}'.format(result))

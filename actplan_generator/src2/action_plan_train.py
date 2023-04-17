@@ -9,6 +9,13 @@ import time
 sys.path.append('../../')
 from happymimi_nlp import data_operation
 from happymimi_nlp.Attention_Model import *
+from pymagnitude import *
+
+file_path = os.path.expanduser('~/catkin_ws/src/happymimi_voice/config/dataset/')
+file_mg = file_path + 'crawl-300d-2M.magnitude'
+
+print("now loading..")
+magnitude_data = Magnitude(file_mg)
 #datasetのロード
 # print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
@@ -36,8 +43,8 @@ dataset = dataset.batch(BATCH_SIZE, drop_remainder=True)
 EPOCHS = 10
 
 #encoderとdecorderを定義  get_sizeは後で変更
-encoder = Encoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(input_train[0]))
-decoder = Decoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(output_train[0]))
+encoder = Encoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(input_train[0]), magnitude_data)
+decoder = Decoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(output_train[0]), magnitude_data)
 
 #リソース管理
 del data_class
@@ -87,7 +94,8 @@ def train_step(inp, targ, enc_hidden):
             # passing enc_output to the decoder    
             #(start, encorderの最後の出力, encorderの内部情報)2,3引数はattentionにも使う
             predictions, dec_hidden, _ = decoder.call(dec_input, dec_hidden, enc_output)
-
+            #print(predictions)
+            #print(targ[:,t])
             loss += loss_function(targ[:, t], predictions)
 
             # Teacher Forcing を使用
