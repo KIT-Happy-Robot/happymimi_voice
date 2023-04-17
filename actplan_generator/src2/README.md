@@ -13,7 +13,7 @@ https://kithappyrobot.esa.io/posts/97
 - ### decord_talk.py
     > 学習データのテストを行う。デバッグできていない
 
-- ### dataset_maker.py
+- ### dataset_maker_k.py(奥瀬の改良版)
     > 学習用データを整形する学習できる形に変換するプログラム。デバッグはしてない
 
 ## make dataset
