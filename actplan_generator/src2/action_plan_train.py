@@ -5,6 +5,7 @@ from tensorflow import keras
 import numpy as np
 import sys
 import time
+import matplotlib.pyplot as plt
 
 sys.path.append('../../')
 from happymimi_nlp import data_operation
@@ -22,9 +23,11 @@ magnitude_data = Magnitude(file_mg)
 #インスタンス化
 data_class=data_operation.DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
-
+#print("in:",input_train,input_test)
+#print("out:",output_train,output_test)
 #dictでtarg_langは文字列をキーに
 #targ_numはidをキーにしている
+
 targ_lang,targ_num=data_class.word_dict()
 
 #定数
@@ -128,8 +131,19 @@ def changer(inp):
     #print(change_list)
     return change_list
 
+def plot_graph(loss):
+    x_axis = [x for x in range(EPOCHS)]
+    y_axis = Loss_list
+    #グラフプロット準備
+    plt.plot(x_axis, y_axis)
+
+    #グラフ出力
+    plt.show()
+
+
 if __name__=="__main__":
     print("start trainning")
+    Loss_list = []
     for epoch in range(EPOCHS):
         start = time.time()
         enc_hidden = encoder.initialize_hidden_state() #zeroの行列
@@ -150,7 +164,11 @@ if __name__=="__main__":
       # 2 エポックごとにモデル（のチェックポイント）を保存
         if (epoch + 1) % 2 == 0:
             checkpoint.save(file_prefix = checkpoint_prefix)
-
-        print('Epoch {} Loss {:.4f}'.format(epoch + 1,
-                                          total_loss / STEPS_PER_EPOCH))
+            
+        Loss = total_loss / STEPS_PER_EPOCH
+        print('Epoch {} Loss {:.4f}'.format(epoch + 1,Loss))
         print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
+        Loss_list.append(Loss)
+        
+    plot_graph(Loss_list)
+        
