@@ -94,6 +94,7 @@ mv cat2_ex.txt ../
 rosrun actplan_generator planning_srv.py
 ```
 - ### src2はsrc2/READMEを参照
+- ### src3はsrc3/READMEを参照
 
 ### Technology used
 - Speech-To-Text and Text-To-Speech

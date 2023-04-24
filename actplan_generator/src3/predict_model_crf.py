@@ -55,7 +55,7 @@ def extract(utt):
     
         
 if __name__ == "__main__":
-    #for utt in ["could you tell me how many people in the guestroom"]:
-    for utt in ["bring me the plastic bottle of tea in the livingroom"]: 
+    for utt in ["could you tell me how many people in the guestroom"]:
+    #for utt in ["bring me the plastic bottle of tea in the livingroom"]: 
         conceptdic = extract(utt)
         print(utt, conceptdic)
