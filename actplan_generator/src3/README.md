@@ -6,6 +6,10 @@ CRF(条件付確率場)を使って行動計画を生成する。現在は200行
 CRFについて知りたい人は下記のサイトを参考にしてね💛  
 [【技術解説】CRF(Conditional Random Fields)](https://mieruca-ai.com/ai/conditional-random-fields/)
 
+---
+SVM(サポートベクターマシン)を用いて対話タイプの推定を行う。指示された文章が「ものを持ってくるタスク」「人に伝える」「人を数える」「誰かを部屋に導く」なのか等を推定し、対話行為を分類する。
+SVMについて知りたい人は下記のサイトを参考にしてね💘  
+[【技術解説】SVM(Support Vector Machine)](https://aiacademy.jp/media/?p=248)
 ## Description
 
 - ### increase_sentence.py
