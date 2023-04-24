@@ -24,8 +24,7 @@ MIN_VEC = 0.5
 vectors = Magnitude("/home/kouya/Downloads/crawl-300d-2M.magnitude")
 
 class Increase_Sentence():
-    def __init__(self, dataset_path="../resource/",
-                 dataset = "crf_str.txt"):
+    def __init__(self):
         
         self.act_go = ["go","navigate","meet","find"]
         self.act_navigate = ["navigate","escort","guide"]
@@ -40,8 +39,8 @@ class Increase_Sentence():
                       "Olivia","Emma","Ava","Mia","Elizabeth",
                       "me","boy","girl"]
 
-        self.dataset_path = dataset_path
-        self.dataset = dataset
+        #self.dataset_path = dataset_path
+        #self.dataset = dataset
         self.pos = 0
         self.posdict = {}
 
@@ -174,9 +173,10 @@ class Increase_Sentence():
             return buffer, posdict
 
     def execute(self):
+        da = " "
         cnt = 0
-        f = open("crf_sentences.dat","w")
-        for line in open("exam.txt", "r"):
+        f = open("svm_sentences.dat","w")
+        for line in open("exam_svm.txt", "r"):
             line  = line.strip()
             if re.search(r'^da=', line):
                 da = line.replace('da=', '')
@@ -194,25 +194,8 @@ class Increase_Sentence():
                     prev_label = 0
                     line = self.split_and_pos(sen)
                     #print("posdict:",posdict)
-                    for j in range(len(line)):
-                        
-                        word = line[j][0]
-                        postag = line[j][1]
-                        label = self.get_label(pos, posdict)
-                        #print("pos:",pos,"word:",word)
-                        if label == "O":
-                            lis.append([word,postag,"O"])
-                        elif label == prev_label:
-                            lis.append([word,postag,"I-"+label])
-                        else:
-                            lis.append([word,postag,"B-"+label])
-                                    
-                        pos += len(word)
-                        pos += 1
-                        prev_label = label
-
-                for word, postag, label in lis:
-                    f.write(word + "\t" + postag + "\t" + label +"\n")
+            
+                    f.write(da + "\t" + sen +"\n")
                 f.write("\n")
         
         print("finish increase")
