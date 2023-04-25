@@ -5,19 +5,29 @@ from tensorflow import keras
 import numpy as np
 import sys
 import time
+import matplotlib.pyplot as plt
 
 sys.path.append('../../')
 from happymimi_nlp import data_operation
 from happymimi_nlp.Attention_Model import *
+from pymagnitude import *
+
+file_path = os.path.expanduser('~/catkin_ws/src/happymimi_voice/config/dataset/')
+file_mg = file_path + 'crawl-300d-2M.magnitude'
+
+print("now loading..")
+magnitude_data = Magnitude(file_mg)
 #datasetのロード
 # print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
 #インスタンス化
 data_class=data_operation.DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
-
+#print("in:",input_train,input_test)
+#print("out:",output_train,output_test)
 #dictでtarg_langは文字列をキーに
 #targ_numはidをキーにしている
+
 targ_lang,targ_num=data_class.word_dict()
 
 #定数
@@ -36,8 +46,10 @@ dataset = dataset.batch(BATCH_SIZE, drop_remainder=True)
 EPOCHS = 10
 
 #encoderとdecorderを定義  get_sizeは後で変更
-encoder = Encoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(input_train[0]))
-decoder = Decoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(output_train[0]))
+encoder = Encoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(input_train[0]), magnitude_data)
+decoder = Decoder(data_class.get_size(), EMBEDDING_DIM, UNITS, BATCH_SIZE,len(output_train[0]), magnitude_data)
+
+#リソース管理
 del data_class
 
 #使う最適化アルゴリズムと損失関数を定義
@@ -69,11 +81,12 @@ def train_step(inp, targ, enc_hidden):
     #lambdaのxの引数はinp
     #change_word = lambda x:[targ_num[int(i)] for i in x.split()]
     change_word = changer(inp)
-    # print(change_word)
+    #print(change_word)
     #自動微分できるようにする
     with tf.GradientTape() as tape:
         #内部情報、最後の出力
-        enc_output, enc_hidden = encoder.call(change_word, enc_hidden)
+        #print(enc_hidden)
+        enc_output, enc_hidden = encoder.call(inp, enc_hidden)
 
         dec_hidden = enc_hidden
         #batchsize分用意する
@@ -84,7 +97,8 @@ def train_step(inp, targ, enc_hidden):
             # passing enc_output to the decoder    
             #(start, encorderの最後の出力, encorderの内部情報)2,3引数はattentionにも使う
             predictions, dec_hidden, _ = decoder.call(dec_input, dec_hidden, enc_output)
-
+            #print(predictions)
+            #print(targ[:,t])
             loss += loss_function(targ[:, t], predictions)
 
             # Teacher Forcing を使用
@@ -117,8 +131,19 @@ def changer(inp):
     #print(change_list)
     return change_list
 
+def plot_graph(loss):
+    x_axis = [x for x in range(EPOCHS)]
+    y_axis = Loss_list
+    #グラフプロット準備
+    plt.plot(x_axis, y_axis)
+
+    #グラフ出力
+    plt.show()
+
+
 if __name__=="__main__":
     print("start trainning")
+    Loss_list = []
     for epoch in range(EPOCHS):
         start = time.time()
         enc_hidden = encoder.initialize_hidden_state() #zeroの行列
@@ -139,7 +164,11 @@ if __name__=="__main__":
       # 2 エポックごとにモデル（のチェックポイント）を保存
         if (epoch + 1) % 2 == 0:
             checkpoint.save(file_prefix = checkpoint_prefix)
-
-        print('Epoch {} Loss {:.4f}'.format(epoch + 1,
-                                          total_loss / STEPS_PER_EPOCH))
+            
+        Loss = total_loss / STEPS_PER_EPOCH
+        print('Epoch {} Loss {:.4f}'.format(epoch + 1,Loss))
         print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
+        Loss_list.append(Loss)
+        
+    plot_graph(Loss_list)
+        
