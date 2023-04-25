@@ -30,7 +30,20 @@ give the instructions again
 From the beginning
 say from the beginning
 say it again
+start again
+once again
+one more
 
+da= end_task
+end
+end task
+exit
+exit task
+finish
+fnished task
+complete
+complete task
+finish the command
 
 
 

@@ -187,7 +187,7 @@ class Increase_Sentence():
                 print(cnt,":",line)
                 root = xml.etree.ElementTree.fromstring("<dummy>"+line+"</dummy>")
                 
-                for i in range(1000):
+                for i in range(100):
                     sen, posdict = self.random_generate(root)
                     lis = []
                     pos = 0
