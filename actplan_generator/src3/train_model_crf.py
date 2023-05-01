@@ -8,6 +8,7 @@ mecab.parse('')
 
 SENTS = []
 LIS = []
+MODEL_PATH = "../resource/src3/"
 
 def word2features(sent,i):
     word = sent[i][0]
@@ -64,7 +65,7 @@ def train_crf(SENTS,LIS):
         all_possible_transitions=False
     )
     crf.fit(X,Y)
-    with open("crf.model","wb") as f:
+    with open(MODEL_PATH+"crf.model","wb") as f:
         dill.dump(crf, f)
 
 if __name__ == "__main__":

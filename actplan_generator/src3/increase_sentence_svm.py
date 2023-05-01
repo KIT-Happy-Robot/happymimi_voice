@@ -18,7 +18,7 @@ file_path=path.expanduser('~/ros1_ws/src/happymimi_voice/config')
 print("now loading..")
 #コサイン類似度の最小閾値
 MIN_VEC = 0.5
-
+MODEL_PATH = "../resource/src3/"
 #nltk.download('veraged_perceptron_tagger')
 #word_vec = api.load("glove-twitter-200")
 vectors = Magnitude("/home/kouya/Downloads/crawl-300d-2M.magnitude")
@@ -175,9 +175,9 @@ class Increase_Sentence():
     def execute(self):
         da = " "
         cnt = 0
-        f = open("svm_sentences.dat","w")
-        for line in open("exam_svm.txt", "r"):
-            line  = line.strip()
+        f = open(MODEL_PATH+"svm_sentences.dat","w")
+        for line in open(MODEL_PATH+"exam_svm.txt", "r"):
+            line  = line.rstrip()
             if re.search(r'^da=', line):
                 da = line.replace('da=', '')
             elif line == "":
