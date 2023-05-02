@@ -205,7 +205,7 @@ class speech_server():
                 responses = client.streaming_recognize(streaming_config, requests)
                 return SpeechToTextResponse(result_str=self.listen_print_loop(responses))
         except:
-            return SpeechToTextRespons(result_str="")
+            return SpeechToTextResponse(result_str="")
 
 if __name__=='__main__':
     rospy.init_node('stt_server2')

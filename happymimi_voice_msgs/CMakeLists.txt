@@ -67,6 +67,7 @@ find_package(catkin REQUIRED COMPONENTS
     SprInformation.srv
     YesNo.srv
     StringToString.srv
+    ActPlan.srv
  )
 
 ## Generate actions in the 'action' folder
