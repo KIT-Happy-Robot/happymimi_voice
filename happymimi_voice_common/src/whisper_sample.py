@@ -30,8 +30,8 @@ def MakeWavFile(filename, Record_Seconds = 5):
     wavFile.setnchannels(CHANNELS)
     wavFile.setsampwidth(p.get_sample_size(FORMAT))
     wavFile.setframerate(RATE)
-    wavFile.writeframes(b''.join(all)) #Python2 用
-    #wavFile.writeframes(b"".join(all)) #Python3用
+    #wavFile.writeframes(b''.join(all)) #Python2 用
+    wavFile.writeframes(b"".join(all)) #Python3用
     wavFile.close()
 
 MakeWavFile(wave_filename, Record_Seconds = 5)
