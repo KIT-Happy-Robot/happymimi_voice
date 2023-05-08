@@ -3,7 +3,7 @@ import pyaudio
 import wave
 
 record_secound = 10
-wave_filename = "sample_pyaudio.wav"
+wave_filename = "sample.wav"
 def MakeWavFile(filename, Record_Seconds = 5):
     chunk = 1024
     FORMAT = pyaudio.paInt16
@@ -30,9 +30,10 @@ def MakeWavFile(filename, Record_Seconds = 5):
     wavFile.setnchannels(CHANNELS)
     wavFile.setsampwidth(p.get_sample_size(FORMAT))
     wavFile.setframerate(RATE)
-    wavFile.writeframes(b''.join(all)) #Python2 用
-    #wavFile.writeframes(b"".join(all)) #Python3用
+    #wavFile.writeframes(b''.join(all)) #Python2 用
+    wavFile.writeframes(b"".join(all)) #Python3用
     wavFile.close()
+
 
 MakeWavFile(wave_filename, Record_Seconds = 5)
 model = whisper.load_model("small")
