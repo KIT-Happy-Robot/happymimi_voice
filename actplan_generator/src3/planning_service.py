@@ -1,11 +1,15 @@
 #!/usr/bin/env python3                                                      
 # -*- coding: utf-8 -*-
 #QRコードまたは音声認識で行動計画を生成するサービスサーバー
-
+from PIL import Image
+import requests
 #QRコード読み込み
 import cv2
-#from happymimi_voice_msgs.srv import TTS
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge
+from pyzbar.pyzbar import decode
 import re
+
 #音声認識
 from happymimi_voice_msgs.srv import SpeechToText
 #from happymimi_voice_msgs.srv import SpeechToTextResponse
@@ -21,34 +25,53 @@ class ActPlanExecute():
     def __init__(self):
         
         rospy.loginfo("Wait for tts and stt")
+        rospy.Subscriber('/camera/color/image_raw', Image, self.realsenseCB)
         rospy.wait_for_service('/tts')
         rospy.wait_for_service('/stt_server2')
+        
+        self.bridge = CvBridge()
         self.stt=rospy.ServiceProxy('/stt_server2',SpeechToText)
         self.server=rospy.Service('/planning_service',ActPlan,self.main)
         self.tts=rospy.ServiceProxy('/tts', StrTrg)
         
         rospy.loginfo("planning_service is ready")
     
-    #文章の整形
-    def sentence_parse(self, sen):
-        for str in sen:
-                    sentence = str.lower().strip()
-                    sentence = re.sub(r"([?.!,¿])", r" \1 ", sentence)
-                    sentence = re.sub(r'[" "]+', " ", sentence)
-                    sentence = re.sub(r"[^a-zA-Z?.!,¿]+", " ", sentence)
-                    sentence = sentence.rstrip(" .").strip()
-        
-        print(sentence)
+    #画像の取得
+    def realsenseCB(self, res):
+        self.image_res = res
+    
+    #文章の整形が必要だね。まだ未完成
+    def clean_sentence(sentence):
         return sentence
-     
-    def main(self, _):
-        self.tts("please task for me.")
-        #文章認識
-        quesion_str=self.stt(short_str=False)
-        #整形した文章を取得
-        #quesion = self.sentence_parse(str(quesion_str))
+    
+    def main(self, request):
         
-        rospy.loginfo(quesion_str)
+        data = request.way
+        #QRコードでの処理
+        if data == "qr":
+            image = self.bridge.imgmsg_to_cv2(self.image_res)
+            #data = cv2.imread(image)
+            decoded_objects = decode(image)
+            for obj in decoded_objects:
+                quesion_str = obj.data
+                print(quesion_str)
+                #print('Type : ', obj.type)
+                #print('Data : ', obj.data)
+        
+            
+        #音声認識  
+        if data == "voice":
+            self.tts("please task for me.")
+            #文章認識
+            quesion_str=self.stt(short_str=False)
+            #整形した文章を取得
+            #quesion = self.sentence_parse(str(quesion_str))
+        
+        try:
+            rospy.loginfo(quesion_str)
+        except UnboundLocalError:
+            print("画像にQRが含まれていないか、音声が聞き取れません")
+        
         for utt in [str(quesion_str)]:
             concept = predict_model.extract_crf(utt)
             da = predict_model.extract_svc(utt)
