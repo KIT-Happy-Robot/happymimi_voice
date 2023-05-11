@@ -16,6 +16,18 @@ from happymimi_msgs.srv import StrToStr, StrTrg, SetFloat, SimpleTrg, SetStr
 
 import pyaudio
 import numpy as np
+import Levenshtein as lev
+import fuzzy
+import nltk
+
+
+file_name = "guest_name.yaml"
+#file_path = roslib.packages.get_pkg_dir("happymimi_voice_common") + "/config/" + file_name
+file_path = "/home/kouya/ros1_ws/src/happymimi_voice/config/voice_common/" + file_name
+
+# [閾値]---------->
+Threshold = 0.4
+# <---------------------
 
 # サンプリング周波数
 fs = 44100
@@ -85,8 +97,59 @@ def MakeWavFile(filename, Record_Seconds = 5):
     wavFile.writeframes(b"".join(all)) #Python3用
     wavFile.close()
 
+def clean_sentence(sentence):
+    morph = nltk.word_tokenize(sentence)
+    guest_name = ""
+    pos = nltk.pos_tag(morph)
+    for i,w in enumerate(pos):
+        print(w)
+        if w[1] == "NNP" or w[1] == "NN":    
+            guest_name = w[0]
+        
+    #print(guest_name)
+    return guest_name
 
+def read_guest_name():
+    guest_name_list_m = []
+    guest_name_list_f = []
+    num = 1
+    with open(file_path) as yl:
+        config = yaml.safe_load(yl)
+        for i,w in enumerate(config["Female"]):
+            #print(w)
+            guest_name_list_f.append(config["Female"][w])
+            num += 1
+         
+        num = 1   
+        for i,w in enumerate(config["Male"]):
+            #print(w)
+            guest_name_list_m.append(config["Male"][w])
+            num += 1
+            
+    #print(guest_name_list_f)
+    #print(guest_name_list_m)
+    return guest_name_list_f, guest_name_list_m
 
+def lev_distance(sentence, base):
+    phonetic_base = fuzzy.nysiis(base)
+    phonetic_target = fuzzy.nysiis(sentence)
+    
+    return lev.distance(phonetic_base, phonetic_target)\
+                /(max(len(phonetic_base), len(phonetic_target))* 1.00)
+
+def getDistanceList(sentence,guest_name):
+        distance_list = []
+        for w in guest_name:
+            distance_list.append(lev_distance(w, sentence))
+        
+        closest_distance = min(distance_list)
+        #print(distance_list)
+        if closest_distance >= Threshold:
+            return [None, None]
+        else:
+            num = distance_list.index(closest_distance)
+            
+        return guest_name[num]
 
 def main():
     start_sound(frequency=frequency, duration=duration)
@@ -94,9 +157,18 @@ def main():
     model = whisper.load_model("small",in_memory=True)
     result = model.transcribe(wave_filename, verbose=False, language="en")
     
-    print(result["text"])
+    #print(result["text"])
     #学内環境だとプロキシに引っかかる
+    
+    name = clean_sentence(result["text"])
     tts_srv(result["text"])
+    guest_name_list_f, guest_name_list_m = read_guest_name()
+    
+    #print(name)
+    #男女どちらも可能
+    print(getDistanceList(name,guest_name_list_f))
+    print(getDistanceList(name,guest_name_list_m))
+    
     
 if __name__ == "__main__":
     main()
