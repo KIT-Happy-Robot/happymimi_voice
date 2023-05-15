@@ -22,6 +22,8 @@
 - ### get_feature_srv.py
     > 音声データからリクエストされた内容を取得する
 
+- ### judgment_name.py
+    > whisperを使用し、得られた文章から名前を取得する
 ## Requirement
 省略
 
