@@ -24,16 +24,17 @@ out = Path('output.wav')
 acceleration_mode = AccelerationMode.AUTO
 
 def main() -> None:
+    
     core = VoicevoxCore(
         acceleration_mode=acceleration_mode, open_jtalk_dict_dir=open_jtalk_dict_dir)
     core.load_model(SPEAKER_ID)
-    # chat_botとの合わせ技
-    text = chat_bot_main()
-    
-    audio_query = core.audio_query(text, SPEAKER_ID)
-    wav = core.synthesis(audio_query, SPEAKER_ID)
-    out.write_bytes(wav)
-    playsound(out)
+    while True:
+        # chat_botとの合わせ技
+        text = chat_bot_main()
+        audio_query = core.audio_query(text, SPEAKER_ID)
+        wav = core.synthesis(audio_query, SPEAKER_ID)
+        out.write_bytes(wav)
+        playsound(out)
 
 
 if __name__ == "__main__":
