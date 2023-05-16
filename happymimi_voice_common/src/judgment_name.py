@@ -12,7 +12,7 @@ import yaml
 import rosparam
 import roslib.packages
 from happymimi_voice_msgs.srv import *
-from happymimi_msgs.srv import StrToStr, StrTrg, SetFloat, SimpleTrg, SetStr
+from happymimi_msgs.srv import StrToStr, StrTrg, StrTrgResponse,SetFloat, SimpleTrg, SetStr, SetStrResponse
 
 import pyaudio
 import numpy as np
@@ -47,128 +47,140 @@ wave_filename = "sample.wav"
 tts_srv = rospy.ServiceProxy('/tts', StrTrg)
 wave_srv = rospy.ServiceProxy('/waveplay_srv', StrTrg)
 
-#ピープ音を出す
-def start_sound(frequency, duration):
+class Judgment_Name():
     
-    # PyAudioのストリームを開く
-    p = pyaudio.PyAudio()
-    stream = p.open(format=pyaudio.paFloat32,channels=1,
-                    rate=fs,output=True)
-    
-    t = np.linspace(0, duration, int(fs * duration), False)
-    # 音を生成し、ストリームに書き込む
-    samples = 0.1 * np.sin(frequency * 2 * np.pi * t)
-    for i in range(0, len(samples), buffer_size):
-        stream.write(samples[i:i+buffer_size].astype(np.float32).tobytes())
+    def __init__(self):
         
-    # ストリームを閉じる
-    stream.stop_stream()
-    stream.close()
-    p.terminate()
+        self.srv = rospy.ServiceProxy("/judgment_name", SetStr, self.main)
     
-
-def MakeWavFile(filename, Record_Seconds = 5):
-    chunk = 1024
-    FORMAT = pyaudio.paInt16
-
-    CHANNELS = 1 #モノラル
-    RATE = 44100 #サンプルレート（録音の音質）
-    p = pyaudio.PyAudio()
-    stream = p.open(format = FORMAT,
-                    channels = CHANNELS,
-                    rate = RATE,
-                    input = True,
-                    frames_per_buffer = chunk)
-    #レコード開始
-    print("Now Recording...")
-    all = []
-    for i in range(0, int(RATE / chunk * Record_Seconds)):
-        data = stream.read(chunk) #音声を読み取って、
-        all.append(data) #データを追加
-    #レコード終了
-    print("Finished Recording.")
-    stream.close()
-    p.terminate()
-    wavFile = wave.open(wave_filename, 'wb')
-    wavFile.setnchannels(CHANNELS)
-    wavFile.setsampwidth(p.get_sample_size(FORMAT))
-    wavFile.setframerate(RATE)
-    #wavFile.writeframes(b''.join(all)) #Python2 用
-    wavFile.writeframes(b"".join(all)) #Python3用
-    wavFile.close()
-
-def clean_sentence(sentence):
-    morph = nltk.word_tokenize(sentence)
-    guest_name = ""
-    pos = nltk.pos_tag(morph)
-    for i,w in enumerate(pos):
-        print(w)
-        if w[1] == "NNP" or w[1] == "NN":    
-            guest_name = w[0]
+    #ピープ音を出す
+    def start_sound(self,frequency, duration):
         
-    #print(guest_name)
-    return guest_name
-
-def read_guest_name():
-    guest_name_list_m = []
-    guest_name_list_f = []
-    num = 1
-    with open(file_path) as yl:
-        config = yaml.safe_load(yl)
-        for i,w in enumerate(config["Female"]):
-            #print(w)
-            guest_name_list_f.append(config["Female"][w])
-            num += 1
-         
-        num = 1   
-        for i,w in enumerate(config["Male"]):
-            #print(w)
-            guest_name_list_m.append(config["Male"][w])
-            num += 1
+        # PyAudioのストリームを開く
+        p = pyaudio.PyAudio()
+        stream = p.open(format=pyaudio.paFloat32,channels=1,
+                        rate=fs,output=True)
+        
+        t = np.linspace(0, duration, int(fs * duration), False)
+        # 音を生成し、ストリームに書き込む
+        samples = 0.1 * np.sin(frequency * 2 * np.pi * t)
+        for i in range(0, len(samples), buffer_size):
+            stream.write(samples[i:i+buffer_size].astype(np.float32).tobytes())
             
-    #print(guest_name_list_f)
-    #print(guest_name_list_m)
-    return guest_name_list_f, guest_name_list_m
-
-def lev_distance(sentence, base):
-    phonetic_base = fuzzy.nysiis(base)
-    phonetic_target = fuzzy.nysiis(sentence)
-    
-    return lev.distance(phonetic_base, phonetic_target)\
-                /(max(len(phonetic_base), len(phonetic_target))* 1.00)
-
-def getDistanceList(sentence,guest_name):
-        distance_list = []
-        for w in guest_name:
-            distance_list.append(lev_distance(w, sentence))
+        # ストリームを閉じる
+        stream.stop_stream()
+        stream.close()
+        p.terminate()
         
-        closest_distance = min(distance_list)
-        #print(distance_list)
-        if closest_distance >= Threshold:
-            return [None, None]
-        else:
-            num = distance_list.index(closest_distance)
-            
-        return guest_name[num]
 
-def main():
-    start_sound(frequency=frequency, duration=duration)
-    MakeWavFile(wave_filename, Record_Seconds = 5)    
-    model = whisper.load_model("small",in_memory=True)
-    result = model.transcribe(wave_filename, verbose=False, language="en")
-    
-    #print(result["text"])
-    #学内環境だとプロキシに引っかかる
-    
-    name = clean_sentence(result["text"])
-    tts_srv(result["text"])
-    guest_name_list_f, guest_name_list_m = read_guest_name()
-    
-    #print(name)
-    #男女どちらも可能
-    print(getDistanceList(name,guest_name_list_f))
-    print(getDistanceList(name,guest_name_list_m))
+    def MakeWavFile(self,filename, Record_Seconds = 5):
+        chunk = 1024
+        FORMAT = pyaudio.paInt16
+
+        CHANNELS = 1 #モノラル
+        RATE = 44100 #サンプルレート（録音の音質）
+        p = pyaudio.PyAudio()
+        stream = p.open(format = FORMAT,
+                        channels = CHANNELS,
+                        rate = RATE,
+                        input = True,
+                        frames_per_buffer = chunk)
+        #レコード開始
+        print("Now Recording...")
+        all = []
+        for i in range(0, int(RATE / chunk * Record_Seconds)):
+            data = stream.read(chunk) #音声を読み取って、
+            all.append(data) #データを追加
+        #レコード終了
+        print("Finished Recording.")
+        stream.close()
+        p.terminate()
+        wavFile = wave.open(wave_filename, 'wb')
+        wavFile.setnchannels(CHANNELS)
+        wavFile.setsampwidth(p.get_sample_size(FORMAT))
+        wavFile.setframerate(RATE)
+        #wavFile.writeframes(b''.join(all)) #Python2 用
+        wavFile.writeframes(b"".join(all)) #Python3用
+        wavFile.close()
+
+    def clean_sentence(self,sentence):
+        morph = nltk.word_tokenize(sentence)
+        guest_name = ""
+        pos = nltk.pos_tag(morph)
+        for i,w in enumerate(pos):
+            print(w)
+            if w[1] == "NNP" or w[1] == "NN":    
+                guest_name = w[0]
+            
+        #print(guest_name)
+        return guest_name
+
+    def read_guest_name(self):
+        guest_name_list_m = []
+        guest_name_list_f = []
+        num = 1
+        with open(file_path) as yl:
+            config = yaml.safe_load(yl)
+            for i,w in enumerate(config["Female"]):
+                #print(w)
+                guest_name_list_f.append(config["Female"][w])
+                num += 1
+            
+            num = 1   
+            for i,w in enumerate(config["Male"]):
+                #print(w)
+                guest_name_list_m.append(config["Male"][w])
+                num += 1
+                
+        #print(guest_name_list_f)
+        #print(guest_name_list_m)
+        return guest_name_list_f, guest_name_list_m
+
+    def lev_distance(self,sentence, base):
+        phonetic_base = fuzzy.nysiis(base)
+        phonetic_target = fuzzy.nysiis(sentence)
+        
+        return lev.distance(phonetic_base, phonetic_target)\
+                    /(max(len(phonetic_base), len(phonetic_target))* 1.00)
+
+    def getDistanceList(self,sentence,guest_name):
+            distance_list = []
+            for w in guest_name:
+                distance_list.append(self.lev_distance(w, sentence))
+            
+            closest_distance = min(distance_list)
+            #print(distance_list)
+            if closest_distance >= Threshold:
+                return [None, None]
+            else:
+                num = distance_list.index(closest_distance)
+                
+            return guest_name[num]
+
+    def main(self):
+        self.start_sound(frequency=frequency, duration=duration)
+        self.MakeWavFile(wave_filename, Record_Seconds = 5)    
+        model = whisper.load_model("small",in_memory=True)
+        result = model.transcribe(wave_filename, verbose=False, language="en")
+        
+        #print(result["text"])
+        #学内環境だとプロキシに引っかかる
+        
+        name = self.clean_sentence(result["text"])
+        tts_srv(result["text"])
+        guest_name_list_f, guest_name_list_m = self.read_guest_name()
+        
+        #print(name)
+        #男女どちらも可能
+        print(self.getDistanceList(name,guest_name_list_f))
+        print(self.getDistanceList(name,guest_name_list_m))
+        
+        #今回は試験的に男性側で特定
+        return SetStrResponse(result = self.getDistanceList(name,guest_name_list_m))
     
     
 if __name__ == "__main__":
-    main()
+    rospy.init_node('judment_name')
+    JN = Judgment_Name()
+    rospy.spin()
+    
