@@ -4,6 +4,7 @@
   <node pkg="happymimi_voice_common" name="listen_command" type="listen_command.py" output="screen" />
   <node pkg="happymimi_voice_common" name="yes_no" type="yes_no.py" output="screen" />
 　<node pkg="happymimi_voice_common" name="waveplay_srv" type="waveplay_srv.py" output="screen" />
+  <node pkg="happymimi_voice_common" name="judgment_name" type="judgment_name.py" output="screen" />
 　<!-- <node pkg="happymimi_voice_common" name="get_feature_srv" type="get_feature_srv.py" output="screen" /> -->
 <node pkg="happymimi_voice_common" name="stt_server" type="stt_server.py" output="screen" />
 </launch>
