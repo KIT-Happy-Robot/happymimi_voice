@@ -12,7 +12,7 @@ from happymimi_nlp import data_operation
 from happymimi_nlp.Attention_Model import *
 from pymagnitude import *
 
-file_path = os.path.expanduser('~/catkin_ws/src/happymimi_voice/config/dataset/')
+file_path = os.path.expanduser('~/Downloads/')
 file_mg = file_path + 'crawl-300d-2M.magnitude'
 
 print("now loading..")
@@ -21,7 +21,7 @@ magnitude_data = Magnitude(file_mg)
 # print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
 #インスタンス化
-data_class=data_operation.DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
+data_class=data_operation.DataOperation(input_id="../resource/src1_2/input_id.txt",output_id="../resource/src1_2/output_id.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
 #print("in:",input_train,input_test)
 #print("out:",output_train,output_test)
