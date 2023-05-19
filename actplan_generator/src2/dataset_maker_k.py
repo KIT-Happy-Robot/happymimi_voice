@@ -10,11 +10,11 @@ from sklearn import datasets
 import itertools
 
 class DatasetMaker():
-    def __init__(self,dataset_path="../resource",
+    def __init__(self,dataset_path="../resource/src1_2",
                  read_file="sequence_ex.txt",
                  read_file2="sequence2.txt",
-                 input_out="input_str.txt",output_out="output_str.txt",
-                 input_id="input_id.txt",output_id="output_id.txt",
+                 input_out="input_str_k.txt",output_out="output_str_k.txt",
+                 input_id="input_id_k.txt",output_id="output_id_k.txt",
                  lang="en",max_data=50000):
         self.dataset_path=dataset_path
         self.read_file=dataset_path+"/"+read_file
@@ -169,8 +169,8 @@ class DatasetMaker():
 
 
     def all_run(self):
-        self.prepare_sentence()
-        self.segmentationwrite()
+        #self.prepare_sentence()
+        #self.segmentationwrite()
         self.changeid()
 
 if __name__ == "__main__":
