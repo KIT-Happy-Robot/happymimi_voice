@@ -70,3 +70,23 @@ python3 train_model.py
 ```
 python3 predict_model.py
 ```
+
+    
+### Serviceサーバーの使い方
+```
+#サービス通信の型の宣言
+from happymimi_voice_msgs.srv import ActPlan, ActPlanResponse
+
+srv = rospy.Service('/planning_service',ActPlan)
+#QRコードを使いたい場合 
+result= srv("qr") 
+#voiceを使う場合
+result = srv("voice")
+
+#対話タイプの抽出
+result = srv("voice").da
+
+#文章のデータとコンセプトの抽出
+result = srv("voice").concept
+result = srv("voice").data
+```
