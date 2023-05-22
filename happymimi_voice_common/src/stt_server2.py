@@ -24,6 +24,11 @@ import pyaudio
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
 
+#プロキシ対策
+import os
+server = "http://wwwproxy.kanazawa-it.ac.jp:8080"
+os.environ["http_proxy"] = server
+os.environ["https_proxy"] = server
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""

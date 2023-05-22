@@ -13,6 +13,18 @@ import pyaudio
 
 Filename = 'output.wav'
 
+#プロキシ対策
+import os
+server = "http://wwwproxy.kanazawa-it.ac.jp:8080"
+os.environ["http_proxy"] = server
+os.environ["https_proxy"] = server
+
+#学外で使用するときはこっち
+server = ""
+os.environ["http_proxy"] = server
+os.environ["https_proxy"] = server
+
+
 class TTS_server(object):
     def __init__(self):
         rospy.init_node('common_texttospeech')
