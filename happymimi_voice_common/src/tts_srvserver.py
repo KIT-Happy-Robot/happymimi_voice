@@ -11,13 +11,27 @@ from google.cloud import texttospeech
 import wave
 import pyaudio
 
+import os
+from subprocess import PIPE
+import subprocess
+
 Filename = 'output.wav'
+#bashrcに書き込んでおくべし！
+password = (os.environ["SUDO_KEY"] + "\n").encode()
 
 #プロキシ対策
-import os
-server = "http://wwwproxy.kanazawa-it.ac.jp:8080"
-os.environ["http_proxy"] = server
-os.environ["https_proxy"] = server
+def check_wifi():
+    proc = subprocess.run(["sudo","-S","wpa_cli", "status"],stdout = subprocess.PIPE, stderr = subprocess.PIPE, input=password)
+    data = proc.stdout.decode("utf8").split()
+    if data[5] == "ssid=KIT-WLAP2":
+        server = "http://wwwproxy.kanazawa-it.ac.jp:8080"
+        os.environ["http_proxy"] = server
+        os.environ["https_proxy"] = server
+        
+    else:
+        server = ""
+        os.environ["http_proxy"] = server
+        os.environ["https_proxy"] = server
 
 class TTS_server(object):
     def __init__(self):
@@ -73,5 +87,6 @@ class TTS_server(object):
 
 
 if __name__ == '__main__':
+    check_wifi()
     TTS_server()
     rospy.spin()
