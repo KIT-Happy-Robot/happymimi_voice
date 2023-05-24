@@ -14,7 +14,7 @@ sys.path.append('../../')
 from happymimi_nlp import data_operation
 from happymimi_nlp.Attention_Model import *
 
-file_path = os.path.expanduser('~/catkin_ws/src/happymimi_voice/config/dataset/')
+file_path = os.path.expanduser('~/Downloads/')
 file_mg = file_path + 'crawl-300d-2M.magnitude'
 print("now loading..")
 magnitude_data = Magnitude(file_mg)
@@ -119,8 +119,8 @@ def evaluate(sentence):
         predicted_id = tf.argmax(predictions[0]).numpy()
         result += targ_num[predicted_id] + ' '
 
-        if targ_num[predicted_id] == '<end>':
-            return result, sentence
+        #if targ_num[predicted_id] == '<end>':
+        #    return result, sentence
 
         # 予測された ID がモデルに戻される
         dec_input = tf.expand_dims([predicted_id], 0)
@@ -133,7 +133,7 @@ def evaluate(sentence):
 
 if __name__=='__main__':
     #while(1):
-    str="robot please go to the room look for a boy tell a joke"
+    str="robot please navigate to the kitchen go for a Oliver speak a month"
     result, sentence = evaluate(str)
 
     print('response: {}'.format(result))

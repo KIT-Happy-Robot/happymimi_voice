@@ -21,14 +21,16 @@ magnitude_data = Magnitude(file_mg)
 # print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
 #インスタンス化
-data_class=data_operation.DataOperation(input_id="../resource/src1_2/input_id.txt",output_id="../resource/src1_2/output_id.txt")
+data_class=data_operation.DataOperation(input_id="../resource/src1_2/input_id_k.txt",output_id="../resource/src1_2/output_id_k.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
 #print("in:",input_train,input_test)
 #print("out:",output_train,output_test)
+
 #dictでtarg_langは文字列をキーに
 #targ_numはidをキーにしている
-
 targ_lang,targ_num=data_class.word_dict()
+
+
 
 #定数
 SPLIT_NUM=1
@@ -117,19 +119,28 @@ def train_step(inp, targ, enc_hidden):
 
 #これがしたいはず...
 def changer(inp):
-
+    #print(targ_num)
     change_list = []
+    c_list = []
+    cnt = 0
     #numpy()でtf.tensorを変換
     np_list = inp.numpy()
     #リストの形をリスト化して代入
     shape = list(np_list.shape)
-    for i in range(shape[0]):
-        for j in range(shape[1]):
-
+    #[20,19]
+    for i in range(20):
+        for j in range(19):
             factor = np_list[i][j]
+            #print(targ_num[factor])
             change_list.append(targ_num[factor])
-    #print(change_list)
-    return change_list
+        
+        #cnt += 1
+        #print("cnt:",cnt)
+        c_list.append(change_list)
+        #print(c_list)
+        change_list = []
+            
+    return c_list
 
 def plot_graph(loss):
     x_axis = [x for x in range(EPOCHS)]

@@ -15,7 +15,7 @@ class DatasetMaker():
                  read_file2="sequence2.txt",
                  input_out="input_str_k.txt",output_out="output_str_k.txt",
                  input_id="input_id_k.txt",output_id="output_id_k.txt",
-                 lang="en",max_data=50000):
+                 lang="en",max_data=70000):
         self.dataset_path=dataset_path
         self.read_file=dataset_path+"/"+read_file
         self.read_file2=dataset_path+"/"+read_file2
@@ -40,7 +40,7 @@ class DatasetMaker():
 
         with open(self.dataset_path+"/dataset_state.txt","w") as f:
             f.write("raw_data="+read_file+"\n")
-            f.write("language="+lang)
+            f.write("language="+lang+"\n")
             f.write("max_data="+str(max_data))
 
     # def normalization(self):
@@ -155,6 +155,7 @@ class DatasetMaker():
                             self.dict_word[word]=self.word_number
                             self.dict_num[self.word_number]=word
                             id_str.append(self.dict_word[word])
+                            
                     id_str.append(self.dict_word["<end>"])
                     w.write(' '.join(map(str,id_str))+"\n")
                     id_str.clear()
