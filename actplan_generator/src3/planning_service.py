@@ -19,6 +19,9 @@ import rospy
 #モデルの読み込み
 import predict_model
 
+#文章の整形
+import re
+
 MODEL_PATH = "../resource/src3/" 
 
 class ActPlanExecute():
@@ -42,6 +45,7 @@ class ActPlanExecute():
     
     #文章の整形が必要だね。まだ未完成
     def clean_sentence(sentence):
+        modified_sentence = sentence.replace("guest room", "guest-room")
         return sentence
     
     def main(self, request):
@@ -71,6 +75,10 @@ class ActPlanExecute():
             rospy.loginfo(quesion_str)
         except UnboundLocalError:
             print("画像にQRが含まれていないか、音声が聞き取れません")
+        
+        print(utt)
+        utt = self.clean_sentence(utt)
+        print(utt)
         
         for utt in [str(quesion_str)]:
             concept = predict_model.extract_crf(utt)

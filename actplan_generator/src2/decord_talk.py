@@ -133,7 +133,7 @@ def evaluate(sentence):
 
 if __name__=='__main__':
     #while(1):
-    str="robot please navigate to the kitchen go for a Oliver speak a month"
+    str="give the object to me"
     result, sentence = evaluate(str)
 
     print('response: {}'.format(result))

@@ -87,7 +87,12 @@ def extract_svc(utt):
 
 if __name__ == "__main__":
     #for utt in ["could you tell me how many people in the guestroom"]:
-    for utt in ["bring me the plastic bottle of tea in the livingroom"]: 
+    sentence = r"Tell your team's name to Robin at the shelf"
+    pattern = '[a-zA-Z0-9_] name'
+    
+    result = re.findall(pattern,sentence,re.S)
+    print(type(result))
+    for utt in []: 
         conceptdic = extract_crf(utt)
         da = extract_svc(utt)
         #print(utt)
