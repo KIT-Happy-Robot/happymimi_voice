@@ -1,2 +1,3 @@
 raw_data=sequence_ex.txt
-language=enmax_data=50000
+language=en
+max_data=70000
