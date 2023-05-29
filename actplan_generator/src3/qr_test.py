@@ -50,3 +50,4 @@ finally:
     # プログラムの終了時にカメラを停止してウィンドウを閉じる
     pipeline.stop()
     cv2.destroyAllWindows()
+
