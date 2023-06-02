@@ -45,20 +45,33 @@ class ActPlanExecute():
     
     #文章の整形が必要だね。まだ未完成
     def clean_sentence(sentence):
-        modified_sentence = sentence.replace("guest room", "guest-room")
+
+        pattern_r = "\w* room"
+        pattern_n = "\w* name"
+                
+        if sentence in "room":
+            result = re.findall(pattern_r,sentence,re.S)
+            for i in range(len(result)):
+                sentence = sentence.replace(str(result[i]), "\w*-room")
+                
+        elif sentence in "name":
+            modified_sentence = sentence.replace("guest room", "guest-room")
         return sentence
     
     def main(self, request):
         
         data = request.way
+        quesion_str = ""
+        decoded_objects = []
         #QRコードでの処理
         if data == "qr":
-            image = self.bridge.imgmsg_to_cv2(self.image_res)
-            #data = cv2.imread(image)
-            decoded_objects = decode(image)
+            print("qr")
+            while not decoded_objects:
+                image = self.bridge.imgmsg_to_cv2(self.image_res)
+                decoded_objects = decode(image)
+                
             for obj in decoded_objects:
-                quesion_str = obj.data
-                print(quesion_str)
+                quesion_str = str(obj.data)
                 #print('Type : ', obj.type)
                 #print('Data : ', obj.data)
         
@@ -76,9 +89,9 @@ class ActPlanExecute():
         except UnboundLocalError:
             print("画像にQRが含まれていないか、音声が聞き取れません")
         
-        print(utt)
-        utt = self.clean_sentence(utt)
-        print(utt)
+        #print(utt)
+        #utt = self.clean_sentence(utt)
+        #print(utt)
         
         for utt in [str(quesion_str)]:
             concept = predict_model.extract_crf(utt)
@@ -94,3 +107,4 @@ if __name__ == "__main__":
     actplan_exe = ActPlanExecute()
     #actplan_exe.main()
     rospy.spin()
+

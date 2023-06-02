@@ -25,7 +25,7 @@ import roslib.packages
 import fuzzy
 import copy
 
-file_path=roslib.packages.get_pkg_dir("actplan_generator")+"/resource"
+file_path=roslib.packages.get_pkg_dir("actplan_generator")+"/resource/src1_2"
 #get
 question_file="/cat1_dataset.txt"
 

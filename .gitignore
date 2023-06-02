@@ -1,0 +1,4 @@
+#トレーニングデータを無視する
+*.index
+*.pyc
+actplan_generator/resource/src1_2/GPSRCmdGen/

@@ -87,12 +87,20 @@ def extract_svc(utt):
 
 if __name__ == "__main__":
     #for utt in ["could you tell me how many people in the guestroom"]:
-    sentence = r"Tell your team's name to Robin at the shelf"
-    pattern = '[a-zA-Z0-9_] name'
+    sentence_n = r"Tell your team's name to Robin at the shelf"
+    sentence_r = "could you tell me how many people in the guest room"
     
-    result = re.findall(pattern,sentence,re.S)
-    print(type(result))
-    for utt in []: 
+    sentence_n = sentence_n.replace("'","")
+    pattern_r = "\w* room"
+    pattern_n = "\w* name"
+    
+    result = re.findall(pattern_r,sentence_r,re.S)
+    sentence = sentence_r.replace(str(result), "\w*-room")
+    
+    #result = re.findall(pattern_n,sentence_n,re.S)
+    #sentence.relplace(str(result[0]),+"-name")
+    #print(sentence)
+    for utt in ["Bring drink to the person pointing to the left in the living room"]: 
         conceptdic = extract_crf(utt)
         da = extract_svc(utt)
         #print(utt)
