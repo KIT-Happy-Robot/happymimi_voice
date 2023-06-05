@@ -1,4 +1,4 @@
-<nc>robot please</nc> <act>go</act> to the <location>room</location> <act>look</act> for a <human>boy</human> <act>tell</act> a <target>joke</target>
+<><nc>robot please</nc> <act>go</act> to the <location>room</location> <act>look</act> for a <human>boy</human> <act>tell</act> a <target>joke</target>
 <act>go</act> to the <location>location</location> <act>find</act> the <target>tray</target> <act>give</act> it to <human>name</human> at the <location>location</location>
 <nc>could you</nc> <act>tell</act> <human>me</human> how many <target>people</target> in the <location>room</location> are
 <nc>could you</nc> <act>tell</act> <human>me</human> the <target>name</target> of the <human>person</human> in the <location>room</location>
