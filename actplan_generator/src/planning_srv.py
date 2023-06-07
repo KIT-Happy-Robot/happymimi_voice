@@ -1,12 +1,13 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 ##############################################################
 #ed 2021/9/17
-#author fukuda nao
+#author fukuda nao, Koya Okuse
 #############################################################
 
-from happymimi_voice_msgs.srv import TTS
+from happymimi_msgs.srv import StrTrg
+from happymimi_msgs.srv import SetStr, SetStrResponse
 #音声認識
 from happymimi_voice_msgs.srv import SpeechToText
 from happymimi_voice_msgs.srv import ActionPlan
@@ -18,16 +19,19 @@ import rospy
 #origin
 import sentence_parsing
 
-from happymimi_msgs.srv import StrTrg
+
 
 
 
 class ActionPlanning():
     def __init__(self):
 
-        rospy.loginfo("Waiting for stt and tts")
+        rospy.loginfo("Waiting for stt and tts, whisper")
         rospy.wait_for_service('/tts')
         rospy.wait_for_service('/stt_server')
+        rospy.wait_for_service("/whisper_stt")
+        
+        self.whisper_stt = rospy.ServiceProxy("/whisper_stt",SetStr)
         self.stt=rospy.ServiceProxy('/stt_server',SpeechToText)
         self.server=rospy.Service('/planning_srv',ActionPlan,self.main)
         self.tts=rospy.ServiceProxy('/tts', StrTrg)
@@ -37,8 +41,12 @@ class ActionPlanning():
     def main(self,request_msg):
         #self.tts("please question for me")
 
-        quesion_str=self.stt(short_str=False)
-        current_quetion=self.str_pars.questionFormating(quesion_str.result_str)
+        #quesion_str=self.stt(short_str=False)
+        quesion_str = self.whisper_stt().result
+        #current_quetion=self.str_pars.questionFormating(quesion_str.result_str)
+        
+        #時間がかかるがwhisperを採用した
+        current_quetion=self.str_pars.questionFormating(quesion_str)
         if current_quetion=="ERROR":
             #self.tts("pardon?")
             return ActionPlanResponse(result=False)
