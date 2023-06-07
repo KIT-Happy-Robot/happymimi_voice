@@ -1,5 +1,5 @@
 # Directory where the nodes for natural language processing are located
-## gender_judgement_from_name.py
+## other/gender_judgement_from_name.py
 ### 概要
 機械学習を使って名前から性別を予想する
 ### 使い方
@@ -33,7 +33,7 @@ female
 #学習をかけた際と同様に扱える
 ```
 
-## sentence_analysis.py
+## other/sentence_analysis.py
 ### 概要
 文解析系の機能を持つ。（morphological_analysisも統合したほうがいい）
 #### wordVerificationメソッド
@@ -65,19 +65,19 @@ CD	Cardinal number	基数
 >>>morp.getActionplan(sentence)
 ["go","take","go","give"],["bath room","bottle","bed room","iida"]
 ```
-## Attention_Model.py
+## actplan/Attention_Model.py
 embedding層をword2vecに置き換えたAttentionモデル
 使い方は省略
 actplan_generatorのsrc2/_action_plan_train.pyを参照
 
-## data_operation.py
+## actplan/data_operation.py
 データを学習できる形式に変換してloadするプログラム
 ```
 data_class=data_operation.DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
 ```
 
-## chat_bot.py
+## vv_chatbot/chat_bot.py
 chatgptのAPIを用いて簡易的なチャットボットを実現するプログラム
 ```
 prerequisite_en = [{"role": "system", "content" :"You are Happy Mimi, a lifestyle support robot. Your job is to support people in their daily lives. Your master has asked you to be conversation partner. Please answer as many questions as you can."}]
