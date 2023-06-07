@@ -1,12 +1,14 @@
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
 import whisper
 import pyaudio
 import wave
 import rospy 
 from happymimi_msgs.srv import SetStr, SetStrResponse
 
-class Wshiper_Stt:
+class Whisper_Stt:
     
-    def __init__(self) -> None:
+    def __init__(self):
         
         self.FORMAT = pyaudio.paInt16
         self.wave_filename = "sample.wav"
@@ -15,8 +17,8 @@ class Wshiper_Stt:
         self.CHANNELS = 1 #モノラル
         self.RATE = 44100 #サンプルレート（録音の音質）
         
-        print("wshiper_ready")
-        self.srv = rospy.ServiceProxy("/whisper_stt",SetStr,self.whisper_server)
+        print("whisper_ready")
+        self.srv = rospy.Service("/whisper_stt",SetStr,self.whisper_server)
         
     def MakeWavFile(self):
         
@@ -45,12 +47,13 @@ class Wshiper_Stt:
         wavFile.writeframes(b"".join(all)) #Python3用
         wavFile.close()
 
-    def whisper_server(self):
+    def whisper_server(self,_):
+        
         self.MakeWavFile()
         #この読み込みを高速化したいかも
     #実機でのデバッグはdevice="GPU"に変更して 
         model = whisper.load_model(name="large",device="cpu",in_memory=True)
-        result = model.transcribe(whisper_stt.wave_filename, verbose=False, language="en")
+        result = model.transcribe(self.wave_filename, verbose=False, language="en")
         print(result["text"]) 
         
         return SetStrResponse(result = result["text"])   
@@ -58,7 +61,7 @@ class Wshiper_Stt:
 
 if __name__ == "__main__":    
     rospy.init_node("whisper_stt")
-    whisper_stt = Wshiper_Stt()
+    ws = Whisper_Stt()
     rospy.spin()
     
     #model = whisper.load_model(name="large",device="cpu",in_memory=True)
