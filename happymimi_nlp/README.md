@@ -96,4 +96,11 @@ prerequisite_en = [{"role": "system", "content" :"You are Happy Mimi, a lifestyl
     print(result) 
 ```
 
-
+## vv_chatbot/vv.py
+voicevoxを用いて「ずんだもん」におしゃべりさせるプログラム  
+```
+open_jtalk_dict_dir = '/home/kouya/Downloads/open_jtalk_dic_utf_8-1.11'
+text = "こんにちは！ハッピーミミです！"
+out = Path('output.wav')
+acceleration_mode = AccelerationMode.AUTO
+```
