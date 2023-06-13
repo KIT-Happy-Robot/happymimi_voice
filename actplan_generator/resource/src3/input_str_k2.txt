@@ -78,26 +78,26 @@
 <nc>Please</nc> <act>Tell</act> <human>me</human> <target>what's the heaviest drink</target> on the <location>shelf</location>
 <nc>Robot please</nc> <act>meet</act> <human>Charlie</human> at the <location>chair</location>, <act>follow</act> <human>him</human>, and <act>escort</act> <human>him</human> back
 <act>Navigate</act> to the <location>table</location>, <act>meet</act> <human>Alex</human>, and <act>take</act> <human>him</human>
-Meet Francis at the shelf, follow her, and guide her back
-Robot please look for three drink in the living room
-Navigate to the cupboard, meet Elizabeth, and follow her
-Meet Charlie at the operator and follow her
-Greet Charlie at the chair and escort her to her taxi
-Could you please face Michael at the cupboard and ask him to leave
-Navigate to the shelf, meet Francis, and guide him
-Robot please meet Skyler at the entrance and follow her
-Contact William at the table and guide him to his cab
-Meet John at the operator and follow him
-Meet Michael at the cupboard and follow him to the dining room
-Could you please provide drinks to all the guests in the living room.
-Navigate to the entrance, meet Charlie, and follow him
-Bring drink to me
-Arrange drinks to everyone in the living room.
-Meet Alex at the operator and follow her to the dining room
-Look for the bowl in the living room
-Contact Patricia at the table and guide her to her taxi
-Could you please face Mary at the desk and introduce it to Michael at the entrance
-Could you please answer a question to the person pointing to the left in the dining room
+<act>Meet</act> <human>Francis</human> at the <location>shelf</location>, follow her, and guide her back
+<nc>Robot please</nc> <act>look</act> for <target>three drink</target> in the <location>living room</location>
+<act>Navigate</act> to the <location>cupboard</location>, <act>meet</act> <human>Elizabeth</human>, and <act>follow</act> <human>her</human>
+<act>Meet</act> <human>Charlie</human> at the <location>operator</location> and <act>follow</act> <human>her</human>
+<act>Greet</act> <human>Charlie</human> at the <location>chair</location> and <act>escort</act> <human>her</human> to <location>her taxi</location>
+<nc>Could you please</nc> <act>face</act> <human>Michael</human> at the <location>cupboard</location> and <act>ask</act> <target>him to leave</target>
+<act>Navigate</act> to the <location>shelf</location>, <act>meet</act> <human>Francis</human>, and <act>guide</act> <human>him</human>
+<nc>Robot please</nc> <act>meet</act> <human>Skyler</human> at the <location>entrance</location> and <act>follow</act> <human>her</human>
+<act>Contact</act> <human>William</human> at the <location>table</location> and <act>guide</act> <human>him</human> to <location>his cab</location>
+<act>Meet</act> <human>John</human> at the <location>operator</location> and <act>follow</act> <human>him</human>
+<act>Meet</act> <human>Michael</human> at the <location>cupboard</location> and <act>follow</act> <human>him</human> to the <location>dining room</location>
+<nc>Could you please</nc> <act>provide</act> <target>drinks</target> to <human>all the guests</human> in the <location>living room</location>
+<act>Navigate</act> to the <location>entrance</location>, <act>meet</act> <human>Charlie</human>, and <act>follow</act> <human>him</human>
+<act>Bring</act>s <target>drink</target> to <human>me</human>
+<act>Arrange</act> <target>drinks</target> to <human>everyone</human> in the <location>living room</location>
+<act>Meet</act> <human>Alex</human> at the <location>operator</location> and <act>follow</act> <human>her</human> to the <location>dining room</location>
+<act>Look</act> for the <target>bowl</target> in the <location>living room</location>
+<act>Contact</act> <human>Patricia</human> at the <location>table</location> and <act>guide</act> <human>her</human> to <target>her taxi</target>
+<nc>Could you please</nc> <act>face</act> <human>Mary</human> at the <location>desk</location> and <act>introduce</act> <target>it</target> to <human>Michael</human at the <location>entrance</location>
+<nc>Could you please</nc> <act>answer</act> a <target>question</target> to the <human>person pointing to the left</human> in the <location>dining room</location>
 Follow Francis from the chair to the living room
 Find a male person in the dining room and say a joke
 Tell me the pose of the person in the dining room
