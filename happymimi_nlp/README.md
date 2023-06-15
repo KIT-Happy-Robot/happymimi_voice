@@ -1,4 +1,7 @@
-# Directory where the nodes for natural language processing are located
+# Directory where the nodes for natural language processing are located  
+## (このディレクトリは自然言語処理系のソースコードを管理しています）
+### ※voice/ide は中のREADME.md参照
+
 ## other/gender_judgement_from_name.py
 ### 概要
 機械学習を使って名前から性別を予想する
