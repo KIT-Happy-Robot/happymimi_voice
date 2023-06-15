@@ -26,18 +26,28 @@ vectors = Magnitude("/home/kouya/Downloads/crawl-300d-2M.magnitude")
 class Increase_Sentence():
     def __init__(self):
         
-        self.act_go = ["go","navigate","meet","find"]
-        self.act_navigate = ["navigate","escort","guide"]
+        self.act_go = ["go","meet","find","contact","face"]
+        self.act_navigate = ["navigate","escort","guide","accompany","follow"]
         self.act_tell = ["tell","introduce","speak","say"]
-        self.act_grasp = ["grasp","give","bring"]
+        self.act_grasp = ["get","grasp","give","bring","put","serve"]
 
-        self.location = ["guest_room","kitchen","bedroom","living_room","toilet"]
-        self.tar_object = ["cup","bottle","tray","drink","bowl","cloth"]
-        self.tar_do = ["joke","day","month"]
+        self.location = ["guest room","kitchen","bed room","living room","cab",
+                         "toilet","operator","desk","shelf","chair","entrance","table"]
+        
+        self.tar_object = ["cup","blue cup","three cups",
+                           "bottle","two bottle","red bottle",
+                           "tray","drink","bowl","cloth"]
+        
+        ##ここのところは水増しの方法を変えるべきかな
+        self.tar_do = ["joke","day","month","week"]
         self.tar_human = ["boy","people","everyone"]
+        ##
+        
+        ##人名とか、[person pointing to the left]にも対応する必要があり
         self.human = ["Noah","Liam","Oliver","James","Mason",
                       "Olivia","Emma","Ava","Mia","Elizabeth",
-                      "me","boy","girl"]
+                      "me","boy","girl","Skyler","Alex","Patricia",
+                      "John","Jack"]
 
         #self.dataset_path = dataset_path
         #self.dataset = dataset

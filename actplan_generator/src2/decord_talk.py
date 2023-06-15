@@ -11,8 +11,8 @@ from pymagnitude import *
 from action_plan_train import checkpoint
 
 sys.path.append('../../')
-from happymimi_nlp import data_operation
-from happymimi_nlp.Attention_Model import *
+from happymimi_nlp.actplan.data_operation import * 
+from happymimi_nlp.actplan.Attention_Model import *
 
 file_path = os.path.expanduser('~/Downloads/')
 file_mg = file_path + 'crawl-300d-2M.magnitude'
@@ -21,7 +21,7 @@ magnitude_data = Magnitude(file_mg)
 
 
 max_output=10
-data_class=data_operation.DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
+data_class=DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
 targ_lang,targ_num=data_class.word_dict()
 

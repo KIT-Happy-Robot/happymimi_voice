@@ -8,8 +8,8 @@ import time
 import matplotlib.pyplot as plt
 
 sys.path.append('../../')
-from happymimi_nlp import data_operation
-from happymimi_nlp.Attention_Model import *
+from happymimi_nlp.actplan.data_operation import * 
+from happymimi_nlp.actplan.Attention_Model import *
 from pymagnitude import *
 
 file_path = os.path.expanduser('~/Downloads/')
@@ -21,7 +21,7 @@ magnitude_data = Magnitude(file_mg)
 # print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
 #インスタンス化
-data_class=data_operation.DataOperation(input_id="../resource/src1_2/input_id_k.txt",output_id="../resource/src1_2/output_id_k.txt")
+data_class=DataOperation(input_id="../resource/src1_2/input_id_k.txt",output_id="../resource/src1_2/output_id_k.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
 #print("in:",input_train,input_test)
 #print("out:",output_train,output_test)
