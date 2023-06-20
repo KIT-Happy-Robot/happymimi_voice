@@ -1,5 +1,5 @@
 <act>Get</act> the <target>bowl</target> from the <location>chair</location> and <act>put</act> <target>it<target> on the <location>shelf</location>
-<act>Meet</act> <human>Skyler<human> at the <location>desk<location, <act>follow</act> <humna>him<human>, and <act>navigate</act> to the <location>dining room<location>
+<act>Meet</act> <human>Skyler<human> at the <location>desk<location, <act>follow</act> <human>him<human>, and <act>navigate</act> to the <location>dining room<location>
 <act>Follow</act> <human>Mary</human>
 <act>Meet</act> <human>Jennifer</human> at the <location>desk</location>, <act>follow</act> <human>her</human>, and <act>accompany</act> <human>her</human> back
 <act>Meet</act> <human>Mary</human> at the <location>shelf</location>, <act>follow</act> <human>her</human>, and <act>guide</act> <human>her<human> back
@@ -68,7 +68,7 @@
 <nc>Could you please</nc> <act>Tell</act> <human>me</human> <target>what's the thinnest object</target> on the <location>cupboard</location>
 <act>Meet</act> <human>John</human> at the <location>desk</location>, <act>follow</act> <human>him</human>, and <act>navigate</act> to the <location>dining room</location>
 <nc>Could you please</nc> <act>follow</act> <human>Elizabeth</human> from the <location>table</location> to the <location>dining room</location>
-<act>Answer</act> a <target>question</target> to the <human>person pointing to the right</human> in the <location>dining room</location>
+<act>Answer</act> a <target>question</target> to the <target>person pointing to the right</target> in the <location>dining room</location>
 <act>Place</act> the <target>cloth</target> on the <location>table</location>
 <act>Tell</act> <human>me</human> the <target>gender of the person</target> in the <location>dining room</location>
 <act>Meet</act> <human>James</human> at the <location>cupboard</location>, <act>follow</act> <human>him</human>, and <act>guide</act> <human>him</human> back
@@ -78,7 +78,7 @@
 <nc>Please</nc> <act>Tell</act> <human>me</human> <target>what's the heaviest drink</target> on the <location>shelf</location>
 <nc>Robot please</nc> <act>meet</act> <human>Charlie</human> at the <location>chair</location>, <act>follow</act> <human>him</human>, and <act>escort</act> <human>him</human> back
 <act>Navigate</act> to the <location>table</location>, <act>meet</act> <human>Alex</human>, and <act>take</act> <human>him</human>
-<act>Meet</act> <human>Francis</human> at the <location>shelf</location>, follow her, and guide her back
+<act>Meet</act> <human>Francis</human> at the <location>shelf</location>, <act>follow</act> <human>her</human>, and <act>guide</act> <human>her</human> back
 <nc>Robot please</nc> <act>look</act> for <target>three drink</target> in the <location>living room</location>
 <act>Navigate</act> to the <location>cupboard</location>, <act>meet</act> <human>Elizabeth</human>, and <act>follow</act> <human>her</human>
 <act>Meet</act> <human>Charlie</human> at the <location>operator</location> and <act>follow</act> <human>her</human>
@@ -97,4 +97,4 @@
 <act>Look</act> for the <target>bowl</target> in the <location>living room</location>
 <act>Contact</act> <human>Patricia</human> at the <location>table</location> and <act>guide</act> <human>her</human> to <target>her taxi</target>
 <nc>Could you please</nc> <act>face</act> <human>Mary</human> at the <location>desk</location> and <act>introduce</act> <target>it</target> to <human>Michael</human at the <location>entrance</location>
-<nc>Could you please</nc> <act>answer</act> a <target>question</target> to the <human>person pointing to the left</human> in the <location>dining room</location>
+<nc>Could you please</nc> <act>answer</act> a <target>question</target> to the <target>person pointing to the left</target> in the <location>dining room</location>
