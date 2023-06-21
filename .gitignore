@@ -2,3 +2,4 @@
 *.index
 *.pyc
 actplan_generator/resource/src1_2/GPSRCmdGen/
+happymimi_voice/config/dataset/training_checkpoints/
