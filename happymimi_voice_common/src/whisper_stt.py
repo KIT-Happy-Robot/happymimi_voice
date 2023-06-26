@@ -51,8 +51,12 @@ class Whisper_Stt:
         
         self.MakeWavFile()
         #この読み込みを高速化したいかも
-    #実機でのデバッグはdevice="GPU"に変更して 
-        model = whisper.load_model(name="large",device="cpu",in_memory=True)
+        #実機でのデバッグはdevice="GPU"に変更して 
+        #model = whisper.load_model(name="large",device="cpu",in_memory=True) #子機デバッグ用
+        model = whisper.load_model(name="large",device="cpu",in_memory=True) #実機デバッグ用
+        _ = model.half()
+        _ = model.cuda()
+        
         result = model.transcribe(self.wave_filename, verbose=False, language="en")
         print(result["text"]) 
         

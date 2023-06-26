@@ -2,4 +2,5 @@
 *.index
 *.pyc
 actplan_generator/resource/src1_2/GPSRCmdGen/
-happymimi_voice/config/dataset/training_checkpoints/
+config/dataset/training_checkpoints/ckpt*
+environment_building/stanford-tagger-4.2.0.zip
