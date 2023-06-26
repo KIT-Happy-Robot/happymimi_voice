@@ -210,17 +210,18 @@ class Increase_Sentence():
                 return root.text, posdict
             
             for sentence in root:
+                result = sentence.text.lower()
                 if sentence.tag == "act":
-                    result = self.compare_similarity_action(sentence.text)
-                    if result == 'go': 
+                    
+                    if result in self.act_go: 
                         act = random.choice(self.act_go)
-                    elif result == 'navigate':
+                    elif result in self.act_navigate:
                         act = random.choice(self.act_navigate)
-                    elif result == 'tell':
+                    elif result in self.act_tell:
                         act = random.choice(self.act_tell)
-                    elif result == 'grasp':
+                    elif result in self.act_grasp:
                         act = random.choice(self.act_grasp)
-                    elif result == 'give':
+                    elif result in self.act_give:
                         act = random.choice(self.act_give)    
                     
 
