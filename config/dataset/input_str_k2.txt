@@ -164,7 +164,7 @@
 <act>Give<>/act the <target>bowl</target> to <human>me</human>
 <act>Meet</act> <human>John</human> at the <location>cupboard</location>, <act>follow</act> <human>him</human>, and <act>navigate</act> to the <location>living room</location>
 <act>Navigate</act> to the <location>chair</location>, <act>meet</act> <human>Skyler</human>, and <act>accompany</act> <human>her</human> to the <location>shelf</location>
-Could you give snacks to everyone in the dining room.
+<nc>Could you</nc> <act>give</act> snacks to <human>everyone</human> in the <location>dining room</location>
 Place the black coffee on the table
 Answer a question to the person raising their left arm in the dining room
 Give drink to me
