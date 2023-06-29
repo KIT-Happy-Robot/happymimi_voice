@@ -78,7 +78,7 @@
 <nc>Please</nc> <act>Tell</act> <human>me</human> <target>what's the heaviest drink</target> on the <location>shelf</location>
 <nc>Robot please</nc> <act>meet</act> <human>Charlie</human> at the <location>chair</location>, <act>follow</act> <human>him</human>, and <act>escort</act> <human>him</human> back
 <act>Navigate</act> to the <location>table</location>, <act>meet</act> <human>Alex</human>, and <act>take</act> <human>him</human>
-<act>Meet</act> <human>Francis</human> at the <location>shelf</location>, follow her, and guide her back
+<act>Meet</act> <human>Francis</human> at the <location>shelf</location>, <act>follow</act> <human>her</human>, and <act>guide</act> <human>her</human> back
 <nc>Robot please</nc> <act>look</act> for <target>three drink</target> in the <location>living room</location>
 <act>Navigate</act> to the <location>cupboard</location>, <act>meet</act> <human>Elizabeth</human>, and <act>follow</act> <human>her</human>
 <act>Meet</act> <human>Charlie</human> at the <location>operator</location> and <act>follow</act> <human>her</human>
@@ -139,31 +139,31 @@
 <act>Meet</act> <human>Skyler</human> at the <location>cupboard</location> and <act>escort</act> <human>her</human> to the <location>operator</location>
 <act>Navigate</act> to the <location>desk</location>, <act>meet</act> <human>Linda</human>, and <act>take</act> <human>her</human> to the <location>shelf</location>
 <nc>Could you please</nc> <act>meet</act> <human>Francis</human> at the <location>desk</location>, <act>follow</act> <human>her</human>, and <act>lead</act> <target>her back</target>
-<nc>Could you</ac> <act>accompany</act> <human>Elizabeth</human> to the <location>table</location>, <nc>you can</nc> <act>find</act> <human>her</human> at the <locaton>chair</location>
+<nc>Could you</nc> <act>accompany</act> <human>Elizabeth</human> to the <location>table</location>, <nc>you can</nc> <act>find</act> <human>her</human> at the <locaton>chair</location>
 <act>Take</act> <human>Robin</human> to the <location>chair</location>, <nc>you will</nc> <act>find</act> <human>him</human> at the <location>operator</location>
 <act>Meet</act> <human>Robin<human> at the <location>desk</location>, <act>follow</act> <human>him</human>, and <act>go</act> to the <location>dining room</location>
 <act>Meet</act> <human>Francis</human> at the <location>chair</location>, <act>follow</act> <human>her</human>, and <act>guide</act> <location>her back</location>
 <act>Go</act> to the <location>shelf</location>, <act>locate</act> <target>the red cup</target>, and <act>deliver</act> <target>it</target> to <human>Alex</human> at the <location>operator</location>
 <act>Meet</act> <human>Francis</human> at the <location>table</location>, <act>follow</act> <human>her</human>, and <act>navigate</act> to the <location>dining room</location>
-Find a boy in the living room and tell the time
-Accompany James to the shelf, you will find him at the entrance
-Arrange drinks to everyone in the living room.
-Meet Robin at the cupboard, follow him, and go to the living room
-Robot please go to the entrance, meet William, and follow him
-Tell me how many people in the living room are male
-Locate a person pointing to the left in the dining room and answer a question
-Meet John at the shelf, follow him, and escort him back
-Robot please meet Robert at the desk, follow him, and accompany him back
-Tell the day of the week to the person waving in the living room
-Go to the chair, meet Elizabeth, and guide her
-Follow Patricia from the chair to the living room
-Find Charlie at the operator and introduce it to Charlie at the operator
-Find Mary at the entrance and ask her to leave
-Please follow Skyler from the table to the dining room
-Could you go to the entrance, meet Linda, and follow her
-Give the bowl to me
-Meet John at the cupboard, follow him, and navigate to the living room
-Navigate to the chair, meet Skyler, and accompany her to the shelf
+<act>Find</act> <human>a boy</human> in the <location>living room</location> and <act>tell</act> <target>the time</target>
+<act>Accompany</act> <human>James</human> to the <target>shelf</target>, <human>you</human> will <act>find</act> <human>him</human> at the <location>entrance</location>
+<act>Arrange</act> <target>drinks</target> to <human>everyone</human> in the <location>living room</location>
+<act>Meet</act> <human>Robin</human> at the <location>cupboard</location>, <act>follow</act> <target>him</target>, and <act>go</act> to the <location>living room</location>
+<nc>Robot please</nc> <act>go</act> to the <location>entrance<location>, <act>meet</act> <human>William<>/human, and <act>follow</act> <human>him</human>
+<act>Tell</act> <human>me</human> <target>how many people</target> in the <location>living room</location> are male
+<act>Locate</act> a <human>person</human pointing to the left in the <location>dining room</location> and <act>answer</act> a <target>question</target>
+<act>Meet</act> <human>John</human> at the <location>shelf</location>, <act>follow</act> <human>him</human>, and <act>escort</act> <human>him</human> back
+<nc>Robot please</nc> <act>meet</act> <human>Robert</human> at the <location>desk</location>, <act>follow<location> <human>him</human>, and <act>accompany</act> <human>him</human> back
+<act>Tell</act> the <target>day</target> of the week to the <human>person</human> waving in the <location>living room</location>
+<act>Go</act> to the <location>chair<location>, <act>meet</act> <human>Elizabeth</human>, and <act>guide</act> <human>her</human>
+<act>Follow</act> <human>Patricia</human> from the <location>chair</location> to the <location>living room</location>
+<act>Find</act> <human>Charlie</human> at the <human>operator</human> and <act>introduce</act> <target>it</target> to <humanCharlie</human> at the <human>operator</human>
+<act>Find</act> <human>Mary</human> at the <location>entrance</location> and <act>ask</act> <human>her</human> <target>to leave</target>
+<nc>Please</nc> <act>follow</act> <human>Skyler</human> from the <location>table</location> to the <location>dining room</location>
+<nc>Could you</nc> <act>go</act> to the <location>entrance</location>, <act>meet</act> <human>Linda</human>, and <act>follow</act> <human>her</human>
+<act>Give<>/act the <target>bowl</target> to <human>me</human>
+<act>Meet</act> <human>John</human> at the <location>cupboard</location>, <act>follow</act> <human>him</human>, and <act>navigate</act> to the <location>living room</location>
+<act>Navigate</act> to the <location>chair</location>, <act>meet</act> <human>Skyler</human>, and <act>accompany</act> <human>her</human> to the <location>shelf</location>
 Could you give snacks to everyone in the dining room.
 Place the black coffee on the table
 Answer a question to the person raising their left arm in the dining room
