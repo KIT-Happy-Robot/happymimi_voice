@@ -1,0 +1,16 @@
+#トレーニングデータを無視する
+*.index
+*.pyc
+actplan_generator/resource/src1_2/GPSRCmdGen/
+config/dataset/training_checkpoints/ckpt-1.index
+config/dataset/training_checkpoints/ckpt-1.data-00000-of-00001
+config/dataset/training_checkpoints/ckpt-2.index
+config/dataset/training_checkpoints/ckpt-2.data-00000-of-00001
+config/dataset/training_checkpoints/ckpt-3.index
+config/dataset/training_checkpoints/ckpt-3.data-00000-of-00001
+config/dataset/training_checkpoints/ckpt-4.index
+config/dataset/training_checkpoints/ckpt-4.data-00000-of-00001
+config/dataset/training_checkpoints/ckpt-5.index
+config/dataset/training_checkpoints/ckpt-5.data-00000-of-00001
+
+environment_building/stanford-tagger-4.2.0.zip

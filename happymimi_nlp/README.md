@@ -1,5 +1,8 @@
-# Directory where the nodes for natural language processing are located
-## gender_judgement_from_name.py
+# Directory where the nodes for natural language processing are located  
+## (このディレクトリは自然言語処理系のソースコードを管理しています）
+### ※voice/ide は中のREADME.md参照
+
+## other/gender_judgement_from_name.py
 ### 概要
 機械学習を使って名前から性別を予想する
 ### 使い方
@@ -33,7 +36,7 @@ female
 #学習をかけた際と同様に扱える
 ```
 
-## sentence_analysis.py
+## other/sentence_analysis.py
 ### 概要
 文解析系の機能を持つ。（morphological_analysisも統合したほうがいい）
 #### wordVerificationメソッド
@@ -65,17 +68,42 @@ CD	Cardinal number	基数
 >>>morp.getActionplan(sentence)
 ["go","take","go","give"],["bath room","bottle","bed room","iida"]
 ```
-## Attention_Model.py
+## actplan/Attention_Model.py
 embedding層をword2vecに置き換えたAttentionモデル
 使い方は省略
 actplan_generatorのsrc2/_action_plan_train.pyを参照
 
-## data_operation.py
+## actplan/data_operation.py
 データを学習できる形式に変換してloadするプログラム
 ```
 data_class=data_operation.DataOperation(input_id="../resource/input_id.txt",output_id="../resource/output_id.txt")
 (input_train,input_test) , (output_train , output_test) = data_class.data_load()
 ```
 
+## vv_chatbot/chat_bot.py
+chatgptのAPIを用いて簡易的なチャットボットを実現するプログラム
+```
+prerequisite_en = [{"role": "system", "content" :"You are Happy Mimi, a lifestyle support robot. Your job is to support people in their daily lives. Your master has asked you to be conversation partner. Please answer as many questions as you can."}]
+    prerequisite_jp = [{"role": "system", "content" :"あなたは、生活支援ロボット「ハッピーミミ」です。あなたの仕事は、人々の生活をサポートすることです。ご主人様から、会話の相手を頼まれました。できる限り多くの質問に答えてください。また語尾は「~だよ」「~なんだ」で答えて。また、あなたのマスターは鷲尾ひろとです。"}]
+    #response = Simple_Response(prerequisite_jp)
+    model = prerequisite_jp
+    #while True:
+    prompt = input("Enter your prompt: ")
+    if prompt == "stop" or prompt == "STOP":
+        return None
+    else:
+        model.append({'role': 'user', 'content': prompt}) 
+        result_word = Simple_Response(model)
+        result = "mimi:" + result_word
+        
+    print(result) 
+```
 
-
+## vv_chatbot/vv.py
+voicevoxを用いて「ずんだもん」におしゃべりさせるプログラム  
+```
+open_jtalk_dict_dir = '/home/kouya/Downloads/open_jtalk_dic_utf_8-1.11'
+text = "こんにちは！ハッピーミミです！"
+out = Path('output.wav')
+acceleration_mode = AccelerationMode.AUTO
+```

@@ -1,0 +1,3 @@
+raw_data=sequence_ex.txt
+language=en
+max_data=70000

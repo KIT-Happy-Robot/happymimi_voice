@@ -20,10 +20,16 @@ from six.moves import queue
 import wave
 import pyaudio
 
+import os
+from subprocess import PIPE
+import subprocess
+from tts_srvserver import check_wifi
+
 # Audio recording parameters
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
 
+#プロキシ対策
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
@@ -205,9 +211,10 @@ class speech_server():
                 responses = client.streaming_recognize(streaming_config, requests)
                 return SpeechToTextResponse(result_str=self.listen_print_loop(responses))
         except:
-            return SpeechToTextRespons(result_str="")
+            return SpeechToTextResponse(result_str="")
 
 if __name__=='__main__':
     rospy.init_node('stt_server2')
+    check_wifi()
     f=speech_server()
     rospy.spin()

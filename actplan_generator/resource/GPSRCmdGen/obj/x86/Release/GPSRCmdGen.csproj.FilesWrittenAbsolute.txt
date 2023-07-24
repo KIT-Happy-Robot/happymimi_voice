@@ -1,6 +1,0 @@
-/home/nao/catkin_ws/src/happymimi_voice/actplan_generator/resource/GPSRCmdGen/obj/x86/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/nao/catkin_ws/src/happymimi_voice/actplan_generator/resource/GPSRCmdGen/obj/x86/Release/RoboCup.AtHome.GPSRCmdGen.Resources.resources
-/home/nao/catkin_ws/src/happymimi_voice/actplan_generator/resource/GPSRCmdGen/bin/Release/GPSRCmdGen.exe.mdb
-/home/nao/catkin_ws/src/happymimi_voice/actplan_generator/resource/GPSRCmdGen/bin/Release/GPSRCmdGen.exe
-/home/nao/catkin_ws/src/happymimi_voice/actplan_generator/resource/GPSRCmdGen/obj/x86/Release/GPSRCmdGen.exe
-/home/nao/catkin_ws/src/happymimi_voice/actplan_generator/resource/GPSRCmdGen/obj/x86/Release/GPSRCmdGen.exe.mdb

@@ -22,6 +22,8 @@
 - ### get_feature_srv.py
     > 音声データからリクエストされた内容を取得する
 
+- ### judgment_name.py
+    > whisperを使用し、得られた文章から名前を取得する
 ## Requirement
 省略
 
@@ -113,5 +115,10 @@ string request_data  #取得したい情報
 string result_data   # 取得した情報
 bool result	     #成功：True 失敗：False
 ```
+- ### judment_name.py
+#### happymimi_voice_msgs/SetStr.srv
+```
+---
+string result   # 取得した情報
 
-
+```

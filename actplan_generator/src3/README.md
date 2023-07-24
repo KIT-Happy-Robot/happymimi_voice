@@ -1,5 +1,3 @@
-
-まずはアノテーションは少量で正常に動作するようにすること
 ## Overview
 CRF(条件付確率場)を使って行動計画を生成する。現在は200行程度のデータを水増しして学習にかけたが、精度は微妙である。  
 データセットの水増しの方法やアノテーションの仕方を変えると精度が上がると思うので各自挑戦すること。  
@@ -12,22 +10,30 @@ SVMについて知りたい人は下記のサイトを参考にしてね💘
 [【技術解説】SVM(Support Vector Machine)](https://aiacademy.jp/media/?p=248)
 ## Description
 
-- ### increase_sentence.py
+- ### increase_sentence_crf.py increase_sentence_svm.py
     > 学習用データを水増しする。Magnitudeで類似単語を置き換えるが文章が不適切になる場合がある。
 
-- ### train_model.py
+- ### train_model.py train_model_svm.py
     > 学習用データから機械学習を行う。（モデルの構築を自分で行えば、精度伸びそう。今回はライブラリを使用）
 
-- ### predict_model_crf.py
+- ### predict_model.py
     > 生成されたモデルで推論を行う。
 
-## make dataset
+## make dataset & USAGE
 
-1. 整形したデータをexam.txtに保存
+1. 整形したデータをexam_crf.txtとexam_svm.txtに保存
+
+exam_crf
 ```
 <nc>could you</nc> <act>tell</act> <human>me</human> how many <target>people</target> in the <location>room</location> are
 ```
-2. exam.txtの内容を以下のようなアノテーションの内容に変更する（内容の変更は可、順番は統一すること）。アノテーション次第で精度は変わるため試行錯誤が必要
+
+exam_svm
+```
+da=go_and_give
+<act>go</act> to the <location>location</location> <act>find</act> the <target>tray</target> <act>give</act> it to <human>name</human> at the <location>location</location>
+```
+2. exam_crf.txtの内容は以下のようなアノテーションになっている（内容の変更は可、順番は統一すること）。
 - 対応表　
 
 |  tag  |  target  |
@@ -40,7 +46,7 @@ SVMについて知りたい人は下記のサイトを参考にしてね💘
 ※関係ない語句は<nc>としてまとめるといいかも
 ※tagのつけ方はもう一工夫いる感じする
 
-3. increase_sentence.pyでデータを水増しし、分解してcrf_sentence.datに保存
+3. increase_sentence_crf.pyでデータを水増しし、分解してcrf_sentence.datに保存
 ```
 src2$ python3 increase_sentence.py
 ```
@@ -62,5 +68,25 @@ python3 train_model.py
 5. 結果を確認
 
 ```
-python3 predict_model_crf.py
+python3 predict_model.py
+```
+
+    
+### Serviceサーバーの使い方
+```
+#サービス通信の型の宣言
+from happymimi_voice_msgs.srv import ActPlan, ActPlanResponse
+
+srv = rospy.Service('/planning_service',ActPlan)
+#QRコードを使いたい場合 
+result= srv("qr") 
+#voiceを使う場合
+result = srv("voice")
+
+#対話タイプの抽出
+result = srv("voice").da
+
+#文章のデータとコンセプトの抽出
+result = srv("voice").concept
+result = srv("voice").data
 ```
