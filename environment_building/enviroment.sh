@@ -1,6 +1,6 @@
 #! /bin/bash
 sudo -E apt install portaudio19-dev
-pip install git+https://github.com/openai/whisper.git
+#pip install git+https://github.com/openai/whisper.git
 pip install -r requirements.txt
 DIR="../config/dataset"
 FILE=$DIR"/stanford-postagger" 

@@ -14,3 +14,7 @@ pymagnitude==0.1.143
 fuzzy==1.2.2
 spacy==2.3.0
 
+protobuf==3.19.6
+transformers==4.29.0
+openai==0.27.3
+openai-whisper
