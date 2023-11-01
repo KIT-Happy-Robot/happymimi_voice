@@ -79,7 +79,8 @@ sudo apt install python3.8
 sudo apt install python3.8-dev
 ```
 
-### install pyhton-venv（Python仮想環境作成用のライブラリインストール）
+### ~install pyhton-venv（Python仮想環境作成用のライブラリインストール）~
+※ここはやらなくても良い！
 ```
 sudo apt install python3.8-venv
 ```
@@ -99,9 +100,9 @@ Get inside this package.
 
 ```
 #make venv
-python3.8 -m venv envs/venv
+python3.8 -m venv envs/venv ※ここはやらなくても良い！
 #enter venv
-source envs/venv/bin/activate
+source envs/venv/bin/activate ※ここはやらなくても良い！
 #some libraries and data install
 cd enviroment_building
 sh enviroment.sh
@@ -109,6 +110,7 @@ sh enviroment.sh
 ```
 
 ### word2vec data install(word2vecで使用するデータのインストール)
+※自宅で行うと良い！
 ```
 #8Gぐらいある
 wget -c http://magnitude.plasticity.ai/fasttext/heavy/crawl-300d-2M.magnitude
