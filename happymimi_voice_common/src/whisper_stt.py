@@ -1,9 +1,13 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
+#pip install -U openai-whisper
 import whisper
 import pyaudio
 import wave
 import rospy 
+import roslib.packages
+happymimi_voice_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/../config/wave_data/PI.wav"
+
 from happymimi_msgs.srv import SetStr, SetStrResponse
 
 class Whisper_Stt:
@@ -13,13 +17,45 @@ class Whisper_Stt:
         self.FORMAT = pyaudio.paInt16
         self.wave_filename = "sample.wav"
         self.CHUNK = 1024
-        self.RECORD_SECOND = 5
+        self.RECORD_SECOND = 7
         self.CHANNELS = 1 #モノラル
         self.RATE = 44100 #サンプルレート（録音の音質）
+        self.closed = True
+        
+        #model = whisper.load_model(name="large",device="cpu",in_memory=True) #実機デバッグ用
+        #_ = model.half()
+        #_ = model.cuda()
+        self.model = whisper.load_model(name="large",device="cpu",in_memory=True) #子機デバッグ用
         
         print("whisper_ready")
         self.srv = rospy.Service("/whisper_stt",SetStr,self.whisper_server)
-        
+    
+    def sound_pi(self):
+        try:
+            wf = wave.open(happymimi_voice_path, "rb")
+            print("Time[s]:", float(wf.getnframes()) / wf.getframerate())
+        except FileNotFoundError:
+            pass
+        p = pyaudio.PyAudio()
+        stre = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                        channels=wf.getnchannels(),
+                        rate=wf.getframerate(),
+                        output=True)
+
+        chunk = 1024
+        data = wf.readframes(chunk)
+        while data != b'':
+            stre.write(data)
+            data = wf.readframes(chunk)
+        stre.stop_stream()
+        stre.close()
+        p.terminate()
+        wf.close()
+        self.closed = False
+
+        return self
+
+    
     def MakeWavFile(self):
         
         p = pyaudio.PyAudio()
@@ -29,13 +65,14 @@ class Whisper_Stt:
                         input = True,
                         frames_per_buffer = self.CHUNK)
         #レコード開始
+        self.sound_pi()
         print("Now Recording...")
         all = []
         for i in range(0, int(self.RATE / self.CHUNK * self.RECORD_SECOND)):
             data = stream.read(self.CHUNK) #音声を読み取って、
             all.append(data) #データを追加
         #レコード終了
-        
+        self.sound_pi()
         print("Finished Recording.")
         stream.close()
         p.terminate()
@@ -49,18 +86,14 @@ class Whisper_Stt:
 
     def whisper_server(self,_):
         
-        self.MakeWavFile()
-        #この読み込みを高速化したいかも
-        #実機でのデバッグはdevice="GPU"に変更して 
-        #model = whisper.load_model(name="large",device="cpu",in_memory=True) #子機デバッグ用
-        model = whisper.load_model(name="large",device="cpu",in_memory=True) #実機デバッグ用
-        _ = model.half()
-        _ = model.cuda()
-        
-        result = model.transcribe(self.wave_filename, verbose=False, language="en")
+        self.MakeWavFile() 
+        result = self.model.transcribe(self.wave_filename, verbose=False, language="en")
         print(result["text"]) 
         
         return SetStrResponse(result = result["text"])   
+        
+    def Sentence_correction(self, text):    
+        print("--start correction--")
         
 
 if __name__ == "__main__":    
