@@ -13,7 +13,7 @@ import roslib.packages
 import sys
 happymimi_voice_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/.."
 sys.path.insert(0,happymimi_voice_path)
-from happymimi_nlp import sentence_analysis as se
+from happymimi_nlp.other import sentence_analysis as se
 file_path=happymimi_voice_path+"/config/voice_common/"
 
 
