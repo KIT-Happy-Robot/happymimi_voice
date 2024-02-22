@@ -23,7 +23,7 @@ import pyaudio
 import os
 from subprocess import PIPE
 import subprocess
-from tts_srvserver import check_wifi
+#from tts_srvserver import check_wifi
 
 # Audio recording parameters
 RATE = 16000
@@ -215,6 +215,6 @@ class speech_server():
 
 if __name__=='__main__':
     rospy.init_node('stt_server2')
-    check_wifi()
+    #check_wifi()
     f=speech_server()
     rospy.spin()
