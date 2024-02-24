@@ -17,8 +17,8 @@ import subprocess
 
 Filename = 'output.wav'
 #bashrcに書き込んでおくべし！
-password = (os.environ["SUDO_KEY"] + "\n").encode()
-
+#password = (os.environ["SUDO_KEY"] + "\n").encode()
+'''
 #プロキシ対策
 def check_wifi():
     proc = subprocess.run(["sudo","-S","wpa_cli", "status"],stdout = subprocess.PIPE, stderr = subprocess.PIPE, input=password)
@@ -32,12 +32,16 @@ def check_wifi():
         server = ""
         os.environ["http_proxy"] = server
         os.environ["https_proxy"] = server
-
+'''
+'''
 #学外で使用するときはこっち
 server = ""
 os.environ["http_proxy"] = server
 os.environ["https_proxy"] = server
-
+'''
+server = "http://wwwproxy.kanazawa-it.ac.jp:8080"
+os.environ["http_proxy"] = server
+os.environ["https_proxy"] = server
 
 class TTS_server(object):
     def __init__(self):
@@ -93,6 +97,6 @@ class TTS_server(object):
 
 
 if __name__ == '__main__':
-    check_wifi()
+    #check_wifi()
     TTS_server()
     rospy.spin()
