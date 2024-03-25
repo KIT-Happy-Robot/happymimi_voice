@@ -16,8 +16,8 @@ import sys
 import math
 happymimi_voice_path=roslib.packages.get_pkg_dir("happymimi_voice")+"/.."
 sys.path.insert(0,happymimi_voice_path)
-from happymimi_nlp import sentence_analysis as se
-from happymimi_nlp import gender_judgement_from_name as GetGender
+from happymimi_nlp.other.sentence_analysis import *  #sentence_analysis as se
+from happymimi_nlp.other import gender_judgement_from_name as GetGender
 import pickle
 from happymimi_voice_msgs.srv import YesNo
 

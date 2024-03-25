@@ -14,3 +14,5 @@ config/dataset/training_checkpoints/ckpt-5.index
 config/dataset/training_checkpoints/ckpt-5.data-00000-of-00001
 
 environment_building/stanford-tagger-4.2.0.zip
+happymimi_nlp/__pycache__/*
+happymimi_voice_common/src/*
