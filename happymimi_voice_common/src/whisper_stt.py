@@ -25,9 +25,16 @@ class Whisper_Stt:
         #model = whisper.load_model(name="large",device="cpu",in_memory=True) #実機デバッグ用
         #_ = model.half()
         #_ = model.cuda()
-        self.model = whisper.load_model(name="large",device="cpu",in_memory=True) #子機デバッグ用
+        #self.model = whisper.load_model(name="large",device="cpu",in_memory=True) #子機デバッグ用
+        #_ = self.model.half()
+        #_ = self.model.cuda()
         
-        print("whisper_ready")
+        #for m in self.model.modules():
+        #    if isinstance(m, whisper.model.LayerNorm):
+        #        m.float()
+
+        
+        #print("whisper_ready")
         self.srv = rospy.Service("/whisper_stt",SetStr,self.whisper_server)
     
     def sound_pi(self):
@@ -83,19 +90,22 @@ class Whisper_Stt:
         #wavFile.writeframes(b''.join(all)) #Python2 用
         wavFile.writeframes(b"".join(all)) #Python3用
         wavFile.close()
-
-    def whisper_server(self,_):
         
+         
+    def whisper_server(self,_):
         self.MakeWavFile() 
-        result = self.model.transcribe(self.wave_filename, verbose=False, language="en")
+        result = self.model.transcribe(
+            self.wave_filename, 
+            verbose=False, 
+            language="en",
+            beam_size=5,
+            fp16=True,
+            without_timestamps=True
+        )
         print(result["text"]) 
         
         return SetStrResponse(result = result["text"])   
         
-    def Sentence_correction(self, text):    
-        print("--start correction--")
-        
-
 if __name__ == "__main__":    
     rospy.init_node("whisper_stt")
     ws = Whisper_Stt()
