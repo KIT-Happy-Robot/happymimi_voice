@@ -17,7 +17,7 @@ class Whisper_Stt:
         self.FORMAT = pyaudio.paInt16
         self.wave_filename = "sample.wav"
         self.CHUNK = 1024
-        self.RECORD_SECOND = 7
+        self.RECORD_SECOND = 24
         self.CHANNELS = 1 #モノラル
         self.RATE = 44100 #サンプルレート（録音の音質）
         self.closed = True
@@ -26,6 +26,13 @@ class Whisper_Stt:
         #_ = model.half()
         #_ = model.cuda()
         self.model = whisper.load_model(name="large",device="cpu",in_memory=True) #子機デバッグ用
+        _ = self.model.half()
+        _ = self.model.cuda()
+        
+        for m in self.model.modules():
+            if isinstance(m, whisper.model.LayerNorm):
+                m.float()
+
         
         print("whisper_ready")
         self.srv = rospy.Service("/whisper_stt",SetStr,self.whisper_server)
@@ -83,11 +90,18 @@ class Whisper_Stt:
         #wavFile.writeframes(b''.join(all)) #Python2 用
         wavFile.writeframes(b"".join(all)) #Python3用
         wavFile.close()
-
-    def whisper_server(self,_):
         
+         
+    def whisper_server(self,_):
         self.MakeWavFile() 
-        result = self.model.transcribe(self.wave_filename, verbose=False, language="en")
+        result = self.model.transcribe(
+            self.wave_filename, 
+            verbose=False, 
+            language="en",
+            beam_size=5,
+            fp16=True,
+            without_timestamps=True
+        )
         print(result["text"]) 
         
         return SetStrResponse(result = result["text"])   
