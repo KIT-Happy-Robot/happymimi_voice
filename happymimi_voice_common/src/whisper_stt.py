@@ -17,7 +17,7 @@ class Whisper_Stt:
         self.FORMAT = pyaudio.paInt16
         self.wave_filename = "sample.wav"
         self.CHUNK = 1024
-        self.RECORD_SECOND = 24
+        self.RECORD_SECOND = 7
         self.CHANNELS = 1 #モノラル
         self.RATE = 44100 #サンプルレート（録音の音質）
         self.closed = True
@@ -25,16 +25,16 @@ class Whisper_Stt:
         #model = whisper.load_model(name="large",device="cpu",in_memory=True) #実機デバッグ用
         #_ = model.half()
         #_ = model.cuda()
-        self.model = whisper.load_model(name="large",device="cpu",in_memory=True) #子機デバッグ用
-        _ = self.model.half()
-        _ = self.model.cuda()
+        #self.model = whisper.load_model(name="large",device="cpu",in_memory=True) #子機デバッグ用
+        #_ = self.model.half()
+        #_ = self.model.cuda()
         
-        for m in self.model.modules():
-            if isinstance(m, whisper.model.LayerNorm):
-                m.float()
+        #for m in self.model.modules():
+        #    if isinstance(m, whisper.model.LayerNorm):
+        #        m.float()
 
         
-        print("whisper_ready")
+        #print("whisper_ready")
         self.srv = rospy.Service("/whisper_stt",SetStr,self.whisper_server)
     
     def sound_pi(self):
@@ -106,10 +106,6 @@ class Whisper_Stt:
         
         return SetStrResponse(result = result["text"])   
         
-    def Sentence_correction(self, text):    
-        print("--start correction--")
-        
-
 if __name__ == "__main__":    
     rospy.init_node("whisper_stt")
     ws = Whisper_Stt()
